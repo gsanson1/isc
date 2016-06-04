@@ -44,26 +44,33 @@ ISC.Game = function (game) {
     this.bpTower4;
     this.bpTower5;
     this.bpSale;
+
+    this.startCountdown = 3;
+    this.startTimerText;
+    this.startTimer;
 };
 
 ISC.Game.prototype = {
     create: function () {
 
-        var enemyDestination = new Point(23, 5);
+        var enemyDestination = new Point(22, 6);
         this.sea = this.add.sprite(0, 0, 'sea');
-        var islandPosition = Tools.getGraphicPosition(enemyDestination);
-        this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
+        // var islandPosition = Tools.getGraphicPosition(enemyDestination);
+        // this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
+        this.island = this.add.sprite(1408, 0, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
+
+        this.credit = parameters.initialCredit;
 
 
 
         // Init map
         this.map = new Map(24, 12, enemyDestination);
-
-        // Active enemies
-        for (var i = 0; i < 5; i++) {
-            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
+        // Island
+        for (var i = 2; i < 10; i++) {
+            this.map.addTower(23, i);
         }
+
 
         // Towers
         this.addTower(4, 4, 'a0');
@@ -106,14 +113,26 @@ ISC.Game.prototype = {
 
         this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
         this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
+
+        this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, { font: "64px Arial", fill: "#ffffff", align: "center" });
+        this.startTimerText.anchor.setTo(0.5, 0.5);
+
+        this.startTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateStartTimer, this);
     },
 
     addTower: function(_x, _y, _type) {
-        var gx = _x << 6;
-        var gy = _y << 6;
 
-        this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
-        this.map.addTower(_x, _y);
+        var cost = parameters.towers['tower_' + _type].cost;
+
+        if (cost < this.credit) {
+            this.credit -= cost;
+
+            var gx = _x << 6;
+            var gy = _y << 6;
+
+            this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
+            this.map.addTower(_x, _y);
+        }
     },
 
     addTowerAtPosition: function(position, _type) {
@@ -186,13 +205,6 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
-        this.toggleBuildMode();
-    },
-
-    towerSale: function () {
-
     }
-
-
 
 };
