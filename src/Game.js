@@ -36,6 +36,14 @@ ISC.Game = function (game) {
     this.tower2key;
     this.tower3key;
     this.tower4key;
+
+    // bouton ui
+    this.bpTower1;
+    this.bpTower2;
+    this.bpTower3;
+    this.bpTower4;
+    this.bpTower5;
+    this.bpSale;
 };
 
 ISC.Game.prototype = {
@@ -46,6 +54,8 @@ ISC.Game.prototype = {
         var islandPosition = Tools.getGraphicPosition(enemyDestination);
         this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
+
+
 
         // Init map
         this.map = new Map(24, 12, enemyDestination);
@@ -63,7 +73,16 @@ ISC.Game.prototype = {
 
         // Lancement son
         this.music = this.add.audio('Plage'); // je charge ma music
-        this.music.play();// je la joue
+        this.music.play();// play
+
+        // Bouton UI achat tour
+
+        this.bpTower1 = this.add.button(400,780,'bp_Tower1',function(){this.chooseTowerToBuild(1,'a0')  },this);
+        this.bpTower2 = this.add.button(530,780,'bp_Tower2',function(){this.chooseTowerToBuild(1,'a1')  },this);
+        this.bpTower3 = this.add.button(660,780,'bp_Tower3',function(){this.chooseTowerToBuild(1,'b0')  },this);
+        this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
+        this.bpSale   = this.add.button(790,780,'bp_sale', this.towerSale,this);
+
 
         this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
         this.towerPlaceholder.visible = false;
@@ -167,6 +186,13 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
+        this.toggleBuildMode();
+    },
+
+    towerSale: function () {
+
     }
+
+
 
 };
