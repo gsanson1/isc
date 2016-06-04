@@ -38,10 +38,10 @@ ISC.Preloader.prototype = {
         this.load.image('bar_green', 'images/bar_green.png');
         this.load.image('island', 'images/island.png');
 
-        this.load.spritesheet('tower_a0', 'images/spritesheet_short-range-tower.png', 64, 64, 8);
-        this.load.spritesheet('tower_a1', 'images/spritesheet_short-range-tower.png', 64, 64, 8);
-        this.load.spritesheet('tower_b0', 'images/spritesheet_long-range-tower.png', 64, 64, 8);
-        this.load.spritesheet('tower_b1', 'images/spritesheet_long-range-tower.png', 64, 64, 8);
+        this.load.spritesheet('tower_a0', 'images/tower_short.png', 64, 64, 8);
+        this.load.spritesheet('tower_a1', 'images/tower_short.png', 64, 64, 8);
+        this.load.spritesheet('tower_b0', 'images/tower_long.png', 64, 64, 8);
+        this.load.spritesheet('tower_b1', 'images/tower_long.png', 64, 64, 8);
 
         // Chargement son.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3
