@@ -1,4 +1,7 @@
 var parameters = {
+
+    initialCredit: 400,
+    
     towers: {
         tower_a0: {
             damage: 1,

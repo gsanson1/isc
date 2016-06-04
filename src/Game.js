@@ -47,6 +47,8 @@ ISC.Game.prototype = {
         this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
 
+        this.credit = parameters.initialCredit;
+
         // Init map
         this.map = new Map(24, 12, enemyDestination);
 
