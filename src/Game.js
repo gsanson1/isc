@@ -45,6 +45,7 @@ ISC.Game.prototype = {
         // this.map.scrollFactorY = 0.5;
 
 
+
         // Init map
         this.map = new Map(24, 12, new Point(23, 5));
         this.map.addTower(12, 5);
@@ -66,6 +67,10 @@ ISC.Game.prototype = {
         this.towers.forEach(function(tower) {
             game.add.existing(tower);
         });
+        // Lancement son
+        music = game.add.audio('Plage'); // je charge ma music
+        music.play();// je la joue
+        
     },
 
     update: function () {
