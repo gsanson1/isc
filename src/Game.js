@@ -203,7 +203,12 @@ ISC.Game.prototype = {
     },
 
     moveTowerPlaceHolderToPointer: function () {
-        var placeholderPosition = Tools.getTiledGraphicPosition(this.input.position);
+        var tiledPosition = Tools.getTiledPosition(this.input.position);
+        if (tiledPosition.y >= 12) {
+            tiledPosition.y = 11;
+        }
+        
+        var placeholderPosition = Tools.getGraphicPosition(tiledPosition);
         this.towerPlaceholder.x = placeholderPosition.x;
         this.towerPlaceholder.y = placeholderPosition.y;
     },
@@ -234,7 +239,7 @@ ISC.Game.prototype = {
 
     towerSale: function(){
 
-        
+
 
     },
 

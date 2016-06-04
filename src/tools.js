@@ -23,9 +23,9 @@ Tools.getTiledPosition = function(position) {
 }
 
 Tools.getTiledGraphicPosition = function(position) {
-    var tiledGraphicPosition = this.getTiledPosition(position);
-    var tiledX = (tiledGraphicPosition.x) << 6;
-    var tiledY = (tiledGraphicPosition.y) << 6;
+    var tiledPosition = this.getTiledPosition(position);
+    var tiledX = (tiledPosition.x) << 6;
+    var tiledY = (tiledPosition.y) << 6;
 
     return {x: tiledX, y: tiledY};
 }
