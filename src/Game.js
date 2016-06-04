@@ -92,11 +92,18 @@ ISC.Game.prototype = {
     },
 
     addTower: function(_x, _y, _type) {
-        var gx = _x << 6;
-        var gy = _y << 6;
 
-        this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
-        this.map.addTower(_x, _y);
+        var cost = parameters.towers['tower_' + _type].cost;
+
+        if (cost < this.credit) {
+            this.credit -= cost;
+
+            var gx = _x << 6;
+            var gy = _y << 6;
+
+            this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
+            this.map.addTower(_x, _y);
+        }
     },
 
     addTowerAtPosition: function(position, _type) {
@@ -106,8 +113,7 @@ ISC.Game.prototype = {
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].isDead()) {
-                // TODO : Ajouter des points
-
+                this.credit += this.enemies[i].reward;
 
                 this.enemies[i].remove();
                 this.enemies.splice(i, 1);
