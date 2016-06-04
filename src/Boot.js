@@ -23,8 +23,9 @@ ISC.Boot.prototype = {
 
         this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.scale.setShowAll();
+        var game = this.game;
         window.addEventListener('resize', function () {
-            this.game.scale.refresh();
+            game.scale.refresh();
         });
         this.game.scale.refresh();
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
