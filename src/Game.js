@@ -203,7 +203,12 @@ ISC.Game.prototype = {
     },
 
     moveTowerPlaceHolderToPointer: function () {
-        var placeholderPosition = Tools.getTiledGraphicPosition(this.input.position);
+        var tiledPosition = Tools.getTiledPosition(this.input.position);
+        if (tiledPosition.y >= 12) {
+            tiledPosition.y = 11;
+        }
+        
+        var placeholderPosition = Tools.getGraphicPosition(tiledPosition);
         this.towerPlaceholder.x = placeholderPosition.x;
         this.towerPlaceholder.y = placeholderPosition.y;
     },
@@ -211,6 +216,7 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
+        this.toggleBuildMode();
     },
 
     updateStartTimer: function() {
@@ -229,6 +235,12 @@ ISC.Game.prototype = {
         for (var i = 0; i < 5; i++) {
             this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
         }
+    },
+
+    towerSale: function(){
+
+
+
     },
 
 };
