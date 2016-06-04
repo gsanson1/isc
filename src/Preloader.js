@@ -33,6 +33,10 @@ ISC.Preloader.prototype = {
         this.load.image('tower_a1', 'images/tower_a1.png');
         this.load.image('tower_b0', 'images/tower_b0.png');
         this.load.image('tower_b1', 'images/tower_b1.png');
+
+        // Chargement son.
+        this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3
+        
     },
 
     create: function () {
