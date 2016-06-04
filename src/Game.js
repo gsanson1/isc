@@ -93,8 +93,6 @@ ISC.Game.prototype = {
         this.add.existing(this.towerPlaceholder);
 
         this.input.addMoveCallback(this.updateCursor, this);
-        key = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        key.onDown.add(this.toggleBuildMode, this);
 
         this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
         this.quitGamekey.onDown.add(this.quitBuildMode, this);
@@ -176,7 +174,7 @@ ISC.Game.prototype = {
     },
 
     quitBuildMode: function () {
-        this.toggleBuildMode();
+        this.deactivateBuildMode();
     },
 
     updateCursor: function () {
@@ -201,16 +199,18 @@ ISC.Game.prototype = {
         }
     },
 
-    toggleBuildMode: function () {
-        this.buildMode = !this.buildMode;
+    toggleBuildMode: function (buildMode) {
+        this.buildMode = buildMode;
         this.moveTowerPlaceHolderToPointer();
-        this.towerPlaceholder.visible = !this.towerPlaceholder.visible;
+        this.towerPlaceholder.visible = buildMode;
     },
 
     activateBuildMode: function () {
-        this.buildMode = true;
-        this.moveTowerPlaceHolderToPointer();
-        this.towerPlaceholder.visible = true;
+        this.toggleBuildMode(true);
+    },
+
+    deactivateBuildMode: function () {
+        this.toggleBuildMode(false);
     },
 
     moveTowerPlaceHolderToPointer: function () {
