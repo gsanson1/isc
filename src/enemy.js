@@ -14,7 +14,7 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.currentEnergy = this.energy;
     this.reward = parameters.enemies[enemyType].reward;
 
-    this.boatSprite = _game.add.sprite(_x, _y, 'boat');
+    this.boatSprite = _game.add.sprite(_x, _y, 'boat_' + _type);
     
     this.lifeBack = _game.add.sprite(_x + 2, _y + 2, 'bar_red');
     this.lifeFront = _game.add.sprite(_x + 2, _y + 2, 'bar_green');
