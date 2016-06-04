@@ -43,12 +43,26 @@ ISC.Game.prototype = {
         // this.map.scrollFactorX = 0.5;
         // this.map.scrollFactorY = 0.5;
 
+
+        // Init map
+        this.map = new Map(24, 12, new Point(23, 5));
+        this.map.addTower(12, 5);
+        this.map.addTower(12, 4);
+        this.map.addTower(12, 6);
+        // Active enemies
+        this.enemies = [];
+
+        for (var i = 0; i < 5; i++) {
+            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 2 + i));
+        }
     },
 
     update: function () {
 
         // Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
-
+        for (var i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].move();
+        }
     },
 
     quitGame: function (pointer) {

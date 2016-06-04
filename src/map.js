@@ -34,7 +34,7 @@ var Map = function(_width, _height, _dest) {
 Map.prototype = {
 
     //DIRECTIONS : [new Point(-1, -1), new Point(-1, 0), new Point(-1, 1), new Point(0, -1), new Point(0, 1), new Point(1, -1), new Point(1, 0), new Point(1, 1)],
-    DIRECTIONS : [new Point(-1, 0), new Point(0, -1), new Point(0, 1), new Point(1, 0)],
+    DIRECTIONS : [new Point(1, 0), new Point(-1, 0), new Point(0, -1), new Point(0, 1)],
 
     canAddTower: function(_x, _y) {
         var can = false;
@@ -91,8 +91,8 @@ Map.prototype = {
             if (newX >= 0 && newX < width && newY >= 0 && newY < height
                 && this.arrayComp[newX][newY] != -1
                 && this.arrayComp[newX][newY] < best) {
-                best = this.arrayComp[newX][newY];
-                bestDir = this.DIRECTIONS[i];
+                    best = this.arrayComp[newX][newY];
+                    bestDir = this.DIRECTIONS[i];
             }
         }
 
