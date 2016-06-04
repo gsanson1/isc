@@ -39,6 +39,9 @@ ISC.Preloader.prototype = {
 
         // Chargement son.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3
+        // Ressource Menu
+        this.load.spritesheet('Startbutton', 'images/button_sprite_sheet.png', 193, 71);
+
         
     },
 
