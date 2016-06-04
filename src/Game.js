@@ -39,7 +39,7 @@ ISC.Game.prototype = {
         // Active enemies
         this.enemies = [];
         for (var i = 0; i < 5; i++) {
-            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 2 + i));
+            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
         }
 
         // Towers
