@@ -72,8 +72,17 @@ ISC.Game.prototype = {
     update: function () {
 
         // Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
+
         for (var i = 0; i < this.enemies.length; i++) {
             this.enemies[i].move();
+        }
+
+        var target = null;
+        for (var i = 0; i < this.towers.length; i++) {
+            target = this.towers[i].findTarget(this.enemies);
+            if (target != null) {
+                console.log("Tour " + i + " -> tir");
+            }
         }
     },
 
