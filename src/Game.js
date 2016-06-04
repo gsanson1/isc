@@ -29,6 +29,7 @@ ISC.Game = function (game) {
     this.music;
     this.buildMode = false;
     this.towerPlaceholder;
+    this.shotCircle;
     this.quitGamekey;
 
     // Tower shortcut to construct
@@ -87,10 +88,17 @@ ISC.Game.prototype = {
         this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
         this.bpSale   = this.add.button(790,780,'bp_sale', this.towerSale,this);
 
+        this.shotCircle = this.add.graphics(0, 0);
+        this.shotCircle.beginFill(0xFFFFFF, 1);
+        this.shotCircle.alpha = 0.3;
+        this.shotCircle.lineStyle(3, 0xFFFFFF)
+
+        this.shotCircle.visible = false;
         this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
         this.towerPlaceholder.visible = false;
         this.towerPlaceholder.alpha = 0.7;
-        this.add.existing(this.towerPlaceholder);
+
+        this.shotCircle.drawCircle(0, 0, Math.sqrt(parameters.towers['tower_' + this.towerPlaceholder.type].distance));
 
         this.input.addMoveCallback(this.updateCursor, this);
 
@@ -198,6 +206,7 @@ ISC.Game.prototype = {
             }
             else {
                 this.towerPlaceholder.x = tiledPosition.x << 6;
+                this.shotCircle.x = this.towerPlaceholder.x + 32;
             }
         }
     },
@@ -206,6 +215,7 @@ ISC.Game.prototype = {
         this.buildMode = buildMode;
         this.moveTowerPlaceHolderToPointer();
         this.towerPlaceholder.visible = buildMode;
+        this.shotCircle.visible = buildMode;
     },
 
     activateBuildMode: function () {
@@ -225,6 +235,9 @@ ISC.Game.prototype = {
         var placeholderPosition = Tools.getGraphicPosition(tiledPosition);
         this.towerPlaceholder.x = placeholderPosition.x;
         this.towerPlaceholder.y = placeholderPosition.y;
+
+        this.shotCircle.x = this.towerPlaceholder.x + 32;
+        this.shotCircle.y = this.towerPlaceholder.y + 32;
     },
 
     chooseTowerToBuild: function (key, towerType) {
