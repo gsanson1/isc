@@ -100,7 +100,16 @@ ISC.Game.prototype = {
 
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
-            this.enemies[i].move();
+            if (this.enemies[i].isDead()) {
+                // TODO : Ajouter des points
+
+
+                this.enemies[i].remove();
+                this.enemies.splice(i, 1);
+                i--;
+            } else {
+                this.enemies[i].move();
+            }
         }
 
 

@@ -26,6 +26,12 @@ Enemy.prototype = {
         return this.currentEnergy <= 0;
     },
 
+    remove: function() {
+        this.boatSprite.destroy(true);
+        this.lifeFront.destroy(true);
+        this.lifeBack.destroy(true);
+    },
+
     hit: function(_points) {
         this.currentEnergy -= _points;
 
