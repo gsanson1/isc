@@ -87,7 +87,6 @@ ISC.Game.prototype = {
         this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
         this.bpSale   = this.add.button(790,780,'bp_sale', this.towerSale,this);
 
-
         this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
         this.towerPlaceholder.visible = false;
         this.towerPlaceholder.alpha = 0.7;
@@ -98,6 +97,9 @@ ISC.Game.prototype = {
         key.onDown.add(this.toggleBuildMode, this);
 
         this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+        this.quitGamekey.onDown.add(this.quitBuildMode, this);
+
+        this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.P);
         this.quitGamekey.onDown.add(this.quitGame, this);
 
         this.tower1key = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
@@ -173,6 +175,10 @@ ISC.Game.prototype = {
         this.state.start('MainMenu');
     },
 
+    quitBuildMode: function () {
+        this.toggleBuildMode();
+    },
+
     updateCursor: function () {
         if (this.buildMode) {
             var tiledPosition = Tools.getTiledPosition(this.input.position);
@@ -183,7 +189,6 @@ ISC.Game.prototype = {
                     this.towerPlaceholder.tint = 0xFFFFFF;
                     if (this.input.mousePointer.isDown) {
                         this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
-                        this.toggleBuildMode();
                     }
                 }
                 else {
@@ -202,12 +207,18 @@ ISC.Game.prototype = {
         this.towerPlaceholder.visible = !this.towerPlaceholder.visible;
     },
 
+    activateBuildMode: function () {
+        this.buildMode = true;
+        this.moveTowerPlaceHolderToPointer();
+        this.towerPlaceholder.visible = true;
+    },
+
     moveTowerPlaceHolderToPointer: function () {
         var tiledPosition = Tools.getTiledPosition(this.input.position);
         if (tiledPosition.y >= 12) {
             tiledPosition.y = 11;
         }
-        
+
         var placeholderPosition = Tools.getGraphicPosition(tiledPosition);
         this.towerPlaceholder.x = placeholderPosition.x;
         this.towerPlaceholder.y = placeholderPosition.y;
@@ -216,7 +227,7 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
-        this.toggleBuildMode();
+        this.activateBuildMode();
     },
 
     updateStartTimer: function() {
