@@ -30,5 +30,5 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
         }
     }
 
-    return target;
+    return { enemy: target, direction: 0 };
 }
