@@ -16,5 +16,20 @@ var parameters = {
             damage: 4,
             distance: 64 * 64 * 16
         }
+    },
+
+    enemies: {
+        enemy_a0: {
+            speed: 3,
+            energy: 50
+        },
+        enemy_a1: {
+            speed: 2,
+            energy: 200
+        },
+        enemy_a2: {
+            speed: 5,
+            energy: 30
+        }
     }
 };

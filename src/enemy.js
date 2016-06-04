@@ -2,9 +2,13 @@
  * Created by gsanson on 04/06/2016.
  */
 
-var Enemy = function(_game, _map, _x, _y, _speed) {
+var Enemy = function(_game, _map, _x, _y, _type) {
     this.map = _map;
-    this.speed = _speed;
+
+    var enemyType = 'enemy_' + _type;
+
+    this.speed = parameters.enemies[enemyType].speed;
+    this.energy = parameters.enemies[enemyType].energy;
 
     this.boatSprite = _game.add.sprite(_x, _y, 'boat');
 
