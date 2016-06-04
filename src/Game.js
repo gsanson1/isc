@@ -23,6 +23,7 @@ ISC.Game = function (game) {
     // You can use any of these from any function within this State.
     // But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
     this.sea;
+    this.towers = [];
 };
 
 ISC.Game.prototype = {
@@ -30,7 +31,15 @@ ISC.Game.prototype = {
     create: function () {
 
         this.sea = this.add.sprite(0, 0, 'sea');
+        this.towers.push(new ISC.Tower(this.game, 50, 50, 'a0'));
+        this.towers.push(new ISC.Tower(this.game, 150, 150, 'a1'));
+        this.towers.push(new ISC.Tower(this.game, 250, 250, 'b0'));
+        this.towers.push(new ISC.Tower(this.game, 350, 350, 'b1'));
 
+        var game = this.game;
+        this.towers.forEach(function(tower) {
+            game.add.existing(tower);
+        });
     },
 
     update: function () {

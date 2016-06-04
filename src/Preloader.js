@@ -28,6 +28,10 @@ ISC.Preloader.prototype = {
         this.load.image('sea', 'images/sea.png');
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');
+        this.load.image('tower_a0', 'images/tower_a0.png');
+        this.load.image('tower_a1', 'images/tower_a1.png');
+        this.load.image('tower_b0', 'images/tower_b0.png');
+        this.load.image('tower_b1', 'images/tower_b1.png');
 
     },
 
