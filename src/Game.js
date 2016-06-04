@@ -47,25 +47,34 @@ ISC.Game.prototype = {
 
         // Init map
         this.map = new Map(24, 12, new Point(23, 5));
-        this.map.addTower(12, 5);
-        this.map.addTower(12, 4);
-        this.map.addTower(12, 6);
+
         // Active enemies
         this.enemies = [];
-
         for (var i = 0; i < 5; i++) {
             this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 2 + i));
         }
 
-        this.towers.push(new ISC.Tower(this.game, 50, 50, 'a0'));
-        this.towers.push(new ISC.Tower(this.game, 150, 150, 'a1'));
-        this.towers.push(new ISC.Tower(this.game, 250, 250, 'b0'));
-        this.towers.push(new ISC.Tower(this.game, 350, 350, 'b1'));
+        // Towers
+        this.addTower(4, 4, 'a0');
+        this.addTower(5, 5, 'a1');
+        this.addTower(6, 6, 'b0');
+        this.addTower(7, 7, 'b1');
+
 
         var game = this.game;
         this.towers.forEach(function(tower) {
             game.add.existing(tower);
         });
+    },
+
+    addTower: function(_x, _y, _type) {
+
+        // Graphics coords
+        var gx = _x << 6;
+        var gy = _y << 6;
+
+        this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
+        this.map.addTower(_x, _y);
     },
 
     update: function () {

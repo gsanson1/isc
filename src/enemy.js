@@ -16,7 +16,7 @@ Enemy.prototype = {
         var py = this.boatSprite.y >> 6;
 
         var next = this.map.nextCell(px, py);
-        
+
         // Center of next cell
         var cx = ((px + next.x) << 6) + 32;
         var cy = ((py + next.y) << 6) + 32;
