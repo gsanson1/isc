@@ -8,3 +8,4 @@ ISC.Tower = function (game, x, y, type) {
 
 ISC.Tower.prototype = Object.create(Phaser.Sprite.prototype);
 ISC.Tower.prototype.constructor = ISC.Tower;
+

@@ -12,14 +12,14 @@ var Enemy = function(_game, _map, _x, _y, _speed) {
 
 Enemy.prototype = {
     move: function() {
-        var px = this.boatSprite.x >> 6;
-        var py = this.boatSprite.y >> 6;
+        var px = (this.boatSprite.x + 1) >> 6;
+        var py = (this.boatSprite.y + 1) >> 6;
 
         var next = this.map.nextCell(px, py);
 
         // Center of next cell
-        var cx = ((px + next.x) << 6) + 32;
-        var cy = ((py + next.y) << 6) + 32;
+        var cx = ((px + next.x) << 6);
+        var cy = ((py + next.y) << 6);
 
         // delta pos
         var vect = new Phaser.Point(cx - this.boatSprite.x, cy - this.boatSprite.y).normalize();
