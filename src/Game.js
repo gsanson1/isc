@@ -211,6 +211,7 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
+        this.toggleBuildMode();
     },
 
     updateStartTimer: function() {
@@ -229,6 +230,12 @@ ISC.Game.prototype = {
         for (var i = 0; i < 5; i++) {
             this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
         }
+    },
+
+    towerSale: function(){
+
+        
+
     },
 
 };
