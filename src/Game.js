@@ -45,7 +45,7 @@ ISC.Game = function (game) {
 ISC.Game.prototype = {
     create: function () {
 
-        var enemyDestination = new Point(23, 6);
+        var enemyDestination = new Point(22, 6);
         this.sea = this.add.sprite(0, 0, 'sea');
         // var islandPosition = Tools.getGraphicPosition(enemyDestination);
         // this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
@@ -56,6 +56,11 @@ ISC.Game.prototype = {
 
         // Init map
         this.map = new Map(24, 12, enemyDestination);
+        // Island
+        for (var i = 2; i < 10; i++) {
+            this.map.addTower(23, i);
+        }
+
 
         // Towers
         this.addTower(4, 4, 'a0');

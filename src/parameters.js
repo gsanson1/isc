@@ -1,6 +1,6 @@
 var parameters = {
 
-    initialCredit: 400,
+    initialCredit: 4000,
     
     towers: {
         tower_a0: {
