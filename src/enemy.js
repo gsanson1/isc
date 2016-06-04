@@ -51,10 +51,12 @@ Enemy.prototype = {
         var cy = ((py + next.y) << 6);
 
         // delta pos
-        var vect = new Phaser.Point(cx - this.boatSprite.x, cy - this.boatSprite.y).normalize();
+        var vector = new Phaser.Point(cx - this.boatSprite.x, cy - this.boatSprite.y).normalize();
 
-        this.boatSprite.x += vect.x * this.speed;
-        this.boatSprite.y += vect.y * this.speed;
+        this.boatSprite.x += vector.x * this.speed;
+        this.boatSprite.y += vector.y * this.speed;
+
+        this.boatSprite.frame = Tools.dirVector2(vector.x, vector.y);
 
         this.lifeBack.x = this.boatSprite.x + 2;
         this.lifeBack.y = this.boatSprite.y + 2;
