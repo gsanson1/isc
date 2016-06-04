@@ -71,7 +71,6 @@ ISC.Game.prototype = {
             this.map.addTower(23, i);
         }
 
-
         // Towers
         this.addTower(4, 4, 'a0');
         this.addTower(5, 5, 'a1');
@@ -93,6 +92,7 @@ ISC.Game.prototype = {
 
         this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
         this.towerPlaceholder.visible = false;
+        this.towerPlaceholder.alpha = 0.7;
         this.add.existing(this.towerPlaceholder);
 
         this.input.addMoveCallback(this.updateCursor, this);
@@ -113,6 +113,8 @@ ISC.Game.prototype = {
 
         this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
         this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
+
+        this.startCountdown = 3;
 
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, { font: "64px Arial", fill: "#ffffff", align: "center" });
         this.startTimerText.anchor.setTo(0.5, 0.5);
@@ -136,7 +138,8 @@ ISC.Game.prototype = {
     },
 
     addTowerAtPosition: function(position, _type) {
-        this.addTower(position.x >> 6, position.y >> 6, _type);
+        var tiledPosition = Tools.getTiledPosition(position);
+        this.addTower(tiledPosition.x, tiledPosition.y, _type);
     },
 
     update: function () {
@@ -152,7 +155,6 @@ ISC.Game.prototype = {
                 this.enemies[i].move();
             }
         }
-
 
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
@@ -179,9 +181,15 @@ ISC.Game.prototype = {
 
             if (tiledPosition.y < 12) {
                 this.moveTowerPlaceHolderToPointer();
-                if (this.input.mousePointer.isDown) {
-                    this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
-                    this.toggleBuildMode();
+                if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)) {
+                    this.towerPlaceholder.tint = 0xFFFFFF;
+                    if (this.input.mousePointer.isDown) {
+                        this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
+                        this.toggleBuildMode();
+                    }
+                }
+                else {
+                    this.towerPlaceholder.tint = 0xFF00FF;
                 }
             }
             else {
