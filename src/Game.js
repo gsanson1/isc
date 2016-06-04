@@ -26,9 +26,15 @@ ISC.Game = function (game) {
     this.UI;
     this.towers = [];
     this.music;
-    this.constructMode = false;
+    this.buildMode = false;
     this.towerPlaceholder;
     this.quitGamekey;
+
+    // Tower shortcut to construct
+    this.tower1key;
+    this.tower2key;
+    this.tower3key;
+    this.tower4key;
 };
 
 ISC.Game.prototype = {
@@ -52,29 +58,35 @@ ISC.Game.prototype = {
         this.addTower(6, 6, 'b0');
         this.addTower(7, 7, 'b1');
 
-        var game = this.game;
-        this.towers.forEach(function(tower) {
-            game.add.existing(tower);
-        });
         // Lancement son
-        this.music = game.add.audio('Plage'); // je charge ma music
+        this.music = this.add.audio('Plage'); // je charge ma music
         this.music.play();// je la joue
 
         this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
         this.towerPlaceholder.visible = false;
-        game.add.existing(this.towerPlaceholder);
+        this.add.existing(this.towerPlaceholder);
 
         this.input.addMoveCallback(this.updateCursor, this);
         key = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        key.onDown.add(this.activateConstructMode, this);
+        key.onDown.add(this.activateBuildMode, this);
 
         this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
         this.quitGamekey.onDown.add(this.quitGame, this);
+
+        this.tower1key = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
+        this.tower1key.onDown.add(this.chooseTowerToBuild, this, 0, 'a0');
+
+        this.tower2key = this.input.keyboard.addKey(Phaser.Keyboard.TWO);
+        this.tower2key.onDown.add(this.chooseTowerToBuild, this, 0, 'a1');
+
+        this.tower3key = this.input.keyboard.addKey(Phaser.Keyboard.THREE);
+        this.tower3key.onDown.add(this.chooseTowerToBuild, this, 0, 'b0');
+
+        this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
+        this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
     },
 
     addTower: function(_x, _y, _type) {
-
-        // Graphics coords
         var gx = _x << 6;
         var gy = _y << 6;
 
@@ -82,10 +94,11 @@ ISC.Game.prototype = {
         this.map.addTower(_x, _y);
     },
 
+    addTowerAtPosition: function(position, _type) {
+        this.addTower(position.x >> 6, position.y >> 6, _type);
+    },
+
     update: function () {
-
-        // Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
-
         for (var i = 0; i < this.enemies.length; i++) {
             this.enemies[i].move();
         }
@@ -109,20 +122,30 @@ ISC.Game.prototype = {
     },
 
     updateCursor: function () {
-        var placeholderPosition = Tools.getTiledPosition(this.input.position);
-        this.towerPlaceholder.x = placeholderPosition.x;
-        this.towerPlaceholder.y = placeholderPosition.y;
-
-        if (this.constructMode) {
+        if (this.buildMode) {
+            this.moveTowerPlaceHolderToPointer();
             if (this.input.mousePointer.isDown) {
-                console.log('pouet');
+                console.log(this.towerPlaceholder.type);
+                this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
             }
         }
     },
 
-    activateConstructMode: function () {
-        this.constructMode = !this.constructMode;
+    activateBuildMode: function () {
+        this.buildMode = !this.buildMode;
+        this.moveTowerPlaceHolderToPointer();
         this.towerPlaceholder.visible = !this.towerPlaceholder.visible;
+    },
+
+    moveTowerPlaceHolderToPointer: function () {
+        var placeholderPosition = Tools.getTiledGraphicPosition(this.input.position);
+        this.towerPlaceholder.x = placeholderPosition.x;
+        this.towerPlaceholder.y = placeholderPosition.y;
+    },
+
+    chooseTowerToBuild: function (key, towerType) {
+        this.towerPlaceholder.type = towerType;
+        this.towerPlaceholder.loadTexture('tower_' + towerType);
     }
 
 };

@@ -4,6 +4,9 @@ ISC.Tower = function (game, x, y, type) {
 
     this.damage = parameters.towers[towertype].damage;
     this.distance = parameters.towers[towertype].distance;
+    this.type = type;
+
+    game.add.existing(this);
 };
 
 ISC.Tower.prototype = Object.create(Phaser.Sprite.prototype);
