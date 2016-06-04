@@ -131,6 +131,9 @@ ISC.Game.prototype = {
             var gy = _y << 6;
 
             this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
+            if (this.towerPlaceholder) {
+                this.towerPlaceholder.bringToTop();
+            }
             this.map.addTower(_x, _y);
         }
     },
