@@ -68,7 +68,7 @@ ISC.Game.prototype = {
 
         this.input.addMoveCallback(this.updateCursor, this);
         key = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        key.onDown.add(this.activateBuildMode, this);
+        key.onDown.add(this.toggleBuildMode, this);
 
         this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
         this.quitGamekey.onDown.add(this.quitGame, this);
@@ -127,13 +127,13 @@ ISC.Game.prototype = {
         if (this.buildMode) {
             this.moveTowerPlaceHolderToPointer();
             if (this.input.mousePointer.isDown) {
-                console.log(this.towerPlaceholder.type);
                 this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
+                this.toggleBuildMode();
             }
         }
     },
 
-    activateBuildMode: function () {
+    toggleBuildMode: function () {
         this.buildMode = !this.buildMode;
         this.moveTowerPlaceHolderToPointer();
         this.towerPlaceholder.visible = !this.towerPlaceholder.visible;
