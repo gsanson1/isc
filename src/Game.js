@@ -37,6 +37,14 @@ ISC.Game = function (game) {
     this.tower3key;
     this.tower4key;
 
+    // bouton ui
+    this.bpTower1;
+    this.bpTower2;
+    this.bpTower3;
+    this.bpTower4;
+    this.bpTower5;
+    this.bpSale;
+
     this.startCountdown = 3;
     this.startTimerText;
     this.startTimer;
@@ -54,13 +62,14 @@ ISC.Game.prototype = {
 
         this.credit = parameters.initialCredit;
 
+
+
         // Init map
         this.map = new Map(24, 12, enemyDestination);
         // Island
         for (var i = 2; i < 10; i++) {
             this.map.addTower(23, i);
         }
-
 
         // Towers
         this.addTower(4, 4, 'a0');
@@ -70,10 +79,20 @@ ISC.Game.prototype = {
 
         // Lancement son
         this.music = this.add.audio('Plage'); // je charge ma music
-        this.music.play();// je la joue
+        this.music.play();// play
+
+        // Bouton UI achat tour
+
+        this.bpTower1 = this.add.button(400,780,'bp_Tower1',function(){this.chooseTowerToBuild(1,'a0')  },this);
+        this.bpTower2 = this.add.button(530,780,'bp_Tower2',function(){this.chooseTowerToBuild(1,'a1')  },this);
+        this.bpTower3 = this.add.button(660,780,'bp_Tower3',function(){this.chooseTowerToBuild(1,'b0')  },this);
+        this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
+        this.bpSale   = this.add.button(790,780,'bp_sale', this.towerSale,this);
+
 
         this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
         this.towerPlaceholder.visible = false;
+        this.towerPlaceholder.alpha = 0.7;
         this.add.existing(this.towerPlaceholder);
 
         this.input.addMoveCallback(this.updateCursor, this);
@@ -94,6 +113,8 @@ ISC.Game.prototype = {
 
         this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
         this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
+
+        this.startCountdown = 3;
 
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, { font: "64px Arial", fill: "#ffffff", align: "center" });
         this.startTimerText.anchor.setTo(0.5, 0.5);
@@ -117,13 +138,15 @@ ISC.Game.prototype = {
     },
 
     addTowerAtPosition: function(position, _type) {
-        this.addTower(position.x >> 6, position.y >> 6, _type);
+        var tiledPosition = Tools.getTiledPosition(position);
+        this.addTower(tiledPosition.x, tiledPosition.y, _type);
     },
 
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].isDead()) {
-                this.credit += this.enemies[i].reward;
+                // TODO : Ajouter des points
+
 
                 this.enemies[i].remove();
                 this.enemies.splice(i, 1);
@@ -133,12 +156,12 @@ ISC.Game.prototype = {
             }
         }
 
-
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
             target = this.towers[i].findTarget(this.enemies);
-            if (target.enemy != null) {
-                target.enemy.hit(this.towers[i].damage);
+            if (target != null) {
+                target.hit(this.towers[i].damage);
+                console.log(this.towers[i].damage);
             }
         }
     },
@@ -158,9 +181,15 @@ ISC.Game.prototype = {
 
             if (tiledPosition.y < 12) {
                 this.moveTowerPlaceHolderToPointer();
-                if (this.input.mousePointer.isDown) {
-                    this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
-                    this.toggleBuildMode();
+                if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)) {
+                    this.towerPlaceholder.tint = 0xFFFFFF;
+                    if (this.input.mousePointer.isDown) {
+                        this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
+                        this.toggleBuildMode();
+                    }
+                }
+                else {
+                    this.towerPlaceholder.tint = 0xFF00FF;
                 }
             }
             else {
@@ -184,24 +213,6 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
-    },
-
-    updateStartTimer: function() {
-        this.startCountdown--;
-
-        this.startTimerText.setText(this.startCountdown);
-
-        if (this.startCountdown == 0) {
-            this.time.events.remove(this.startTimer);
-            this.startTimerText.visible = false;
-            this.launchWave();
-        }
-    },
-
-    launchWave: function () {
-        for (var i = 0; i < 5; i++) {
-            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
-        }
-    },
+    }
 
 };
