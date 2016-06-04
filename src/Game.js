@@ -41,11 +41,14 @@ ISC.Game = function (game) {
 ISC.Game.prototype = {
     create: function () {
 
+        var enemyDestination = new Point(23, 5);
         this.sea = this.add.sprite(0, 0, 'sea');
-        this.UI = this.add.sprite(0,768, 'UI')
+        var islandPosition = Tools.getGraphicPosition(enemyDestination);
+        this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
+        this.UI = this.add.sprite(0, 768, 'UI');
 
         // Init map
-        this.map = new Map(24, 12, new Point(23, 5));
+        this.map = new Map(24, 12, enemyDestination);
 
         // Active enemies
         for (var i = 0; i < 5; i++) {
