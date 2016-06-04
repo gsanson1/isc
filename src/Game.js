@@ -41,10 +41,11 @@ ISC.Game = function (game) {
 ISC.Game.prototype = {
     create: function () {
 
-        var enemyDestination = new Point(23, 5);
+        var enemyDestination = new Point(23, 6);
         this.sea = this.add.sprite(0, 0, 'sea');
-        var islandPosition = Tools.getGraphicPosition(enemyDestination);
-        this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
+        // var islandPosition = Tools.getGraphicPosition(enemyDestination);
+        // this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
+        this.island = this.add.sprite(1408, 0, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
 
         this.credit = parameters.initialCredit;
