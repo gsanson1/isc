@@ -5,12 +5,14 @@
     <title>Infinite Sailboat Conspiracy</title>
     <link rel="stylesheet" type="text/css" href="isc.css"/>
     <script src="vendor/phaser/build/phaser.min.js"></script>
+    <script src="src/parameters.js"></script>
     <script src="src/Boot.js"></script>
     <script src="src/Preloader.js"></script>
     <script src="src/map.js"></script>
     <script src="src/enemy.js"></script>
     <script src="src/MainMenu.js"></script>
     <script src="src/Game.js"></script>
+    <script src="src/tower.js"></script>
     <style>
         body {
             margin: 0;
@@ -25,7 +27,7 @@
 window.onload = function() {
 
     // 100% of the browser window - see Boot.js for additional configuration
-    var game = new Phaser.Game(1536, 768, Phaser.AUTO, '');
+    var game = new Phaser.Game(1536, 896, Phaser.AUTO, '');
 
     // Add the States your game has.
     // You don't have to do this in the html, it could be done in your Boot state too, but for simplicity I'll keep it here.

@@ -22,7 +22,8 @@ ISC.Game = function (game) {
 
     // You can use any of these from any function within this State.
     // But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
-    this.bg;
+    this.sea;
+    this.towers = [];
 };
 
 ISC.Game.prototype = {
@@ -55,6 +56,16 @@ ISC.Game.prototype = {
         for (var i = 0; i < 5; i++) {
             this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 2 + i));
         }
+
+        this.towers.push(new ISC.Tower(this.game, 50, 50, 'a0'));
+        this.towers.push(new ISC.Tower(this.game, 150, 150, 'a1'));
+        this.towers.push(new ISC.Tower(this.game, 250, 250, 'b0'));
+        this.towers.push(new ISC.Tower(this.game, 350, 350, 'b1'));
+
+        var game = this.game;
+        this.towers.forEach(function(tower) {
+            game.add.existing(tower);
+        });
     },
 
     update: function () {
@@ -78,9 +89,6 @@ ISC.Game.prototype = {
 
         // If the game container is resized this function will be called automatically.
         // You can use it to align sprites that should be fixed in place and other responsive display things.
-
-        this.sea.width = width;
-        this.sea.height = height;
 
     }
 
