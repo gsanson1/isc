@@ -24,6 +24,7 @@ ISC.Game = function (game) {
     // But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
     this.sea;
     this.towers = [];
+    this.enemies = [];
 };
 
 ISC.Game.prototype = {
@@ -37,7 +38,6 @@ ISC.Game.prototype = {
         this.map = new Map(24, 12, new Point(23, 5));
 
         // Active enemies
-        this.enemies = [];
         for (var i = 0; i < 5; i++) {
             this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
         }
@@ -77,11 +77,12 @@ ISC.Game.prototype = {
             this.enemies[i].move();
         }
 
+
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
             target = this.towers[i].findTarget(this.enemies);
             if (target != null) {
-                console.log("Tour " + i + " -> tir");
+                // TODO
             }
         }
     },
