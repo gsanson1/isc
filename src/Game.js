@@ -23,6 +23,7 @@ ISC.Game = function (game) {
     // You can use any of these from any function within this State.
     // But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
     this.sea;
+    this.UI;
     this.towers = [];
 };
 
@@ -31,6 +32,7 @@ ISC.Game.prototype = {
     create: function () {
 
         this.sea = this.add.sprite(0, 0, 'sea');
+        this.UI = this.add.sprite(0,768, 'UI')
 
 
         // Init map
