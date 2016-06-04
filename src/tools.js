@@ -11,6 +11,12 @@ Tools.extendClass = function(_parent, _child) {
     _child.prototype.constructor = _child;
 }
 
+Tools.getTiledPosition = function(position) {
+    var tiledX = (position.x >> 6) << 6;
+    var tiledY = (position.y >> 6) << 6;
+
+    return {x: tiledX, y: tiledY};
+}
 
 Tools.sqDist = function(_x1, _y1, _x2, _y2) {
     var dx = _x2 - _x1;
@@ -18,4 +24,3 @@ Tools.sqDist = function(_x1, _y1, _x2, _y2) {
 
     return dx * dx + dy * dy;
 }
-

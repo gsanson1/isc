@@ -25,15 +25,17 @@ ISC.Game = function (game) {
     this.sea;
     this.UI;
     this.towers = [];
+    this.music;
+    this.constructMode = false;
+    this.towerPlaceholder;
+    this.quitGamekey;
 };
 
 ISC.Game.prototype = {
-
     create: function () {
 
         this.sea = this.add.sprite(0, 0, 'sea');
         this.UI = this.add.sprite(0,768, 'UI')
-
 
         // Init map
         this.map = new Map(24, 12, new Point(23, 5));
@@ -50,15 +52,24 @@ ISC.Game.prototype = {
         this.addTower(6, 6, 'b0');
         this.addTower(7, 7, 'b1');
 
-
         var game = this.game;
         this.towers.forEach(function(tower) {
             game.add.existing(tower);
         });
         // Lancement son
-        music = game.add.audio('Plage'); // je charge ma music
-        music.play();// je la joue
-        
+        this.music = game.add.audio('Plage'); // je charge ma music
+        this.music.play();// je la joue
+
+        this.towerPlaceholder = new ISC.Tower(this.game, this.input.position.x, this.input.position.y, 'a0');
+        this.towerPlaceholder.visible = false;
+        game.add.existing(this.towerPlaceholder);
+
+        this.input.addMoveCallback(this.updateCursor, this);
+        key = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        key.onDown.add(this.activateConstructMode, this);
+
+        this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+        this.quitGamekey.onDown.add(this.quitGame, this);
     },
 
     addTower: function(_x, _y, _type) {
@@ -88,7 +99,7 @@ ISC.Game.prototype = {
         }
     },
 
-    quitGame: function (pointer) {
+    quitGame: function () {
 
         // Here you should destroy anything you no longer need.
         // Stop music, delete sprites, purge caches, free resources, all that good stuff.
@@ -97,11 +108,21 @@ ISC.Game.prototype = {
         this.state.start('MainMenu');
     },
 
-    resize: function (width, height) {
+    updateCursor: function () {
+        var placeholderPosition = Tools.getTiledPosition(this.input.position);
+        this.towerPlaceholder.x = placeholderPosition.x;
+        this.towerPlaceholder.y = placeholderPosition.y;
 
-        // If the game container is resized this function will be called automatically.
-        // You can use it to align sprites that should be fixed in place and other responsive display things.
+        if (this.constructMode) {
+            if (this.input.mousePointer.isDown) {
+                console.log('pouet');
+            }
+        }
+    },
 
+    activateConstructMode: function () {
+        this.constructMode = !this.constructMode;
+        this.towerPlaceholder.visible = !this.towerPlaceholder.visible;
     }
 
 };
