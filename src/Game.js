@@ -36,6 +36,10 @@ ISC.Game = function (game) {
     this.tower2key;
     this.tower3key;
     this.tower4key;
+
+    this.startCountdown = 3;
+    this.startTimerText;
+    this.startTimer;
 };
 
 ISC.Game.prototype = {
@@ -51,11 +55,6 @@ ISC.Game.prototype = {
 
         // Init map
         this.map = new Map(24, 12, enemyDestination);
-
-        // Active enemies
-        for (var i = 0; i < 5; i++) {
-            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
-        }
 
         // Towers
         this.addTower(4, 4, 'a0');
@@ -89,6 +88,11 @@ ISC.Game.prototype = {
 
         this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
         this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
+
+        this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, { font: "64px Arial", fill: "#ffffff", align: "center" });
+        this.startTimerText.anchor.setTo(0.5, 0.5);
+
+        this.startTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateStartTimer, this);
     },
 
     addTower: function(_x, _y, _type) {
@@ -174,6 +178,24 @@ ISC.Game.prototype = {
     chooseTowerToBuild: function (key, towerType) {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
-    }
+    },
+
+    updateStartTimer: function() {
+        this.startCountdown--;
+
+        this.startTimerText.setText(this.startCountdown);
+
+        if (this.startCountdown == 0) {
+            this.time.events.remove(this.startTimer);
+            this.startTimerText.visible = false;
+            this.launchWave();
+        }
+    },
+
+    launchWave: function () {
+        for (var i = 0; i < 5; i++) {
+            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
+        }
+    },
 
 };
