@@ -108,7 +108,8 @@ ISC.Game.prototype = {
         for (var i = 0; i < this.towers.length; i++) {
             target = this.towers[i].findTarget(this.enemies);
             if (target != null) {
-                // TODO
+                target.hit(this.towers[i].damage);
+                console.log(this.towers[i].damage);
             }
         }
     },
