@@ -21,6 +21,7 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
     var target = null;
     var dist =  this.distance;
     var newDist;
+    var direction = 0;
 
     for (var i = 0; i < _enemies.length; i++) {
         newDist = Tools.sqDist(this.x, this.y, _enemies[i].boatSprite.x, _enemies[i].boatSprite.y);
@@ -30,5 +31,9 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
         }
     }
 
-    return { enemy: target, direction: 0 };
+    if (target) {
+        direction = Tools.direction(this.x, this.y, target.boatSprite.x, target.boatSprite.y);
+    }
+
+    return { enemy: target, direction: direction };
 }
