@@ -123,7 +123,6 @@ ISC.Game.prototype = {
             target = this.towers[i].findTarget(this.enemies);
             if (target != null) {
                 target.hit(this.towers[i].damage);
-                console.log(this.towers[i].damage);
             }
         }
     },
