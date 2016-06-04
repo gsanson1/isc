@@ -1,5 +1,6 @@
 var parameters = {
 
+    lives: 5,
     initialCredit: 4000,
     
     towers: {

@@ -60,6 +60,7 @@ ISC.Game.prototype = {
         this.island = this.add.sprite(1408, 0, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
 
+        this.remainingLives = parameters.lives;
         this.credit = parameters.initialCredit;
 
         // Init map
@@ -145,13 +146,18 @@ ISC.Game.prototype = {
 
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
-            if (this.enemies[i].isDead()) {
-                // TODO : Ajouter des points
-
-
+            if (this.enemies[i].isDead() || this.enemies[i].landed()) {
+                if (this.enemies[i].isDead()){
+                    this.credit += this.enemies[i].reward;
+                }
+                else if (this.enemies[i].landed()){
+                    this.remainingLives--;
+                }
+                
                 this.enemies[i].remove();
                 this.enemies.splice(i, 1);
                 i--;
+                
             } else {
                 this.enemies[i].move();
             }

@@ -3,6 +3,7 @@
  */
 
 var Enemy = function(_game, _map, _x, _y, _type) {
+    this.game = _game;
     this.map = _map;
     this.life = _game.life;
 
@@ -25,6 +26,10 @@ Enemy.prototype = {
 
     isDead: function() {
         return this.currentEnergy <= 0;
+    },
+    
+    landed: function() {
+        return Tools.getTiledPosition(this.boatSprite) == this.game.enemyDestination;
     },
 
     remove: function() {
