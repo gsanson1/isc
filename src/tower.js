@@ -11,6 +11,8 @@ ISC.Tower = function (game, x, y, type) {
     this.type = type;
 
     game.add.existing(this);
+    
+    this.nextFire = 0;
 };
 
 ISC.Tower.prototype = Object.create(Phaser.Sprite.prototype);
