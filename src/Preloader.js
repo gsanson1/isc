@@ -30,13 +30,18 @@ ISC.Preloader.prototype = {
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');
         this.load.image('boat', 'images/enemy_ship_a.png');
-        this.load.image('tower_a0', 'images/tower_a0.png');
-        this.load.image('tower_a1', 'images/tower_a1.png');
-        this.load.image('tower_b0', 'images/tower_b0.png');
-        this.load.image('tower_b1', 'images/tower_b1.png');
+        //this.load.image('tower_a0', 'images/tower_a0.png');
+        //this.load.image('tower_a1', 'images/tower_a1.png');
+        //this.load.image('tower_b0', 'images/tower_b0.png');
+        //this.load.image('tower_b1', 'images/tower_b1.png');
         this.load.image('bar_red', 'images/bar_red.png');
         this.load.image('bar_green', 'images/bar_green.png');
         this.load.image('island', 'images/island.png');
+
+        this.load.spritesheet('tower_a0', 'images/spritesheet_short-range-tower.png', 64, 64, 8);
+        this.load.spritesheet('tower_a1', 'images/spritesheet_short-range-tower.png', 64, 64, 8);
+        this.load.spritesheet('tower_b0', 'images/spritesheet_long-range-tower.png', 64, 64, 8);
+        this.load.spritesheet('tower_b1', 'images/spritesheet_long-range-tower.png', 64, 64, 8);
 
         // Chargement son.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3

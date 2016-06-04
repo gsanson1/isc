@@ -52,5 +52,5 @@ Tools.direction = function(_x1, _y1, _x2, _y2) {
     var angle = Phaser.Point.angle(vect, Tools.NORM_VECT);
 
     //console.log('direction=' + angle);
-    return 3 + Math.round((angle + Tools.ANGLE_DEC) / Tools.ANGLE_DIV);
+    return 3 +  Math.round((angle + Tools.ANGLE_DEC) / Tools.ANGLE_DIV);
 }

@@ -35,6 +35,7 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
 
     if (target) {
         direction = Tools.direction(this.x, this.y, target.boatSprite.x, target.boatSprite.y);
+        this.frame = direction;
     }
 
     return { enemy: target, direction: direction };
