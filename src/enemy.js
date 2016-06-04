@@ -11,6 +11,7 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.speed = parameters.enemies[enemyType].speed;
     this.energy = parameters.enemies[enemyType].energy;
     this.currentEnergy = this.energy;
+    this.reward = parameters.enemies[enemyType].reward;
 
     this.boatSprite = _game.add.sprite(_x, _y, 'boat');
     

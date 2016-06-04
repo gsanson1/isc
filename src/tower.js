@@ -5,6 +5,9 @@ ISC.Tower = function (game, x, y, type) {
     this.damage = parameters.towers[towertype].damage;
     this.distance = parameters.towers[towertype].distance;
     this.fireRate = parameters.towers[towertype].fireRate;
+    this.cost = parameters.towers[towertype].cost;
+    this.recycle = parameters.towers[towertype].recycle;
+
     this.type = type;
 
     game.add.existing(this);
