@@ -31,19 +31,6 @@ ISC.Game.prototype = {
     create: function () {
 
         this.sea = this.add.sprite(0, 0, 'sea');
-        // this.map = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'reef');
-
-        // this.map = game.add.tilemap();
-        //
-        // //  Add a Tileset image to the map
-        // this.map.addTilesetImage('reef');
-        //
-        // //  Creates a new blank layer and sets the map dimensions.
-        // //  In this case the map is 40x30 tiles in size and the tiles are 32x32 pixels in size.
-        // this.map = map.create('level1', 40, 30, 32, 32);
-        // this.map.scrollFactorX = 0.5;
-        // this.map.scrollFactorY = 0.5;
-
 
 
         // Init map
