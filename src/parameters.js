@@ -6,17 +6,17 @@ var parameters = {
             fireRate: 6
         },
         tower_a1: {
-            damage: 2,
+            damage: 1,
             distance: 64 * 64 * 4
             fireRate: 3
         },
         tower_b0: {
-            damage: 3,
+            damage: 2,
             distance: 64 * 64 * 9
             fireRate: 2
         },
         tower_b1: {
-            damage: 4,
+            damage: 2,
             distance: 64 * 64 * 16
             fireRate: 1
         }

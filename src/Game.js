@@ -108,7 +108,8 @@ ISC.Game.prototype = {
         for (var i = 0; i < this.towers.length; i++) {
             target = this.towers[i].findTarget(this.enemies);
             if (target != null) {
-                // TODO
+                target.hit(this.towers[i].damage);
+                console.log(this.towers[i].damage);
             }
         }
     },
@@ -124,10 +125,17 @@ ISC.Game.prototype = {
 
     updateCursor: function () {
         if (this.buildMode) {
-            this.moveTowerPlaceHolderToPointer();
-            if (this.input.mousePointer.isDown) {
-                this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
-                this.toggleBuildMode();
+            var tiledPosition = Tools.getTiledPosition(this.input.position);
+
+            if (tiledPosition.y < 12) {
+                this.moveTowerPlaceHolderToPointer();
+                if (this.input.mousePointer.isDown) {
+                    this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
+                    this.toggleBuildMode();
+                }
+            }
+            else {
+                this.towerPlaceholder.x = tiledPosition.x << 6;
             }
         }
     },

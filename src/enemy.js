@@ -28,7 +28,9 @@ Enemy.prototype = {
 
     hit: function(_points) {
         this.currentEnergy -= _points;
-        this.crop.width = 30 * this.currentEnergy / this.energy;
+
+        this.crop.width = Math.max(0, 60 * this.currentEnergy / this.energy);
+        this.lifeFront.updateCrop();
     },
 
     move: function() {
@@ -52,8 +54,6 @@ Enemy.prototype = {
 
         this.lifeFront.x = this.lifeBack.x;
         this.lifeFront.y = this.lifeBack.y;
-
-        this.lifeFront.crop.width = 20;
     }
 }
 
