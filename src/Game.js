@@ -106,7 +106,7 @@ ISC.Game.prototype = {
 
 
         // Boutons in-game UI
-        this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
+        this.bpSale = this.add.button(200, 780, 'bp_sale', this.toggleSaleMode, this);
 
         this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
             this.chooseTowerToBuild(1, 'obstacle')
@@ -145,7 +145,7 @@ ISC.Game.prototype = {
         this.btowers.push(this.bpTower6);
 
         this.bpTower7 = this.add.button(1170, 780, 'bp_Tower7', function () {
-            this.chooseTowerToBuild(1, 'b2')
+            this.chooseTowerToBuild(1, 'tentacle')
         }, this);
         this.bpTower7.type = 'tower_b2';
         this.btowers.push(this.bpTower7);
@@ -188,7 +188,7 @@ ISC.Game.prototype = {
         this.tower6key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
 
         this.tower7key = this.input.keyboard.addKey(Phaser.Keyboard.SEVEN);
-        this.tower7key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
+        this.tower7key.onDown.add(this.chooseTowerToBuild, this, 0, 'tentacle');
 
         this.salekey = this.input.keyboard.addKey(Phaser.Keyboard.S);
         this.salekey.onDown.add(this.toggleSaleMode, this);
@@ -347,6 +347,10 @@ ISC.Game.prototype = {
     },
 
     toggleBuildMode: function (buildMode) {
+        if (buildMode) {
+            this.deactivateSaleMode();
+        }
+
         this.buildMode = buildMode;
         this.moveTowerPlaceHolderToPointer();
         this.towerPlaceholder.visible = buildMode;
@@ -448,6 +452,10 @@ ISC.Game.prototype = {
     },
 
     setSaleMode: function (saleMode) {
+        if (saleMode) {
+            this.deactivateBuildMode();
+        }
+
         this.saleMode = saleMode;
         var tintColour = 0xFFFFFF;
 
@@ -459,14 +467,7 @@ ISC.Game.prototype = {
     },
 
     toggleSaleMode: function () {
-        this.saleMode = !this.saleMode;
-        var tintColour = 0xFFFFFF;
-
-        if (this.saleMode) {
-            tintColour = 0xA9A9A9;
-        }
-
-        this.bpSale.tint = tintColour;
+        this.setSaleMode(!this.saleMode);
     },
 
     clickOnTower: function (tower) {

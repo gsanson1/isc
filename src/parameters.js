@@ -2,6 +2,8 @@ var parameters = {
 
     lives: 5,
     initialCredit: 400,
+    speedMul: 0.9,
+
     towers: {
         tower_obstacle: {
             damage: 0,
@@ -50,7 +52,7 @@ var parameters = {
             recycle: 200,
             sound: 'Explosion',
         },
-        tower_obstacle: {
+        tower_tentacle: {
             damage: 0,
             distance: 0,
             fireRate: 0,
