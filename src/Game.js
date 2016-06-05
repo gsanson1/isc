@@ -106,9 +106,9 @@ ISC.Game.prototype = {
 
 
         // Boutons in-game UI
-        this.bpSale = this.add.button(200, 780, 'bp_sale', this.toggleSaleMode, this);
+        this.bpSale = this.add.button(250, 780, 'bp_sale', this.toggleSaleMode, this);
 
-        this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
+        this.bpTower1 = this.add.button(390, 780, 'bp_Tower1', function () {
             this.chooseTowerToBuild(1, 'obstacle')
         }, this);
         this.bpTower1.type = 'tower_obstacle';
@@ -138,13 +138,13 @@ ISC.Game.prototype = {
         this.bpTower5.type = 'tower_b1';
         this.btowers.push(this.bpTower5);
 
-        this.bpTower6 = this.add.button(1040, 780, 'bp_Tower6', function () {
+        this.bpTower6 = this.add.button(1070, 780, 'bp_Tower6', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
         this.bpTower6.type = 'tower_b2';
         this.btowers.push(this.bpTower6);
 
-        this.bpTower7 = this.add.button(1170, 780, 'bp_Tower7', function () {
+        this.bpTower7 = this.add.button(1200, 780, 'bp_Tower7', function () {
             this.chooseTowerToBuild(1, 'tentacle')
         }, this);
         this.bpTower7.type = 'tower_b2';
@@ -500,10 +500,9 @@ ISC.Game.prototype = {
     },
 
     createBtowerText: function (btower) {
-        this.add.text(btower.x + 10, btower.y + 70, parameters.towers[btower.type].cost, {
+        this.add.text(btower.x + 40, btower.y + 80, parameters.towers[btower.type].cost, {
             font: "20px Arial",
-            fill: "#ffffff",
-            align: "center"
+            fill: "#ffffff"
         });
     },
 
