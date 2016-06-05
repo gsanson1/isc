@@ -69,6 +69,7 @@ ISC.Game = function (game) {
     this.creditText;
 
     this.waveManager;
+    this.waveManagerWaveCount;
 };
 
 ISC.Game.prototype = {
@@ -214,6 +215,12 @@ ISC.Game.prototype = {
         });
         this.waveTimerText.anchor.setTo(0.5, 0.5);
         this.waveTimerText.visible = false;
+
+        this.waveManagerWaveCount = this.add.text(1490, 805, 1, {
+            font: "44px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
 
         this.startTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateStartTimer, this);
     },
@@ -403,6 +410,7 @@ ISC.Game.prototype = {
 <<<<<<< Updated upstream
             this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
             this.waveTimerText.visible = true;
+            this.waveManagerWaveCount.setText(this.waveManager.countWave);
         }
     },
 
