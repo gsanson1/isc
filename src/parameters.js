@@ -1,7 +1,7 @@
 var parameters = {
 
     lives: 5,
-    initialCredit: 400,
+    initialCredit: 500,
     speedMul: 0.9,
 
     towers: {
@@ -9,8 +9,8 @@ var parameters = {
             damage: 0,
             distance: 0,
             fireRate: 0,
-            cost: 10,
-            recycle: 0
+            cost: 30,
+            recycle: 15
         },
         tower_a0: {
             damage: 3,
@@ -30,18 +30,18 @@ var parameters = {
         },
         tower_b0: {
             damage: 15,
-            distance: 64 * 64 * 12,
-            fireRate: 1500,
-            cost: 150,
-            recycle: 0,
+            distance: 64 * 64 * 56,
+            fireRate: 1800,
+            cost: 120,
+            recycle: 108,
             sound: 'Explosion',
         },
         tower_b1: {
-            damage: 20,
-            distance: 64 * 64 * 20,
-            fireRate: 1500,
-            cost: 450,
-            recycle: 0,
+            damage: 30,
+            distance: 64 * 64 * 72,
+            fireRate: 1800,
+            cost: 360,
+            recycle: 324,
             sound: 'Explosion',
         },
         tower_b2: {
@@ -88,9 +88,9 @@ var parameters = {
         timeFirstWave: 5,     // Nombre de frames avant premiere vague
         unitsFirstWave: 3,      // Nombre d'unites dans la premiere vague
         timeNextWave: 10,      // Nombre de secondes avant les vagues (Hors premiere)
-        switchEvery: 10,         // Changement nb unites => puissance
+        switchEvery: 5,         // Changement nb unites => puissance
         strengthMul: 1.1,  // Augmentation de puissance (Toutes les switchEvery vagues)
-        unitIncrease: 2,        // Augmentation par tour (+ Increment)
+        unitIncrease: 1,        // Augmentation par tour (+ Increment)
         waveGuests: 6,           // Premiere vague avec des guests
         ratioBasic: 0.9         // Ratio de lama de type "basique"
     }
