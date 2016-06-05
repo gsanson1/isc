@@ -43,7 +43,9 @@ ISC.Game = function (game) {
     this.tower7key;
 
     // bouton ui
+    this.bpSale;
     this.btowers = [];
+    this.bpObstacle
     this.bpTower1;
     this.bpTower2;
     this.bpTower3;
@@ -51,7 +53,6 @@ ISC.Game = function (game) {
     this.bpTower5;
     this.bpTower6;
     this.bpTower7;
-    this.bpSale;
 
     this.startCountdown = parameters.waves.timeFirstWave;
     this.startTimerText;
@@ -96,36 +97,37 @@ ISC.Game.prototype = {
         this.music = this.add.audio('Plage'); // je charge ma music
         this.music.play();// play
 
-        // Bouton UI achat tour
+        // Boutons in-game UI
+        this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
 
         this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
-            this.chooseTowerToBuild(1, 'a0')
+            this.chooseTowerToBuild(1, 'obstacle')
         }, this);
-        this.bpTower1.type = 'tower_a0';
+        this.bpTower1.type = 'tower_obstacle';
         this.btowers.push(this.bpTower1);
 
         this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
             this.chooseTowerToBuild(1, 'a1')
         }, this);
-        this.bpTower2.type = 'tower_a1';
+        this.bpTower2.type = 'tower_a0';
         this.btowers.push(this.bpTower2);
 
         this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
             this.chooseTowerToBuild(1, 'b0')
         }, this);
-        this.bpTower3.type = 'tower_b0';
+        this.bpTower3.type = 'tower_a1';
         this.btowers.push(this.bpTower3);
 
         this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
             this.chooseTowerToBuild(1, 'b1')
         }, this);
-        this.bpTower4.type = 'tower_b1';
+        this.bpTower4.type = 'tower_b0';
         this.btowers.push(this.bpTower4);
 
         this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
-        this.bpTower5.type = 'tower_b2';
+        this.bpTower5.type = 'tower_b1';
         this.btowers.push(this.bpTower5);
 
         this.bpTower6 = this.add.button(1040, 780, 'bp_Tower6', function () {
@@ -141,14 +143,6 @@ ISC.Game.prototype = {
         this.btowers.push(this.bpTower7);
 
         this.btowers.forEach(this.createBtowerText.bind(this));
-
-        this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
-
-        // Towers
-        this.addTower(4, 4, 'a0');
-        this.addTower(5, 5, 'a1');
-        this.addTower(6, 6, 'b0');
-        this.addTower(7, 7, 'b1');
 
         this.towerPlaceholderShotCircle = this.add.graphics(0, 0);
         this.towerPlaceholderShotCircle.visible = false;
@@ -168,19 +162,19 @@ ISC.Game.prototype = {
         this.quitGamekey.onDown.add(this.quitGame, this);
 
         this.tower1key = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
-        this.tower1key.onDown.add(this.chooseTowerToBuild, this, 0, 'a0');
+        this.tower1key.onDown.add(this.chooseTowerToBuild, this, 0, 'obstacle');
 
         this.tower2key = this.input.keyboard.addKey(Phaser.Keyboard.TWO);
-        this.tower2key.onDown.add(this.chooseTowerToBuild, this, 0, 'a1');
+        this.tower2key.onDown.add(this.chooseTowerToBuild, this, 0, 'a0');
 
         this.tower3key = this.input.keyboard.addKey(Phaser.Keyboard.THREE);
-        this.tower3key.onDown.add(this.chooseTowerToBuild, this, 0, 'b0');
+        this.tower3key.onDown.add(this.chooseTowerToBuild, this, 0, 'a1');
 
         this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
-        this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
+        this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b0');
 
         this.tower5key = this.input.keyboard.addKey(Phaser.Keyboard.FIVE);
-        this.tower5key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
+        this.tower5key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
 
         this.tower6key = this.input.keyboard.addKey(Phaser.Keyboard.SIX);
         this.tower6key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
