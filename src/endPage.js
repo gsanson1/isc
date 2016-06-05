@@ -8,7 +8,7 @@ ISC.EndPage.prototype = {
 
     create: function () {
         this.splash = this.game.add.sprite(0, 0, 'endscr');
-        this.gameover = this.game.add.sprite(260, 483, 'gameover');
+        this.gameover = this.game.add.sprite(568, 464, 'gameover');
 
         this.restartGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         this.restartGamekey.onDown.add(this.restartGame, this);
