@@ -211,7 +211,7 @@ ISC.Game.prototype = {
         this.startTimerText.anchor.setTo(0.5, 0.5);
 
         this.waveCountdown = parameters.waves.timeNextWave;
-        this.waveTimerText = this.add.text(1420, 870, this.waveCountdown, {
+        this.waveTimerText = this.add.text(1410, 880, this.waveCountdown + 's', {
             font: "32px Arial",
             fill: "#ffffff",
             align: "center"
@@ -219,7 +219,7 @@ ISC.Game.prototype = {
         this.waveTimerText.anchor.setTo(0.5, 0.5);
         this.waveTimerText.visible = false;
 
-        this.waveManagerWaveCountText = this.add.text(1490, 805, 1, {
+        this.waveManagerWaveCountText = this.add.text(1380, 815, 'Wave 1', {
             font: "44px Arial",
             fill: "#ffffff",
             align: "center"
@@ -429,13 +429,13 @@ ISC.Game.prototype = {
     updateWaveTimer: function () {
         this.waveCountdown--;
 
-        this.waveTimerText.setText(this.waveCountdown);
+        this.waveTimerText.setText(this.waveCountdown + 's');
 
         if (this.waveCountdown == 0) {
             this.waveCountdown = parameters.waves.timeNextWave;
-            this.waveTimerText.setText(parameters.waves.timeNextWave);
+            this.waveTimerText.setText(parameters.waves.timeNextWave + 's');
             this.launchWave();
-            this.waveManagerWaveCountText.setText(this.waveManager.countWave);
+            this.waveManagerWaveCountText.setText('Wave ' + this.waveManager.countWave);
 
 
             this.ohDesLamas = this.add.audio('monDieu'); // des lams
