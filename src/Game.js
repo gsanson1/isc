@@ -55,7 +55,9 @@ ISC.Game = function (game) {
     this.startCountdown = 3;
     this.startTimerText;
     this.startTimer;
+
     this.saleMode = false;
+    this.salekey;
 };
 
 ISC.Game.prototype = {
@@ -150,6 +152,9 @@ ISC.Game.prototype = {
 
         this.tower7key = this.input.keyboard.addKey(Phaser.Keyboard.SEVEN);
         this.tower7key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
+
+        this.salekey = this.input.keyboard.addKey(Phaser.Keyboard.S);
+        this.salekey.onDown.add(this.toggleSaleMode, this);
 
         this.startCountdown = 3;
 
@@ -339,19 +344,29 @@ ISC.Game.prototype = {
     },
 
     activateSaleMode: function () {
-        this.toggleSaleMode(true);
+        this.setSaleMode(true);
     },
 
     deactivateSaleMode: function () {
-        this.toggleSaleMode(false);
+        this.setSaleMode(false);
     },
 
-    toggleSaleMode: function (saleMode) {
+    setSaleMode: function (saleMode) {
         this.saleMode = saleMode;
-
         var tintColour = 0xFFFFFF;
 
         if (saleMode) {
+            tintColour = 0xA9A9A9;
+        }
+
+        this.bpSale.tint = tintColour;
+    },
+
+    toggleSaleMode: function () {
+        this.saleMode = !this.saleMode;
+        var tintColour = 0xFFFFFF;
+
+        if (this.saleMode) {
             tintColour = 0xA9A9A9;
         }
 
