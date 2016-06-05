@@ -198,6 +198,10 @@ ISC.Game.prototype = {
 
         this.wave = new Waves(this);
 
+        this.explosion = this.fireSprite = this.game.add.sprite(1200, 0, 'explosion');
+        this.explosion.visible = false;
+        this.exCountDown = 0;
+
         this.startCountdown = 3;
 
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
@@ -245,6 +249,7 @@ ISC.Game.prototype = {
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
+                    this.exCountDown = 60;
                 }
 
                 this.enemies[i].remove();
@@ -277,6 +282,18 @@ ISC.Game.prototype = {
         }
 
         this.wave.nextStep();
+
+        // Explosion
+        if (this.exCountDown > 0) {
+            this.explosion.visible = true;
+
+            this.exCountDown--;
+            if (this.exCountDown == 0) {
+                this.explosion.visible = false;
+            } else {
+                this.explosion.frame = 3 - Math.floor(this.exCountDown / 15);
+            }
+        }
     },
 
     quitGame: function () {

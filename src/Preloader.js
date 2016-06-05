@@ -37,6 +37,7 @@ ISC.Preloader.prototype = {
         this.load.image('bar_red', 'images/bar_red.png');
         this.load.image('bar_green', 'images/bar_green.png');
         this.load.image('island', 'images/island.png');
+        this.load.spritesheet('explosion', 'images/explosion.png', 330, 768, 4);
 
         this.load.spritesheet('tower_a0', 'images/tower_short.png', 64, 64, 8);
         this.load.spritesheet('tower_a1', 'images/tower_short2.png', 64, 64, 8);
