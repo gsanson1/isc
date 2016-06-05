@@ -69,7 +69,7 @@ ISC.Game = function (game) {
     this.creditText;
 
     this.waveManager;
-    this.waveManagerWaveCount;
+    this.waveManagerWaveCountText;
 };
 
 ISC.Game.prototype = {
@@ -216,7 +216,7 @@ ISC.Game.prototype = {
         this.waveTimerText.anchor.setTo(0.5, 0.5);
         this.waveTimerText.visible = false;
 
-        this.waveManagerWaveCount = this.add.text(1490, 805, 1, {
+        this.waveManagerWaveCountText = this.add.text(1490, 805, 1, {
             font: "44px Arial",
             fill: "#ffffff",
             align: "center"
@@ -410,7 +410,6 @@ ISC.Game.prototype = {
 
             this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
             this.waveTimerText.visible = true;
-            this.waveManagerWaveCount.setText(this.waveManager.countWave);
         }
     },
 
@@ -423,7 +422,8 @@ ISC.Game.prototype = {
             this.waveCountdown = parameters.waves.timeNextWave;
             this.waveTimerText.setText(parameters.waves.timeNextWave);
             this.launchWave();
-            
+            this.waveManagerWaveCountText.setText(this.waveManager.countWave);
+
             this.ohDesLamas = this.add.audio('ohNonDesLamas2'); // des lams
             this.ohDesLamas.play();// play
             this.ohDesLamas.volume = 1;// volume de la plage
@@ -436,8 +436,6 @@ ISC.Game.prototype = {
             this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
             this.soundMouette();
         }
-
-
     },
 
     activateSaleMode: function () {
