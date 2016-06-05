@@ -43,8 +43,9 @@ ISC.Game = function (game) {
     this.tower7key;
 
     // bouton ui
+    this.menuLifes = [];
+    this.menuCredit;
     this.bpSale;
-    this.bpCredit;
     this.btowers = [];
     this.bpTower1;
     this.bpTower2;
@@ -70,6 +71,8 @@ ISC.Game = function (game) {
 
     this.waveManager;
     this.waveManagerWaveCountText;
+
+    this.remainingLives;
 };
 
 ISC.Game.prototype = {
@@ -82,11 +85,14 @@ ISC.Game.prototype = {
         this.island = this.add.sprite(1408, 0, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
 
-        this.remainingLives = parameters.lives; 
+        this.remainingLives = parameters.lives;
         this.credit = parameters.initialCredit;
 
+        for(var i = 0;i < this.remainingLives; i++) {
+            this.menuLifes.push(this.add.sprite(30 + (i * 32), 820, 'menu_wererabbit'));
+        }
 
-        this.bpCredit = this.add.sprite(130, 820, 'bp_credit');
+        this.menuCredit = this.add.sprite(130, 820, 'menu_credit');
         this.creditText = this.add.text(180, 830, this.credit, {
             font: "40px Arial",
             fill: "#ffffff",
@@ -265,6 +271,7 @@ ISC.Game.prototype = {
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
+                    this.updateMenuLife();
                     this.exCountDown = 60;
                     this.islansExplosion=this.add.audio('Explosion');
                     this.islansExplosion.play();
@@ -533,5 +540,15 @@ ISC.Game.prototype = {
         this.argent.play();
         this.argent.volume = 0.3;
 
+    },
+
+    updateMenuLife: function () {
+        this.menuLifes.forEach(function (menuLife) {
+            menuLife.destroy();
+        });
+
+        for(var i = 0;i < this.remainingLives; i++) {
+            this.menuLifes.push(this.add.sprite(30 + (i * 32), 820, 'menu_wererabbit'));
+        }
     }
 };
