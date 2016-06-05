@@ -60,7 +60,7 @@ ISC.Preloader.prototype = {
         this.load.image('bp_Tower5','images/bp_Tower5.png');
         this.load.image('bp_Tower6','images/bp_Tower6.png');
         this.load.image('bp_Tower7','images/bp_Tower7.png');
-        this.load.image('bp_Sale','images/bp_sale.png');
+        this.load.image('bp_sale','images/bp_sale.png');
 
     },
 
