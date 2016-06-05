@@ -76,7 +76,7 @@ ISC.Game = function (game) {
 
     this.textColour = '#5A361F';
 
-    
+
 };
 
 ISC.Game.prototype = {
@@ -355,7 +355,7 @@ ISC.Game.prototype = {
                 if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)) {
                     this.towerPlaceholder.tint = 0xFFFFFF;
                     this.drawTowerPlaceholderShotCircle();
-                    if (this.input.mousePointer.isDown) {
+                    if (this.input.activePointer.isDown) {
                         this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
                     }
                 }
@@ -525,7 +525,7 @@ ISC.Game.prototype = {
             if (towerCost > credit) {
 
                 btower.tint = 0xA9A9A9;
-                
+
 
             }
             else {
