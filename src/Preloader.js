@@ -50,8 +50,48 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('fx_b0', 'images/tower_fx_long.png', 64, 64, 8);
         this.load.spritesheet('fx_b1', 'images/tower_fx_long.png', 64, 64, 8);
 
-        // Chargement son.
-        this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3
+        // Chargement son ambiance.
+        this.load.audio('Plage','sounds/sample/sf_plage_02.mp3');
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Chargement son bateau qui coule
+        this.load.audio('ChefNain','sounds/sample/Son voix/bateau qui coule/Chef chef un nain qui coule.mp3');
+        this.load.audio('OhPinaise','sounds/sample/Son voix/bateau qui coule/oh pinaise jai une licorne.mp3');
+        this.load.audio('SousNain','sounds/sample/Son voix/bateau qui coule/Oh un sous nain quatic.mp3');
+        this.load.audio('Froide','sounds/sample/Son voix/bateau qui coule/ou elle est froide.mp3');
+        // FX
+        this.load.audio('Abracadabra','sounds/sample/Son voix/Fx/abracada.mp3');
+        this.load.audio('Adriama','sounds/sample/Son voix/Fx/Adriama.mp3');
+        this.load.audio('Argent','sounds/sample/Son voix/Fx/argent.mp3');
+        this.load.audio('Explosion','sounds/sample/Son voix/Fx/Explosion.mp3');
+        this.load.audio('Moette','sounds/sample/Son voix/Fx/Moette.mp3');
+        this.load.audio('Canon','sounds/sample/Son voix/Fx/tir canon.mp3');
+        this.load.audio('Mitraillette','sounds/sample/Son voix/Fx/tir mitraillette.mp3');
+        this.load.audio('Tulu','sounds/sample/Son voix/Fx/tulu.mp3');
+
+        // Lose
+
+        this.load.audio('VieEnMoins','sounds/sample/Son voix/Lose/Ah ah une vie en moins.mp3');
+        this.load.audio('PetiteBiere','sounds/sample/Son voix/Lose/Hum je prendrais bien une petite bierre.mp3');
+        this.load.audio('Eau','sounds/sample/Son voix/Lose/ils sont pas bu que de leau.mp3');
+        this.load.audio('OnTaEu','sounds/sample/Son voix/Lose/On ta eu.mp3');
+        this.load.audio('Youhou','sounds/sample/Son voix/Lose/Youhou nous y voici.mp3');
+
+        //Nouvelle vague
+
+        this.load.audio('lamasOloin','sounds/sample/Son voix/Nouvelle vague/Des lamas au loin.mp3');
+        this.load.audio('monDieu','sounds/sample/Son voix/Nouvelle vague/Mon dieu encore des lamas.mp3');
+        this.load.audio('ohNonDesLamas','sounds/sample/Son voix/Nouvelle vague/Oh non de lamas.mp3');
+        this.load.audio('ohNonDesLamas2','sounds/sample/Son voix/Nouvelle vague/Oh non de lamas2.mp3');
+        
+        //Plus d'argent
+
+        this.load.audio('hihiPlusDargent','sounds/sample/Son voix/Plus dargent/hihi plus dargent.mp3');
+        this.load.audio('ilYAPlusDargent','sounds/sample/Son voix/Plus dargent/il y a plus dargent.mp3');
+        this.load.audio('pasDeMonais','sounds/sample/Son voix/Plus dargent/pas des monais.mp3');
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // Ressource Menu
         this.load.image('Startbutton', 'images/start-btn.png');
 
