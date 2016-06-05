@@ -210,15 +210,22 @@ ISC.Game.prototype = {
 
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
-            if (this.towers[i].nextFire < this.game.time.time) {
-                target = this.towers[i].findTarget(this.enemies);
-                if (target.enemy) {
-                    target.enemy.hit(this.towers[i].damage);
-                    this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
-                }
+            if (this.towers[i].isDead()) {
+                this.towers[i].remove();
+                this.towers.splice(i, 1);
+                i--;
             }
+            else {
+                if (this.towers[i].nextFire < this.game.time.time) {
+                    target = this.towers[i].findTarget(this.enemies);
+                    if (target.enemy) {
+                        target.enemy.hit(this.towers[i].damage);
+                        this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
+                    }
+                }
 
-            this.towers[i].refresh();
+                this.towers[i].refresh();
+            }
         }
     },
 
@@ -353,7 +360,7 @@ ISC.Game.prototype = {
 
     clickOnTower: function (tower) {
         if (this.saleMode) {
-            tower.destroy();
+            tower.sale();
             this.deactivateSaleMode();
         }
     }

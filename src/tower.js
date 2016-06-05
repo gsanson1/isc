@@ -1,6 +1,6 @@
 ISC.Tower = function (game, x, y, type) {
     var towertype = 'tower_' + type;
-    
+
     Phaser.Sprite.call(this, game, x, y, towertype);
 
     this.damage = parameters.towers[towertype].damage;
@@ -16,10 +16,9 @@ ISC.Tower = function (game, x, y, type) {
     this.fireSprite.visible = false;
 
     game.add.existing(this);
-    
+
     this.nextFire = 0;
-
-
+    this.dead = false;
 };
 
 ISC.Tower.prototype = Object.create(Phaser.Sprite.prototype);
@@ -63,4 +62,17 @@ ISC.Tower.prototype.refresh = function() {
             this.fireSprite.visible = false;
         }
     }
+}
+
+ISC.Tower.prototype.sale = function() {
+    this.dead = true;
+}
+
+ISC.Tower.prototype.remove = function() {
+    this.fireSprite.destroy();
+    this.destroy();
+}
+
+ISC.Tower.prototype.isDead = function() {
+    return this.dead;
 }
