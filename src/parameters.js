@@ -2,7 +2,7 @@ var parameters = {
 
     lives: 5,
     initialCredit: 4000,
-    
+
     towers: {
         tower_a0: {
             damage: 3,
@@ -26,6 +26,13 @@ var parameters = {
             recycle: 120
         },
         tower_b1: {
+            damage: 30,
+            distance: 64 * 64 * 20,
+            fireRate: 2000,
+            cost: 200,
+            recycle: 200
+        },
+        tower_b2: {
             damage: 30,
             distance: 64 * 64 * 20,
             fireRate: 2000,

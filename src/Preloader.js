@@ -41,6 +41,7 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('tower_a1', 'images/tower_short2.png', 64, 64, 8);
         this.load.spritesheet('tower_b0', 'images/tower_long.png', 64, 64, 8);
         this.load.spritesheet('tower_b1', 'images/tower_long2.png', 64, 64, 8);
+        this.load.spritesheet('tower_b2', 'images/tower_long2.png', 64, 64, 8);
 
         this.load.spritesheet('fx_a0', 'images/tower_fx_short.png', 64, 64, 8);
         this.load.spritesheet('fx_a1', 'images/tower_fx_short.png', 64, 64, 8);

@@ -43,13 +43,21 @@ ISC.Game = function (game) {
     this.tower7key;
 
     // bouton ui
+    this.btowers = [];
     this.bpTower1;
+    this.bpTower1Text;
     this.bpTower2;
+    this.bpTower2Text;
     this.bpTower3;
+    this.bpTower3Text;
     this.bpTower4;
+    this.bpTower4Text;
     this.bpTower5;
+    this.bpTower5Text;
     this.bpTower6;
+    this.bpTower6Text;
     this.bpTower7;
+    this.bpTower7Text;
     this.bpSale;
 
     this.startCountdown = 3;
@@ -89,12 +97,6 @@ ISC.Game.prototype = {
             this.map.addTower(23, i);
         }
 
-        // Towers
-        this.addTower(4, 4, 'a0');
-        this.addTower(5, 5, 'a1');
-        this.addTower(6, 6, 'b0');
-        this.addTower(7, 7, 'b1');
-
         // Lancement son
         this.music = this.add.audio('Plage'); // je charge ma music
         this.music.play();// play
@@ -104,25 +106,54 @@ ISC.Game.prototype = {
         this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
             this.chooseTowerToBuild(1, 'a0')
         }, this);
+        this.bpTower1.type = 'tower_a0';
+        this.btowers.push(this.bpTower1);
+
         this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
             this.chooseTowerToBuild(1, 'a1')
         }, this);
+        this.bpTower2.type = 'tower_a1';
+        this.btowers.push(this.bpTower2);
+
         this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
             this.chooseTowerToBuild(1, 'b0')
         }, this);
+        this.bpTower3.type = 'tower_b0';
+        this.btowers.push(this.bpTower3);
+
         this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
             this.chooseTowerToBuild(1, 'b1')
         }, this);
+        this.bpTower4.type = 'tower_b1';
+        this.btowers.push(this.bpTower4);
+
         this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
+        this.bpTower5.type = 'tower_b2';
+        this.btowers.push(this.bpTower5);
+
         this.bpTower6 = this.add.button(1040, 780, 'bp_Tower6', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
+        this.bpTower6.type = 'tower_b2';
+        this.btowers.push(this.bpTower6);
+
         this.bpTower7 = this.add.button(1170, 780, 'bp_Tower7', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
+        this.bpTower7.type = 'tower_b2';
+        this.btowers.push(this.bpTower7);
+
+        this.btowers.forEach(this.createBtowerText.bind(this));
+
         this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
+
+        // Towers
+        this.addTower(4, 4, 'a0');
+        this.addTower(5, 5, 'a1');
+        this.addTower(6, 6, 'b0');
+        this.addTower(7, 7, 'b1');
 
         this.towerPlaceholderShotCircle = this.add.graphics(0, 0);
         this.towerPlaceholderShotCircle.visible = false;
@@ -183,6 +214,7 @@ ISC.Game.prototype = {
 
         if (cost < this.credit) {
             this.updateCredit(-cost);
+            this.updateUi();
 
             var gx = _x << 6;
             var gy = _y << 6;
@@ -393,5 +425,25 @@ ISC.Game.prototype = {
     updateCredit: function (credit) {
         this.credit += credit;
         this.creditText.setText(this.credit);
+    },
+
+    updateUi: function() {
+        var credit = this.credit;
+
+        this.btowers.forEach(function (btower) {
+            var towerCost = parameters.towers[btower.type].cost;
+
+            if (towerCost > credit) {
+                btower.tint = 0xA9A9A9;
+            }
+        });
+    },
+
+    createBtowerText: function (btower) {
+        this.add.text(btower.x + 10, btower.y + 70, parameters.towers[btower.type].cost, {
+            font: "20px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
     }
 };
