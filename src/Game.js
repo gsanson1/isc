@@ -177,6 +177,8 @@ ISC.Game.prototype = {
                     this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
                 }
             }
+
+            this.towers[i].refresh();
         }
     },
 
