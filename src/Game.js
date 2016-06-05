@@ -145,7 +145,7 @@ ISC.Game.prototype = {
         this.btowers.push(this.bpTower6);
 
         this.bpTower7 = this.add.button(1170, 780, 'bp_Tower7', function () {
-            this.chooseTowerToBuild(1, 'b2')
+            this.chooseTowerToBuild(1, 'tentacle')
         }, this);
         this.bpTower7.type = 'tower_b2';
         this.btowers.push(this.bpTower7);
@@ -188,7 +188,7 @@ ISC.Game.prototype = {
         this.tower6key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
 
         this.tower7key = this.input.keyboard.addKey(Phaser.Keyboard.SEVEN);
-        this.tower7key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
+        this.tower7key.onDown.add(this.chooseTowerToBuild, this, 0, 'tentacle');
 
         this.salekey = this.input.keyboard.addKey(Phaser.Keyboard.S);
         this.salekey.onDown.add(this.toggleSaleMode, this);
