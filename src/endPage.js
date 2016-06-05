@@ -4,6 +4,7 @@ ISC.EndPage = function (game) {
     this.restartGamekey;
     this.scoreText;
     this.waveCount;
+    this.tween;
 };
 
 ISC.EndPage.prototype = {
@@ -14,7 +15,9 @@ ISC.EndPage.prototype = {
 
     create: function () {
         this.splash = this.game.add.sprite(0, 0, 'endscr');
-        this.gameover = this.game.add.sprite(0, 0, 'gameover');
+        this.gameover = this.game.add.sprite(0, -600, 'gameover');
+
+        this.tween = this.add.tween(this.gameover).to( { y: 0 }, 2400, Phaser.Easing.Bounce.Out, true);
 
         this.restartGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         this.restartGamekey.onDown.add(this.restartGame, this);
