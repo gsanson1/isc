@@ -25,8 +25,8 @@ ISC.Preloader.prototype = {
         // Here we load the rest of the assets our game needs.
         // You can find all of these assets in the Phaser Examples repository
 
-        this.load.image('sea', 'images/sea-bg-grid.png');
-        this.load.image('UI', 'images/ingame_UI_placeholder.png');
+        this.load.image('sea', 'images/menu/sea-bg.png');
+        this.load.image('UI', 'images/menu/bg-menu.png');
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');
         this.load.spritesheet('boat_a0', 'images/ship_lama.png', 64, 64, 8);
@@ -45,6 +45,7 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('tower_b0', 'images/tower_long.png', 64, 64, 8);
         this.load.spritesheet('tower_b1', 'images/tower_long2.png', 64, 64, 8);
         this.load.spritesheet('tower_b2', 'images/tower_long2.png', 64, 64, 8);
+        this.load.spritesheet('tower_tentacle', 'images/tentacle.png', 64, 64, 8);
 
         this.load.spritesheet('fx_a0', 'images/tower_fx_short.png', 64, 64, 8);
         this.load.spritesheet('fx_a1', 'images/tower_fx_short.png', 64, 64, 8);
@@ -84,7 +85,7 @@ ISC.Preloader.prototype = {
         this.load.audio('monDieu','sounds/sample/Son voix/Nouvelle vague/Mon dieu encore des lamas.mp3');
         this.load.audio('ohNonDesLamas','sounds/sample/Son voix/Nouvelle vague/Oh non de lamas.mp3');
         this.load.audio('ohNonDesLamas2','sounds/sample/Son voix/Nouvelle vague/Oh non de lamas2.mp3');
-        
+
         //Plus d'argent
 
         this.load.audio('hihiPlusDargent','sounds/sample/Son voix/Plus dargent/hihi plus dargent.mp3');
@@ -97,16 +98,14 @@ ISC.Preloader.prototype = {
         this.load.image('Startbutton', 'images/start-btn.png');
 
         // Ressource UI game
-        this.load.image('bp_sale','images/bp_sale.png');
-        this.load.image('bp_Tower1','images/bp_Tower1.png');
-        this.load.image('bp_Tower2','images/bp_Tower2.png');
-        this.load.image('bp_Tower3','images/bp_Tower3.png');
-        this.load.image('bp_Tower4','images/bp_Tower4.png');
-        this.load.image('bp_Tower5','images/bp_Tower5.png');
-        this.load.image('bp_Tower6','images/bp_Tower6.png');
-        this.load.image('bp_Tower7','images/bp_Tower7.png');
-
-
+        this.load.image('bp_sale','images/menu/btn-resell.png');
+        this.load.image('bp_Tower1','images/menu/btn-bouee.png');
+        this.load.image('bp_Tower2','images/menu/btn-tower1.png');
+        this.load.image('bp_Tower3','images/menu/btn-tower1+.png');
+        this.load.image('bp_Tower4','images/menu/btn-tower2.png');
+        this.load.image('bp_Tower5','images/menu/btn-tower2+.png');
+        this.load.image('bp_Tower6','images/menu/btn-unicorn.png');
+        this.load.image('bp_Tower7','images/menu/btn-tentacue.png');
     },
 
     create: function () {

@@ -50,7 +50,7 @@ var parameters = {
             recycle: 200,
             sound: 'Explosion',
         },
-        tower_obstacle: {
+        tower_tentacle: {
             damage: 0,
             distance: 0,
             fireRate: 0,
