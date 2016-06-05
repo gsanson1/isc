@@ -73,15 +73,3 @@ Enemy.prototype = {
 }
 
 
-
-
-var EnemyManager = function() {
-    this.enemies = [];
-}
-
-EnemyManager.prototype = {
-    newWave: function(_size) {
-        //for (var i = 0; i < )
-    }
-}
-

@@ -216,7 +216,6 @@ ISC.Game.prototype = {
 
         if (cost < this.credit) {
             this.updateCredit(-cost);
-            this.updateUi();
 
             var gx = _x << 6;
             var gy = _y << 6;
@@ -241,7 +240,7 @@ ISC.Game.prototype = {
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()) {
-                    this.credit += this.enemies[i].reward;
+                    this.updateCredit(this.enemies[i].reward);
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
@@ -429,6 +428,7 @@ ISC.Game.prototype = {
     updateCredit: function (credit) {
         this.credit += credit;
         this.creditText.setText(this.credit);
+        this.updateUi();
     },
 
     updateUi: function() {
@@ -439,6 +439,9 @@ ISC.Game.prototype = {
 
             if (towerCost > credit) {
                 btower.tint = 0xA9A9A9;
+            }
+            else {
+                btower.tint = 0xFFFFFF;
             }
         });
     },
