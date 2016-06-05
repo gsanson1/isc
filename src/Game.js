@@ -45,19 +45,12 @@ ISC.Game = function (game) {
     // bouton ui
     this.btowers = [];
     this.bpTower1;
-    this.bpTower1Text;
     this.bpTower2;
-    this.bpTower2Text;
     this.bpTower3;
-    this.bpTower3Text;
     this.bpTower4;
-    this.bpTower4Text;
     this.bpTower5;
-    this.bpTower5Text;
     this.bpTower6;
-    this.bpTower6Text;
     this.bpTower7;
-    this.bpTower7Text;
     this.bpSale;
 
     this.startCountdown = 3;
@@ -69,6 +62,8 @@ ISC.Game = function (game) {
 
     this.credit;
     this.creditText;
+
+    this.waveManager;
 };
 
 ISC.Game.prototype = {
@@ -196,7 +191,7 @@ ISC.Game.prototype = {
         this.salekey = this.input.keyboard.addKey(Phaser.Keyboard.S);
         this.salekey.onDown.add(this.toggleSaleMode, this);
 
-        this.wave = new Waves(this);
+        this.waveManager = new WaveManager(this);
 
         this.explosion = this.fireSprite = this.game.add.sprite(1200, 0, 'explosion');
         this.explosion.visible = false;
@@ -291,8 +286,6 @@ ISC.Game.prototype = {
                 this.explosion.frame = 3 - Math.floor(this.exCountDown / 15);
             }
         }
-
-        this.wave.nextStep(this.game.time.time);
     },
 
     quitGame: function () {
@@ -399,9 +392,7 @@ ISC.Game.prototype = {
     },
 
     launchWave: function () {
-        for (var i = 0; i < 5; i++) {
-            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
-        }
+        this.waveManager.launchWave();
     },
 
     activateSaleMode: function () {

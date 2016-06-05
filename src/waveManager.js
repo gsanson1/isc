@@ -1,14 +1,14 @@
-var Waves = function(_gameScreen) {
+var WaveManager = function(_gameScreen) {
     this.gameScreen = _gameScreen;
 
     this.nextWave = parameters.waves.timeFirstWave;
-    
-    this.wave = 0;
+
+    this.countWave = 0;
     this.units = parameters.waves.unitsFirstWave;
     this.strength = 1;
 }
 
-Waves.prototype = {
+WaveManager.prototype = {
     nextStep: function(t) {
         //this.nextWave--;
         //if (this.nextWave <= 0) {
@@ -24,8 +24,8 @@ Waves.prototype = {
     },
 
     launchWave: function() {
-        this.wave++
-        var randVal = this.wave >= parameters.waves.waveGuests ? 4 : 2;
+        this.countWave++
+        var randVal = this.countWave >= parameters.waves.waveGuests ? 4 : 2;
 
         var enemy = null;
         for (var i = 0; i < this.units; i++) {
@@ -36,8 +36,8 @@ Waves.prototype = {
         }
 
         // Change values (next wave)
-        if (this.wave % parameters.waves.switchEvery) {
-            this.units = parameters.waves.unitsFirstWave + Math.floor(this.wave / parameters.waves.switchEvery) * parameters.waves.unitIncrease;
+        if (this.countWave % parameters.waves.switchEvery) {
+            this.units = parameters.waves.unitsFirstWave + Math.floor(this.countWave / parameters.waves.switchEvery) * parameters.waves.unitIncrease;
             this.strength *= parameters.waves.strengthMul;
         } else {
             this.units += parameters.waves.unitIncrease;
