@@ -26,7 +26,7 @@ ISC.Preloader.prototype = {
         // You can find all of these assets in the Phaser Examples repository
 
         this.load.image('sea', 'images/sea-bg-grid.png');
-        this.load.image('splash', 'images/sea-bg-grid.png');
+        this.load.image('splash', 'images/ecran-titre.jpg');
         this.load.image('UI', 'images/menu/bg-menu.png');
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');

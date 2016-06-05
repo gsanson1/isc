@@ -10,8 +10,9 @@ ISC.MainMenu.prototype = {
 
     create: function () {
 
+        this.splash = this.game.add.sprite(0, 0, 'splash');
 
-        this.Sbutton = this.add.button(673,448,'Startbutton',this.ActionOnClick,this);
+        this.Sbutton = this.add.button(673, 648, 'Startbutton', this.ActionOnClick,this);
 
 
     },
