@@ -316,5 +316,6 @@ ISC.Game.prototype = {
 
     activateSaleMode: function () {
         this.saleMode = true;
+        this.bpSale.tint = 0xA9A9A9;
     },
 };
