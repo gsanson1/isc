@@ -50,7 +50,6 @@ ISC.Game = function (game) {
     this.startCountdown = 3;
     this.startTimerText;
     this.startTimer;
-    this.isSelected = false;
     this.saleMode = false;
 };
 
@@ -86,14 +85,28 @@ ISC.Game.prototype = {
 
         // Bouton UI achat tour
 
-        this.bpTower1 = this.add.button(400,780,'bp_Tower1',function(){this.chooseTowerToBuild(1,'a0')  },this);
-        this.bpTower2 = this.add.button(530,780,'bp_Tower2',function(){this.chooseTowerToBuild(1,'a1')  },this);
-        this.bpTower3 = this.add.button(660,780,'bp_Tower3',function(){this.chooseTowerToBuild(1,'b0')  },this);
-        this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
-        this.bpTower5 = this.add.button(910,780,'bp_Tower5',function(){this.chooseTowerToBuild(1,'b2')  },this);
-        this.bpTower6 = this.add.button(1040,780,'bp_Tower6',function(){this.chooseTowerToBuild(1,'b2')  },this);
-        this.bpTower7 = this.add.button(1170,780,'bp_Tower7',function(){this.chooseTowerToBuild(1,'b2')  },this);
-        this.bpSale   = this.add.button(200,780,'bp_sale', this.activateSaleMode,this);
+        this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
+            this.chooseTowerToBuild(1, 'a0')
+        }, this);
+        this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
+            this.chooseTowerToBuild(1, 'a1')
+        }, this);
+        this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
+            this.chooseTowerToBuild(1, 'b0')
+        }, this);
+        this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
+            this.chooseTowerToBuild(1, 'b1')
+        }, this);
+        this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
+            this.chooseTowerToBuild(1, 'b2')
+        }, this);
+        this.bpTower6 = this.add.button(1040, 780, 'bp_Tower6', function () {
+            this.chooseTowerToBuild(1, 'b2')
+        }, this);
+        this.bpTower7 = this.add.button(1170, 780, 'bp_Tower7', function () {
+            this.chooseTowerToBuild(1, 'b2')
+        }, this);
+        this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
 
         this.towerPlaceholderShotCircle = this.add.graphics(0, 0);
         this.towerPlaceholderShotCircle.visible = false;
@@ -126,13 +139,17 @@ ISC.Game.prototype = {
 
         this.startCountdown = 3;
 
-        this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, { font: "64px Arial", fill: "#ffffff", align: "center" });
+        this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
+            font: "64px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
         this.startTimerText.anchor.setTo(0.5, 0.5);
 
         this.startTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateStartTimer, this);
     },
 
-    addTower: function(_x, _y, _type) {
+    addTower: function (_x, _y, _type) {
 
         var cost = parameters.towers['tower_' + _type].cost;
 
@@ -150,7 +167,7 @@ ISC.Game.prototype = {
         }
     },
 
-    addTowerAtPosition: function(position, _type) {
+    addTowerAtPosition: function (position, _type) {
         var tiledPosition = Tools.getTiledPosition(position);
         this.addTower(tiledPosition.x, tiledPosition.y, _type);
     },
@@ -158,10 +175,10 @@ ISC.Game.prototype = {
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
-                if (this.enemies[i].isDead()){
+                if (this.enemies[i].isDead()) {
                     this.credit += this.enemies[i].reward;
                 }
-                else if (this.enemies[i].landed(this.enemyDestination)){
+                else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
                 }
 
@@ -279,7 +296,7 @@ ISC.Game.prototype = {
         this.towerPlaceholderShotCircle.drawCircle(0, 0, Math.sqrt(parameters.towers['tower_' + this.towerPlaceholder.type].distance));
     },
 
-    updateStartTimer: function() {
+    updateStartTimer: function () {
         this.startCountdown--;
 
         this.startTimerText.setText(this.startCountdown);
@@ -297,8 +314,7 @@ ISC.Game.prototype = {
         }
     },
 
-    activateSaleMode: function(){
-
+    activateSaleMode: function () {
         this.saleMode = true;
-
     },
+};
