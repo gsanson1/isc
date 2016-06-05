@@ -30,7 +30,7 @@ ISC.Preloader.prototype = {
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');
         this.load.spritesheet('boat_a0', 'images/ship_lama.png', 64, 64, 8);
-        this.load.spritesheet('boat_a1', 'images/ship_lama.png', 64, 64, 8);
+        this.load.spritesheet('boat_a1', 'images/ship_lama2.png', 64, 64, 8);
         this.load.spritesheet('boat_a2', 'images/ship_lama3.png', 64, 64, 8);
 
         this.load.image('bar_red', 'images/bar_red.png');
@@ -41,6 +41,11 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('tower_a1', 'images/tower_short2.png', 64, 64, 8);
         this.load.spritesheet('tower_b0', 'images/tower_long.png', 64, 64, 8);
         this.load.spritesheet('tower_b1', 'images/tower_long2.png', 64, 64, 8);
+
+        this.load.spritesheet('fx_a0', 'images/tower_fx_short.png', 64, 64, 8);
+        this.load.spritesheet('fx_a1', 'images/tower_fx_short.png', 64, 64, 8);
+        this.load.spritesheet('fx_b0', 'images/tower_fx_long.png', 64, 64, 8);
+        this.load.spritesheet('fx_b1', 'images/tower_fx_long.png', 64, 64, 8);
 
         // Chargement son.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3

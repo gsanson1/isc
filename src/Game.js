@@ -26,6 +26,7 @@ ISC.Game = function (game) {
     this.UI;
     this.towers = [];
     this.enemies = [];
+    this.enemyDestination;
     this.music;
     this.buildMode = false;
     this.towerPlaceholder;
@@ -56,8 +57,7 @@ ISC.Game = function (game) {
 ISC.Game.prototype = {
     create: function () {
 
-
-        var enemyDestination = new Point(22, 6);
+        this.enemyDestination = new Point(22, 6);
         this.sea = this.add.sprite(0, 0, 'sea');
         // var islandPosition = Tools.getGraphicPosition(enemyDestination);
         // this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
@@ -68,7 +68,7 @@ ISC.Game.prototype = {
         this.credit = parameters.initialCredit;
 
         // Init map
-        this.map = new Map(24, 12, enemyDestination);
+        this.map = new Map(24, 12, this.enemyDestination);
         // Island
         for (var i = 2; i < 10; i++) {
             this.map.addTower(23, i);
@@ -157,11 +157,11 @@ ISC.Game.prototype = {
 
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
-            if (this.enemies[i].isDead() || this.enemies[i].landed()) {
+            if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()){
                     this.credit += this.enemies[i].reward;
                 }
-                else if (this.enemies[i].landed()){
+                else if (this.enemies[i].landed(this.enemyDestination)){
                     this.remainingLives--;
                 }
 
@@ -176,14 +176,16 @@ ISC.Game.prototype = {
 
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
-            target = this.towers[i].findTarget(this.enemies);
-            if (target.enemy && this.towers[i].nextFire < this.game.time.time) {
-                target.enemy.hit(this.towers[i].damage);
-                this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
+            if (this.towers[i].nextFire < this.game.time.time) {
+                target = this.towers[i].findTarget(this.enemies);
+                if (target.enemy) {
+                    target.enemy.hit(this.towers[i].damage);
+                    this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
+                }
             }
+
+            this.towers[i].refresh();
         }
-
-
     },
 
     quitGame: function () {
@@ -207,12 +209,14 @@ ISC.Game.prototype = {
                 this.moveTowerPlaceHolderToPointer();
                 if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)) {
                     this.towerPlaceholder.tint = 0xFFFFFF;
+                    this.drawTowerPlaceholderShotCircle();
                     if (this.input.mousePointer.isDown) {
                         this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
                     }
                 }
                 else {
-                    this.towerPlaceholder.tint = 0xFF00FF;
+                    this.towerPlaceholder.tint = 0xFF0000;
+                    this.drawTowerPlaceholderShotCircle(true);
                 }
             }
             else {
@@ -255,16 +259,23 @@ ISC.Game.prototype = {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
         this.drawTowerPlaceholderShotCircle();
-        this.toggleBuildMode();
-
         this.activateBuildMode();
     },
 
-    drawTowerPlaceholderShotCircle: function () {
+    drawTowerPlaceholderShotCircle: function (isRed) {
         this.towerPlaceholderShotCircle.clear();
-        this.towerPlaceholderShotCircle.beginFill(0xFFFFFF, 1);
         this.towerPlaceholderShotCircle.alpha = 0.3;
-        this.towerPlaceholderShotCircle.lineStyle(3, 0xFFFFFF)
+
+        var circleColour = 0xFFFFFF;
+        var lineColour = 0xFFFFFF;
+
+        if (isRed) {
+            circleColour = 0xFF0000;
+            lineColour = 0xFF0000;
+        }
+
+        this.towerPlaceholderShotCircle.beginFill(circleColour, 1);
+        this.towerPlaceholderShotCircle.lineStyle(3, lineColour);
         this.towerPlaceholderShotCircle.drawCircle(0, 0, Math.sqrt(parameters.towers['tower_' + this.towerPlaceholder.type].distance));
     },
 
@@ -291,7 +302,3 @@ ISC.Game.prototype = {
         this.saleMode = true;
 
     },
-
-
-
-};

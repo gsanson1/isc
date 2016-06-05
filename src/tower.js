@@ -11,6 +11,10 @@ ISC.Tower = function (game, x, y, type) {
 
     this.type = type;
 
+    this.showFire = 0;
+    this.fireSprite = game.add.sprite(x, y, 'fx_' + type);
+    this.fireSprite.visible = false;
+
     game.add.existing(this);
     
     this.nextFire = 0;
@@ -39,7 +43,24 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
     if (target) {
         direction = Tools.direction(this.x, this.y, target.boatSprite.x, target.boatSprite.y);
         this.frame = direction;
+
+        this.fireSprite.visible = true;
+        this.showFire = 5;
+
+        // TODO : Son de tir
     }
 
     return { enemy: target, direction: direction };
+}
+
+ISC.Tower.prototype.refresh = function() {
+    if (this.showFire > 0) {
+        this.fireSprite.frame = this.frame;
+        this.fireSprite.bringToTop();
+
+        this.showFire--;
+        if (this.showFire == 0) {
+            this.fireSprite.visible = false;
+        }
+    }
 }
