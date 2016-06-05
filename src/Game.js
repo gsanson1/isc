@@ -458,10 +458,7 @@ ISC.Game.prototype = {
 
     launchWave: function () {
         this.waveManager.launchWave();
-        for (var i = 0; i < 5; i++) {
-            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
-            this.soundMouette();
-        }
+        this.soundMouette();
     },
 
     activateSaleMode: function () {
