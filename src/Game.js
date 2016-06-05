@@ -173,7 +173,10 @@ ISC.Game.prototype = {
             var gx = _x << 6;
             var gy = _y << 6;
 
-            this.towers.push(new ISC.Tower(this.game, gx, gy, _type));
+            var tower = new ISC.Tower(this.game, gx, gy, _type);
+            tower.inputEnabled = true;
+            tower.events.onInputDown.add(this.clickOnTower, this);
+            this.towers.push(tower);
             if (this.towerPlaceholder) {
                 this.towerPlaceholder.bringToTop();
             }
@@ -329,7 +332,29 @@ ISC.Game.prototype = {
     },
 
     activateSaleMode: function () {
-        this.saleMode = true;
-        this.bpSale.tint = 0xA9A9A9;
+        this.toggleSaleMode(true);
     },
+
+    deactivateSaleMode: function () {
+        this.toggleSaleMode(false);
+    },
+
+    toggleSaleMode: function (saleMode) {
+        this.saleMode = saleMode;
+
+        var tintColour = 0xFFFFFF;
+
+        if (saleMode) {
+            tintColour = 0xA9A9A9;
+        }
+
+        this.bpSale.tint = tintColour;
+    },
+
+    clickOnTower: function (tower) {
+        if (this.saleMode) {
+            tower.destroy();
+            this.deactivateSaleMode();
+        }
+    }
 };
