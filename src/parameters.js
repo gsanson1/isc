@@ -1,9 +1,15 @@
 var parameters = {
 
     lives: 5,
-    initialCredit: 4000,
-
+    initialCredit: 400,
     towers: {
+        tower_obstacle: {
+            damage: 0,
+            distance: 0,
+            fireRate: 0,
+            cost: 10,
+            recycle: 0
+        },
         tower_a0: {
             damage: 3,
             distance: 64 * 64 * 3,
@@ -38,13 +44,6 @@ var parameters = {
             fireRate: 2000,
             cost: 200,
             recycle: 200
-        },
-        tower_obstacle: {
-            damage: 0,
-            distance: 0,
-            fireRate: 0,
-            cost: 10,
-            recycle: 0
         }
     },
 
@@ -74,7 +73,7 @@ var parameters = {
     waves: {
         timeFirstWave: 5,     // Nombre de frames avant premiere vague
         unitsFirstWave: 3,      // Nombre d'unites dans la premiere vague
-        timeNextWave: 15,      // Nombre de secondes avant les vagues (Hors premiere)
+        timeNextWave: 10,      // Nombre de secondes avant les vagues (Hors premiere)
         switchEvery: 10,         // Changement nb unites => puissance
         strengthMul: 1.1,  // Augmentation de puissance (Toutes les switchEvery vagues)
         unitIncrease: 2,        // Augmentation par tour (+ Increment)

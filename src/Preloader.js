@@ -14,7 +14,7 @@ ISC.Preloader.prototype = {
         // A nice sparkly background and a loading progress bar
 
         this.background = this.add.sprite(0, 0, 'preloaderBackground');
-        this.preloadBar = this.add.sprite(300, 400, 'preloaderBar');
+        this.preloadBar = this.add.sprite(568, 464, 'preloaderBar');
 
         // This sets the preloadBar sprite as a loader sprite.
         // What that does is automatically crop the sprite from 0 to full-width
@@ -39,6 +39,7 @@ ISC.Preloader.prototype = {
         this.load.image('island', 'images/island.png');
         this.load.spritesheet('explosion', 'images/explosion.png', 330, 768, 4);
 
+        this.load.image('tower_obstacle', 'images/tower_obstacle.png', 64, 64, 8)
         this.load.spritesheet('tower_a0', 'images/tower_short.png', 64, 64, 8);
         this.load.spritesheet('tower_a1', 'images/tower_short2.png', 64, 64, 8);
         this.load.spritesheet('tower_b0', 'images/tower_long.png', 64, 64, 8);
@@ -96,6 +97,7 @@ ISC.Preloader.prototype = {
         this.load.image('Startbutton', 'images/start-btn.png');
 
         // Ressource UI game
+        this.load.image('bp_sale','images/bp_sale.png');
         this.load.image('bp_Tower1','images/bp_Tower1.png');
         this.load.image('bp_Tower2','images/bp_Tower2.png');
         this.load.image('bp_Tower3','images/bp_Tower3.png');
@@ -103,7 +105,7 @@ ISC.Preloader.prototype = {
         this.load.image('bp_Tower5','images/bp_Tower5.png');
         this.load.image('bp_Tower6','images/bp_Tower6.png');
         this.load.image('bp_Tower7','images/bp_Tower7.png');
-        this.load.image('bp_sale','images/bp_sale.png');
+
 
     },
 
