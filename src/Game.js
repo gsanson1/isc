@@ -31,7 +31,7 @@ ISC.Game = function (game) {
     this.buildMode = false;
     this.towerPlaceholder;
     this.towerPlaceholderShotCircle;
-    this.quitGamekey;
+    this.restartGamekey;
 
     // Tower shortcut to construct
     this.tower1key;
@@ -176,11 +176,11 @@ ISC.Game.prototype = {
 
         this.input.addMoveCallback(this.updateCursor, this);
 
-        this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
-        this.quitGamekey.onDown.add(this.quitBuildMode, this);
+        this.restartGamekey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+        this.restartGamekey.onDown.add(this.quitBuildMode, this);
 
-        this.quitGamekey = this.input.keyboard.addKey(Phaser.Keyboard.P);
-        this.quitGamekey.onDown.add(this.quitGame, this);
+        this.restartGamekey = this.input.keyboard.addKey(Phaser.Keyboard.P);
+        this.restartGamekey.onDown.add(this.quitGame, this);
 
         this.tower1key = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
         this.tower1key.onDown.add(this.chooseTowerToBuild, this, 0, 'obstacle');
@@ -273,6 +273,9 @@ ISC.Game.prototype = {
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
+                    if (this.remainingLives == 0) {
+                        this.state.start('EndPage');
+                    }
                     this.updateMenuLife();
                     this.exCountDown = 60;
                     this.islansExplosion=this.add.audio('Explosion');
