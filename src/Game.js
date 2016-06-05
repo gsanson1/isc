@@ -115,25 +115,25 @@ ISC.Game.prototype = {
         this.btowers.push(this.bpTower1);
 
         this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
-            this.chooseTowerToBuild(1, 'a1')
+            this.chooseTowerToBuild(1, 'a0')
         }, this);
         this.bpTower2.type = 'tower_a0';
         this.btowers.push(this.bpTower2);
 
         this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
-            this.chooseTowerToBuild(1, 'b0')
+            this.chooseTowerToBuild(1, 'a1')
         }, this);
         this.bpTower3.type = 'tower_a1';
         this.btowers.push(this.bpTower3);
 
         this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
-            this.chooseTowerToBuild(1, 'b1')
+            this.chooseTowerToBuild(1, 'b0')
         }, this);
         this.bpTower4.type = 'tower_b0';
         this.btowers.push(this.bpTower4);
 
         this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
-            this.chooseTowerToBuild(1, 'b2')
+            this.chooseTowerToBuild(1, 'b1')
         }, this);
         this.bpTower5.type = 'tower_b1';
         this.btowers.push(this.bpTower5);
