@@ -196,6 +196,8 @@ ISC.Game.prototype = {
         this.salekey = this.input.keyboard.addKey(Phaser.Keyboard.S);
         this.salekey.onDown.add(this.toggleSaleMode, this);
 
+        this.wave = new Waves(this);
+
         this.startCountdown = 3;
 
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
@@ -273,6 +275,8 @@ ISC.Game.prototype = {
                 this.towers[i].refresh();
             }
         }
+
+        this.wave.nextStep();
     },
 
     quitGame: function () {

@@ -8,29 +8,29 @@ var parameters = {
             damage: 3,
             distance: 64 * 64 * 3,
             fireRate: 100,
-            cost: 240,
-            recycle: 120
+            cost: 150,
+            recycle: 0
         },
         tower_a1: {
             damage: 4,
             distance: 64 * 64 * 3,
             fireRate: 80,
-            cost: 400,
-            recycle: 200
+            cost: 450,
+            recycle: 0
         },
         tower_b0: {
-            damage: 25,
+            damage: 15,
             distance: 64 * 64 * 12,
-            fireRate: 2000,
-            cost: 240,
-            recycle: 120
+            fireRate: 1500,
+            cost: 150,
+            recycle: 0
         },
         tower_b1: {
-            damage: 30,
+            damage: 20,
             distance: 64 * 64 * 20,
-            fireRate: 2000,
-            cost: 200,
-            recycle: 200
+            fireRate: 1500,
+            cost: 450,
+            recycle: 0
         },
         tower_b2: {
             damage: 30,
@@ -43,15 +43,15 @@ var parameters = {
             damage: 0,
             distance: 0,
             fireRate: 0,
-            cost: 60,
-            recycle: 30
+            cost: 10,
+            recycle: 0
         }
     },
 
     enemies: {
         enemy_a0: {
             speed: 2,
-            energy: 50,
+            energy: 39,
             reward: 20
         },
         enemy_a1: {
@@ -61,7 +61,7 @@ var parameters = {
         },
         enemy_a2: {
             speed: 3,
-            energy: 30,
+            energy: 39,
             reward: 20
         },
         enemy_a3: {
@@ -69,5 +69,15 @@ var parameters = {
             energy: 30,
             reward: 20
         }
+    },
+
+    waves: {
+        timeFirstWave: 500,     // Nombre de frames avant premiere vague
+        unitsFirstWave: 5,      // Nombre d'unites dans la premiere vague
+        timeNextWave: 300,      // Nombre de frames avant les vagues (Hors premiere)
+        switchEvery: 5,         // Changement nb unites => puissance
+        strengthMul: 1.5,  // Augmentation de puissance (Toutes les switchEvery vagues)
+        unitIncrease: 2,        // Augmentation par tour (+ Increment)
+        waveGuests: 5           // Premiere vague avec des guests
     }
 };
