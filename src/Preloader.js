@@ -24,7 +24,7 @@ ISC.Preloader.prototype = {
 
         // Here we load the rest of the assets our game needs.
         // You can find all of these assets in the Phaser Examples repository
-
+        
         this.load.image('sea', 'images/sea-bg-grid.png');
         this.load.image('splash', 'images/ecran-titre.jpg');
         this.load.image('UI', 'images/menu/bg-menu.png');
@@ -99,6 +99,7 @@ ISC.Preloader.prototype = {
         this.load.image('Startbutton', 'images/start-btn.png');
 
         // Ressource UI game
+        this.load.image('bp_credit','images/menu/menu-carrot.png');
         this.load.image('bp_sale','images/menu/btn-resell.png');
         this.load.image('bp_Tower1','images/menu/btn-bouee.png');
         this.load.image('bp_Tower2','images/menu/btn-tower1.png');
