@@ -7,7 +7,7 @@ ISC.EndPage = function (game) {
 ISC.EndPage.prototype = {
 
     create: function () {
-        this.splash = this.game.add.sprite(0, 0, 'splash');
+        this.splash = this.game.add.sprite(0, 0, 'endscr');
     },
     ActionOnClick: function () {
 
