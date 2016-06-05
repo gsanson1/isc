@@ -27,7 +27,7 @@ ISC.Preloader.prototype = {
         this.load.image('sea', 'images/sea-bg.png');
         this.load.image('splash', 'images/ecran-titre.jpg');
         this.load.image('endscr', 'images/ecran.jpg');
-        this.load.image('gameover', 'images/gameover.png');
+        this.load.image('gameover', 'images/logo_gameover.png');
         this.load.image('UI', 'images/menu/bg-menu.png');
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');

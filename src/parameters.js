@@ -1,8 +1,8 @@
 var parameters = {
 
-    lives: 3,
-    initialCredit: 500,
-    speedMul: 0.9,
+    lives: 5,
+    initialCredit: 600,
+    speedMul: 0.8,
 
     towers: {
         tower_obstacle: {
@@ -31,15 +31,15 @@ var parameters = {
         tower_b0: {
             damage: 15,
             distance: 64 * 64 * 56,
-            fireRate: 1800,
-            cost: 120,
-            recycle: 108,
+            fireRate: 2000,
+            cost: 140,
+            recycle: 126,
             sound: 'Explosion',
         },
         tower_b1: {
-            damage: 30,
+            damage: 20,
             distance: 64 * 64 * 72,
-            fireRate: 1800,
+            fireRate: 2000,
             cost: 360,
             recycle: 324,
             sound: 'Explosion',
@@ -77,14 +77,14 @@ var parameters = {
             sound:'OhPinaise',
         },
         enemy_a2: {
-            speed: 3,
+            speed: 4,
             energy: 39,
             reward: 20,
             sound:'SousNain',
         },
         enemy_a3: {
-            speed: 3,
-            energy: 30,
+            speed: 4,
+            energy: 39,
             reward: 20,
             sound:'Froide',
         },
@@ -92,10 +92,10 @@ var parameters = {
 
     waves: {
         timeFirstWave: 5,     // Nombre de frames avant premiere vague
-        unitsFirstWave: 3,      // Nombre d'unites dans la premiere vague
-        timeNextWave: 10,      // Nombre de secondes avant les vagues (Hors premiere)
+        unitsFirstWave: 2,      // Nombre d'unites dans la premiere vague
+        timeNextWave: 8,      // Nombre de secondes avant les vagues (Hors premiere)
         switchEvery: 5,         // Changement nb unites => puissance
-        strengthMul: 1.2,  // Augmentation de puissance (Toutes les switchEvery vagues)
+        strengthMul: 1.1,  // Augmentation de puissance (Toutes les switchEvery vagues)
         unitIncrease: 1,        // Augmentation par tour (+ Increment)
         waveGuests: 6,           // Premiere vague avec des guests
         ratioBasic: 0.9,        // Ratio de lama de type "basique"

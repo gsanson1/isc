@@ -30,7 +30,7 @@ WaveManager.prototype = {
 
         // Change values (next wave)
         if (this.countWave % parameters.waves.switchEvery == 0) {
-            this.units = parameters.waves.unitsFirstWave + Math.floor(this.countWave / parameters.waves.switchEvery) * parameters.waves.unitIncrease;
+            this.units = parameters.waves.unitsFirstWave + Math.floor(this.countWave / parameters.waves.switchEvery);
             this.strength *= parameters.waves.strengthMul;
         } else {
             this.units += parameters.waves.unitIncrease;
