@@ -26,6 +26,7 @@ ISC.Game = function (game) {
     this.UI;
     this.towers = [];
     this.enemies = [];
+    this.enemyDestination;
     this.music;
     this.buildMode = false;
     this.towerPlaceholder;
@@ -54,7 +55,7 @@ ISC.Game = function (game) {
 ISC.Game.prototype = {
     create: function () {
 
-        var enemyDestination = new Point(22, 6);
+        this.enemyDestination = new Point(22, 6);
         this.sea = this.add.sprite(0, 0, 'sea');
         // var islandPosition = Tools.getGraphicPosition(enemyDestination);
         // this.island = this.add.sprite(islandPosition.x, islandPosition.y, 'island');
@@ -65,7 +66,7 @@ ISC.Game.prototype = {
         this.credit = parameters.initialCredit;
 
         // Init map
-        this.map = new Map(24, 12, enemyDestination);
+        this.map = new Map(24, 12, this.enemyDestination);
         // Island
         for (var i = 2; i < 10; i++) {
             this.map.addTower(23, i);
@@ -151,11 +152,11 @@ ISC.Game.prototype = {
 
     update: function () {
         for (var i = 0; i < this.enemies.length; i++) {
-            if (this.enemies[i].isDead() || this.enemies[i].landed()) {
+            if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()){
                     this.credit += this.enemies[i].reward;
                 }
-                else if (this.enemies[i].landed()){
+                else if (this.enemies[i].landed(this.enemyDestination)){
                     this.remainingLives--;
                 }
 
