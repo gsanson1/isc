@@ -57,5 +57,15 @@ var parameters = {
             energy: 30,
             reward: 20
         }
+    },
+
+    waves: {
+        timeFirstWave: 500,     // Nombre de frames avant premiere vague
+        unitsFirstWave: 5,      // Nombre d'unites dans la premiere vague
+        timeNextWave: 300,      // Nombre de frames avant les vagues (Hors premiere)
+        switchEvery: 5,         // Changement nb unites => puissance
+        strengthMul: 1.5,  // Augmentation de puissance (Toutes les switchEvery vagues)
+        unitIncrease: 2,        // Augmentation par tour (+ Increment)
+        waveGuests: 5           // Premiere vague avec des guests
     }
 };

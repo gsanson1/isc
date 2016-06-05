@@ -119,6 +119,8 @@ ISC.Game.prototype = {
         this.tower4key = this.input.keyboard.addKey(Phaser.Keyboard.FOUR);
         this.tower4key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
 
+        this.wave = new Waves(this);
+
         this.startCountdown = 3;
 
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, { font: "64px Arial", fill: "#ffffff", align: "center" });
@@ -181,6 +183,8 @@ ISC.Game.prototype = {
 
             this.towers[i].refresh();
         }
+
+        this.wave.nextStep();
     },
 
     quitGame: function () {

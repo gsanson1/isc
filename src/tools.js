@@ -98,3 +98,8 @@ Tools.dirVector2 = function(_vx, _vy) {
 
     return dir;
 }
+
+Tools.rand = function(_maxExclusive, _minExclusive) {
+    var min = _minExclusive | 0
+    return Math.floor(Math.random() * (_maxExclusive - min)) + min;
+}
