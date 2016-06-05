@@ -13,7 +13,6 @@ ISC.Preloader.prototype = {
         // These are the assets we loaded in Boot.js
         // A nice sparkly background and a loading progress bar
 
-        this.background = this.add.sprite(0, 0, 'preloaderBackground');
         this.preloadBar = this.add.sprite(568, 464, 'preloaderBar');
 
         // This sets the preloadBar sprite as a loader sprite.
