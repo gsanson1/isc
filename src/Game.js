@@ -277,6 +277,7 @@ ISC.Game.prototype = {
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
             if (this.towers[i].isDead()) {
+                this.map.removeTower(this.towers[i].x >> 6, this.towers[i].y >> 6);
                 this.towers[i].remove();
                 this.towers.splice(i, 1);
                 i--;
