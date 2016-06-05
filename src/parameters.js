@@ -1,6 +1,6 @@
 var parameters = {
 
-    lives: 5,
+    lives: 3,
     initialCredit: 600,
     speedMul: 0.8,
 
