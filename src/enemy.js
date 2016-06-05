@@ -8,7 +8,7 @@ var Enemy = function(_game, _map, _x, _y, _type) {
 
     var enemyType = 'enemy_' + _type;
 
-    this.speed = parameters.enemies[enemyType].speed;
+    this.speed = parameters.enemies[enemyType].speed * parameters.speedMul;
     this.energy = parameters.enemies[enemyType].energy;
     this.currentEnergy = this.energy;
     this.reward = parameters.enemies[enemyType].reward;
