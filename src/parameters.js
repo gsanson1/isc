@@ -8,36 +8,36 @@ var parameters = {
             damage: 3,
             distance: 64 * 64 * 3,
             fireRate: 100,
-            cost: 240,
-            recycle: 120
+            cost: 150,
+            recycle: 0
         },
         tower_a1: {
             damage: 4,
             distance: 64 * 64 * 3,
             fireRate: 80,
-            cost: 400,
-            recycle: 200
+            cost: 450,
+            recycle: 0
         },
         tower_b0: {
             damage: 15,
             distance: 64 * 64 * 12,
             fireRate: 1500,
-            cost: 240,
-            recycle: 120
+            cost: 150,
+            recycle: 0
         },
         tower_b1: {
             damage: 20,
             distance: 64 * 64 * 20,
             fireRate: 1500,
-            cost: 200,
-            recycle: 200
+            cost: 450,
+            recycle: 0
         },
         tower_obstacle: {
             damage: 0,
             distance: 0,
             fireRate: 0,
-            cost: 60,
-            recycle: 30
+            cost: 10,
+            recycle: 0
         }
     },
 
