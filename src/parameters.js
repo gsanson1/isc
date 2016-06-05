@@ -19,16 +19,16 @@ var parameters = {
             recycle: 200
         },
         tower_b0: {
-            damage: 25,
+            damage: 15,
             distance: 64 * 64 * 12,
-            fireRate: 2000,
+            fireRate: 1500,
             cost: 240,
             recycle: 120
         },
         tower_b1: {
-            damage: 30,
+            damage: 20,
             distance: 64 * 64 * 20,
-            fireRate: 2000,
+            fireRate: 1500,
             cost: 200,
             recycle: 200
         },
@@ -44,7 +44,7 @@ var parameters = {
     enemies: {
         enemy_a0: {
             speed: 2,
-            energy: 50,
+            energy: 39,
             reward: 20
         },
         enemy_a1: {
@@ -54,7 +54,7 @@ var parameters = {
         },
         enemy_a2: {
             speed: 3,
-            energy: 30,
+            energy: 39,
             reward: 20
         },
         enemy_a3: {
