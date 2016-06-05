@@ -32,6 +32,7 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('boat_a0', 'images/ship_lama.png', 64, 64, 8);
         this.load.spritesheet('boat_a1', 'images/ship_lama2.png', 64, 64, 8);
         this.load.spritesheet('boat_a2', 'images/ship_lama3.png', 64, 64, 8);
+        this.load.spritesheet('boat_a3', 'images/ship_lama4.png', 64, 64, 8);
 
         this.load.image('bar_red', 'images/bar_red.png');
         this.load.image('bar_green', 'images/bar_green.png');
