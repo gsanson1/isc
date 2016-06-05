@@ -73,6 +73,8 @@ ISC.Game = function (game) {
     this.waveManagerWaveCountText;
 
     this.remainingLives;
+
+    this.textColour = '#5A361F';
 };
 
 ISC.Game.prototype = {
@@ -94,8 +96,8 @@ ISC.Game.prototype = {
 
         this.menuCredit = this.add.sprite(130, 820, 'menu_credit');
         this.creditText = this.add.text(180, 830, this.credit, {
-            font: "40px Arial",
-            fill: "#ffffff",
+            font: "40px Ritaglio",
+            fill: this.textColour,
             align: "center"
         });
 
@@ -212,24 +214,24 @@ ISC.Game.prototype = {
 
         this.startCountdown = parameters.waves.timeFirstWave;
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
-            font: "64px Arial",
-            fill: "#ffffff",
+            font: "64px Ritaglio",
+            fill: this.textColour,
             align: "center"
         });
         this.startTimerText.anchor.setTo(0.5, 0.5);
 
         this.waveCountdown = parameters.waves.timeNextWave;
         this.waveTimerText = this.add.text(1410, 880, this.waveCountdown + 's', {
-            font: "32px Arial",
-            fill: "#ffffff",
+            font: "32px Ritaglio",
+            fill: this.textColour,
             align: "center"
         });
         this.waveTimerText.anchor.setTo(0.5, 0.5);
         this.waveTimerText.visible = false;
 
         this.waveManagerWaveCountText = this.add.text(1380, 815, 'Wave 1', {
-            font: "44px Arial",
-            fill: "#ffffff",
+            font: "44px Ritaglio",
+            fill: this.textColour,
             align: "center"
         });
 
@@ -520,8 +522,8 @@ ISC.Game.prototype = {
 
     createBtowerText: function (btower) {
         this.add.text(btower.x + 40, btower.y + 80, parameters.towers[btower.type].cost, {
-            font: "20px Arial",
-            fill: "#ffffff"
+            font: "20px Ritaglio",
+            fill: this.textColour
         });
     },
 
