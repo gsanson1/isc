@@ -20,6 +20,8 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.lifeFront = _game.add.sprite(_x + 2, _y + 2, 'bar_green');
     this.crop = new Phaser.Rectangle(0, 0, 60, 2);
     this.lifeFront.crop(this.crop);
+
+    this.dying = 40;
 }
 
 Enemy.prototype = {

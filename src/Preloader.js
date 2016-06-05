@@ -31,17 +31,17 @@ ISC.Preloader.prototype = {
         this.load.image('UI', 'images/menu/bg-menu.png');
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');
-        this.load.spritesheet('boat_a0', 'images/ship_lama.png', 64, 64, 8);
-        this.load.spritesheet('boat_a1', 'images/ship_lama2.png', 64, 64, 8);
-        this.load.spritesheet('boat_a2', 'images/ship_lama3.png', 64, 64, 8);
-        this.load.spritesheet('boat_a3', 'images/ship_lama4.png', 64, 64, 8);
+        this.load.spritesheet('boat_a0', 'images/full-lama.png', 64, 64, 12);
+        this.load.spritesheet('boat_a1', 'images/full-lama2.png', 64, 64, 12);
+        this.load.spritesheet('boat_a2', 'images/full-lama3.png', 64, 64, 12);
+        this.load.spritesheet('boat_a3', 'images/full-lama4.png', 64, 64, 12);
 
         this.load.image('bar_red', 'images/bar_red.png');
         this.load.image('bar_green', 'images/bar_green.png');
         this.load.image('island', 'images/island.png');
         this.load.spritesheet('explosion', 'images/explosion.png', 330, 768, 4);
 
-        this.load.image('tower_obstacle', 'images/tower_obstacle.png', 64, 64, 8)
+        this.load.image('tower_obstacle', 'images/tower_obstacle.png', 64, 64, 8);
         this.load.spritesheet('tower_a0', 'images/tower_short.png', 64, 64, 8);
         this.load.spritesheet('tower_a1', 'images/tower_short2.png', 64, 64, 8);
         this.load.spritesheet('tower_b0', 'images/tower_long.png', 64, 64, 8);

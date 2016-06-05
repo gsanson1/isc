@@ -26,6 +26,7 @@ ISC.Game = function (game) {
     this.UI;
     this.towers = [];
     this.enemies = [];
+    this.deadEnemies = [];
     this.enemyDestination;
     this.music;
     this.buildMode = false;
@@ -276,7 +277,7 @@ ISC.Game.prototype = {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()) {
                     this.updateCredit(this.enemies[i].reward);
-
+                    this.deadEnemies.push(this.enemies[i]);
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
@@ -288,14 +289,29 @@ ISC.Game.prototype = {
                     this.islansExplosion=this.add.audio('Explosion');
                     this.islansExplosion.play();
                     this.islansExplosion.volume = 0.5;
+                    this.enemies[i].remove();
                 }
 
-                this.enemies[i].remove();
+                //this.enemies[i].remove();
                 this.enemies.splice(i, 1);
                 i--;
 
             } else {
                 this.enemies[i].move();
+            }
+        }
+
+
+
+        for (var i = 0; i < this.deadEnemies.length; i++) {
+            this.deadEnemies[i].dying--;
+
+            if (this.deadEnemies[i].dying <= 0) {
+                this.deadEnemies[i].remove();
+                this.deadEnemies.splice(i, 1);
+                i--;
+            } else {
+                this.deadEnemies[i].boatSprite.frame = 11 - Math.floor(this.deadEnemies[i].dying / 10);
             }
         }
 
