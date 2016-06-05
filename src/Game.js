@@ -58,6 +58,9 @@ ISC.Game = function (game) {
 
     this.saleMode = false;
     this.salekey;
+
+    this.credit;
+    this.creditText;
 };
 
 ISC.Game.prototype = {
@@ -72,6 +75,12 @@ ISC.Game.prototype = {
 
         this.remainingLives = parameters.lives;
         this.credit = parameters.initialCredit;
+
+        this.creditText = this.add.text(60, 840, this.credit, {
+            font: "40px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
 
         // Init map
         this.map = new Map(24, 12, this.enemyDestination);
@@ -173,7 +182,7 @@ ISC.Game.prototype = {
         var cost = parameters.towers['tower_' + _type].cost;
 
         if (cost < this.credit) {
-            this.credit -= cost;
+            this.updateCredit(-cost);
 
             var gx = _x << 6;
             var gy = _y << 6;
@@ -375,8 +384,14 @@ ISC.Game.prototype = {
 
     clickOnTower: function (tower) {
         if (this.saleMode) {
+            this.updateCredit(parameters.towers['tower_' + tower.type].recycle);
             tower.sale();
             this.deactivateSaleMode();
         }
+    },
+
+    updateCredit: function (credit) {
+        this.credit += credit;
+        this.creditText.setText(this.credit);
     }
 };
