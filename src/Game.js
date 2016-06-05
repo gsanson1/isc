@@ -109,45 +109,45 @@ ISC.Game.prototype = {
 
 
         // Boutons in-game UI
-        this.bpSale = this.add.button(250, 780, 'bp_sale', this.toggleSaleMode, this);
+        this.bpSale = this.add.button(270, 780, 'bp_sale', this.toggleSaleMode, this);
 
-        this.bpTower1 = this.add.button(390, 780, 'bp_Tower1', function () {
+        this.bpTower1 = this.add.button(410, 780, 'bp_Tower1', function () {
             this.chooseTowerToBuild(1, 'obstacle')
         }, this);
         this.bpTower1.type = 'tower_obstacle';
         this.btowers.push(this.bpTower1);
 
-        this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
+        this.bpTower2 = this.add.button(550, 780, 'bp_Tower2', function () {
             this.chooseTowerToBuild(1, 'a0')
         }, this);
         this.bpTower2.type = 'tower_a0';
         this.btowers.push(this.bpTower2);
 
-        this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
+        this.bpTower3 = this.add.button(680, 780, 'bp_Tower3', function () {
             this.chooseTowerToBuild(1, 'a1')
         }, this);
         this.bpTower3.type = 'tower_a1';
         this.btowers.push(this.bpTower3);
 
-        this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
+        this.bpTower4 = this.add.button(810, 780, 'bp_Tower4', function () {
             this.chooseTowerToBuild(1, 'b0')
         }, this);
         this.bpTower4.type = 'tower_b0';
         this.btowers.push(this.bpTower4);
 
-        this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
+        this.bpTower5 = this.add.button(930, 780, 'bp_Tower5', function () {
             this.chooseTowerToBuild(1, 'b1')
         }, this);
         this.bpTower5.type = 'tower_b1';
         this.btowers.push(this.bpTower5);
 
-        this.bpTower6 = this.add.button(1070, 780, 'bp_Tower6', function () {
+        this.bpTower6 = this.add.button(1090, 780, 'bp_Tower6', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
         this.bpTower6.type = 'tower_b2';
         this.btowers.push(this.bpTower6);
 
-        this.bpTower7 = this.add.button(1200, 780, 'bp_Tower7', function () {
+        this.bpTower7 = this.add.button(1220, 780, 'bp_Tower7', function () {
             this.chooseTowerToBuild(1, 'tentacle')
         }, this);
         this.bpTower7.type = 'tower_b2';
@@ -259,7 +259,7 @@ ISC.Game.prototype = {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()) {
                     this.updateCredit(this.enemies[i].reward);
-                    
+
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
