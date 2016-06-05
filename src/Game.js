@@ -58,6 +58,10 @@ ISC.Game = function (game) {
     this.startTimerText;
     this.startTimer;
 
+    this.waveCountdown = parameters.waves.timeFirstWave;
+    this.waveTimerText;
+    this.waveTimer;
+
     this.saleMode = false;
     this.salekey;
 
@@ -192,13 +196,21 @@ ISC.Game.prototype = {
         this.exCountDown = 0;
 
         this.startCountdown = parameters.waves.timeFirstWave;
-
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
             font: "64px Arial",
             fill: "#ffffff",
             align: "center"
         });
         this.startTimerText.anchor.setTo(0.5, 0.5);
+
+        this.waveCountdown = parameters.waves.timeNextWave;
+        this.waveTimerText = this.add.text(1420, 870, this.waveCountdown, {
+            font: "32px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
+        this.waveTimerText.anchor.setTo(0.5, 0.5);
+        this.waveTimerText.visible = false;
 
         this.startTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateStartTimer, this);
     },
@@ -381,6 +393,20 @@ ISC.Game.prototype = {
         if (this.startCountdown == 0) {
             this.time.events.remove(this.startTimer);
             this.startTimerText.visible = false;
+            this.launchWave();
+            this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
+            this.waveTimerText.visible = true;
+        }
+    },
+
+    updateWaveTimer: function () {
+        this.waveCountdown--;
+
+        this.waveTimerText.setText(this.waveCountdown);
+
+        if (this.waveCountdown == 0) {
+            this.waveCountdown = parameters.waves.timeNextWave;
+            this.waveTimerText.setText(parameters.waves.timeNextWave);
             this.launchWave();
         }
     },
