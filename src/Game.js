@@ -213,7 +213,7 @@ ISC.Game.prototype = {
 
         var cost = parameters.towers['tower_' + _type].cost;
 
-        if (cost < this.credit) {
+        if (cost <= this.credit) {
             this.updateCredit(-cost);
 
             var gx = _x << 6;
