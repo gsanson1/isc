@@ -25,7 +25,7 @@ ISC.Preloader.prototype = {
         // Here we load the rest of the assets our game needs.
         // You can find all of these assets in the Phaser Examples repository
 
-        this.load.image('sea', 'images/sea-bg.png');
+        this.load.image('sea', 'images/sea-bg-grid.png');
         this.load.image('UI', 'images/ingame_UI_placeholder.png');
         this.load.image('obstacle', 'images/obstacle.png');
         this.load.image('reef', 'images/reef.png');
