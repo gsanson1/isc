@@ -47,9 +47,6 @@ var parameters = {
             distance: 64 * 64 * 20,
             fireRate: 2000,
             cost: 200,
-<<<<<<< Updated upstream
-            recycle: 200
-=======
             recycle: 200,
             sound: 'Explosion',
         },
@@ -59,7 +56,6 @@ var parameters = {
             fireRate: 0,
             cost: 10,
             recycle: 0,
->>>>>>> Stashed changes
         }
     },
 
@@ -93,11 +89,7 @@ var parameters = {
         switchEvery: 10,         // Changement nb unites => puissance
         strengthMul: 1.1,  // Augmentation de puissance (Toutes les switchEvery vagues)
         unitIncrease: 2,        // Augmentation par tour (+ Increment)
-<<<<<<< Updated upstream
         waveGuests: 6,           // Premiere vague avec des guests
         ratioBasic: 0.9         // Ratio de lama de type "basique"
-=======
-        waveGuests: 6 ,          // Premiere vague avec des guests
->>>>>>> Stashed changes
     }
 };

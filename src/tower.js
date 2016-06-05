@@ -3,7 +3,6 @@ ISC.Tower = function (game, x, y, type) {
 
     Phaser.Sprite.call(this, game, x, y, towerType);
     this.sound = this.game.add.audio(parameters.towers[towerType].sound);
-    console.log(parameters.towers[towerType].sound);
     this.damage = parameters.towers[towerType].damage;
     this.distance = parameters.towers[towerType].distance;
     this.fireRate = parameters.towers[towerType].fireRate;

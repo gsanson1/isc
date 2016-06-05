@@ -407,7 +407,7 @@ ISC.Game.prototype = {
             this.time.events.remove(this.startTimer);
             this.startTimerText.visible = false;
             this.launchWave();
-<<<<<<< Updated upstream
+
             this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
             this.waveTimerText.visible = true;
             this.waveManagerWaveCount.setText(this.waveManager.countWave);
@@ -423,13 +423,10 @@ ISC.Game.prototype = {
             this.waveCountdown = parameters.waves.timeNextWave;
             this.waveTimerText.setText(parameters.waves.timeNextWave);
             this.launchWave();
-=======
+            
             this.ohDesLamas = this.add.audio('ohNonDesLamas2'); // des lams
             this.ohDesLamas.play();// play
             this.ohDesLamas.volume = 1;// volume de la plage
-
-
->>>>>>> Stashed changes
         }
     },
 
