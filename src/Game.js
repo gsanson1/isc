@@ -49,10 +49,13 @@ ISC.Game = function (game) {
     this.startCountdown = 3;
     this.startTimerText;
     this.startTimer;
+    this.isSelected = false;
+    this.saleMode = false;
 };
 
 ISC.Game.prototype = {
     create: function () {
+
 
         var enemyDestination = new Point(22, 6);
         this.sea = this.add.sprite(0, 0, 'sea');
@@ -87,7 +90,8 @@ ISC.Game.prototype = {
         this.bpTower2 = this.add.button(530,780,'bp_Tower2',function(){this.chooseTowerToBuild(1,'a1')  },this);
         this.bpTower3 = this.add.button(660,780,'bp_Tower3',function(){this.chooseTowerToBuild(1,'b0')  },this);
         this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
-        this.bpSale   = this.add.button(790,780,'bp_sale', this.towerSale,this);
+        this.bpTower5 = this.add.button(910,780,'bp_Tower5',function(){this.chooseTowerToBuild(1,'b2')  },this)
+        this.bpSale   = this.add.button(200,780,'bp_sale', this.activateSaleMode,this);
 
         this.towerPlaceholderShotCircle = this.add.graphics(0, 0);
         this.towerPlaceholderShotCircle.visible = false;
@@ -176,6 +180,8 @@ ISC.Game.prototype = {
                 this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
             }
         }
+
+
     },
 
     quitGame: function () {
@@ -247,6 +253,8 @@ ISC.Game.prototype = {
         this.towerPlaceholder.type = towerType;
         this.towerPlaceholder.loadTexture('tower_' + towerType);
         this.drawTowerPlaceholderShotCircle();
+        this.toggleBuildMode();
+
         this.activateBuildMode();
     },
 
@@ -276,10 +284,12 @@ ISC.Game.prototype = {
         }
     },
 
-    towerSale: function(){
+    activateSaleMode: function(){
 
-
+        this.saleMode = true;
 
     },
+
+
 
 };

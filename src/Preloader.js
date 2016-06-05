@@ -45,7 +45,7 @@ ISC.Preloader.prototype = {
         // Chargement son.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3'); // vas chercher le mp3
         // Ressource Menu
-        this.load.spritesheet('Startbutton', 'images/button_sprite_sheet.png', 193, 71);
+        this.load.image('Startbutton', 'images/start-btn.png');
 
         // Ressource UI game
         this.load.image('bp_Tower1','images/bp_Tower1.png');
@@ -54,7 +54,7 @@ ISC.Preloader.prototype = {
         this.load.image('bp_Tower4','images/bp_Tower4.png');
         this.load.image('bp_Tower5','images/bp_Tower5.png');
         this.load.image('bp_Sale','images/bp_sale.png');
-        this.load.image('fb_pressbutton','images/Fb_pressbutton');
+        
     },
 
     create: function () {

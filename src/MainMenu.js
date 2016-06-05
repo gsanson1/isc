@@ -11,7 +11,7 @@ ISC.MainMenu.prototype = {
     create: function () {
 
 
-        this.Sbutton = this.add.button(673,448,'Startbutton',this.ActionOnClick,this,2,1,0);
+        this.Sbutton = this.add.button(673,448,'Startbutton',this.ActionOnClick,this);
 
 
     },
@@ -21,9 +21,4 @@ ISC.MainMenu.prototype = {
 
     },
 
-
-
-    update: function (){       // Do some nice funky main menu effect here
-
-    },
 };

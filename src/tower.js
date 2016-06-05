@@ -1,5 +1,6 @@
 ISC.Tower = function (game, x, y, type) {
     var towertype = 'tower_' + type;
+    
     Phaser.Sprite.call(this, game, x, y, towertype);
 
     this.damage = parameters.towers[towertype].damage;
@@ -13,6 +14,8 @@ ISC.Tower = function (game, x, y, type) {
     game.add.existing(this);
     
     this.nextFire = 0;
+
+
 };
 
 ISC.Tower.prototype = Object.create(Phaser.Sprite.prototype);
