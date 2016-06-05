@@ -53,7 +53,7 @@ ISC.Game = function (game) {
     this.bpTower7;
     this.bpSale;
 
-    this.startCountdown = 3;
+    this.startCountdown = parameters.waves.timeFirstWave;
     this.startTimerText;
     this.startTimer;
 
@@ -197,7 +197,7 @@ ISC.Game.prototype = {
         this.explosion.visible = false;
         this.exCountDown = 0;
 
-        this.startCountdown = 3;
+        this.startCountdown = parameters.waves.timeFirstWave;
 
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
             font: "64px Arial",

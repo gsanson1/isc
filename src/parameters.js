@@ -72,7 +72,7 @@ var parameters = {
     },
 
     waves: {
-        timeFirstWave: 500,     // Nombre de frames avant premiere vague
+        timeFirstWave: 5,     // Nombre de frames avant premiere vague
         unitsFirstWave: 3,      // Nombre d'unites dans la premiere vague
         timeNextWave: 15,      // Nombre de secondes avant les vagues (Hors premiere)
         switchEvery: 10,         // Changement nb unites => puissance
