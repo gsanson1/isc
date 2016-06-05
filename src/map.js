@@ -45,6 +45,14 @@ Map.prototype = {
             this.compute(newMap, this.startX, this.startY);
             can = newMap[0][0] != 0;
         }
+        
+        if (_x == this.startX - 1 && _y == this.startY
+            || _x == this.startX && _y == this.startY - 1
+            || _x == this.startX && _y == this.startY + 1
+            || _x == this.startX - 1 && _y == this.startY - 1
+            || _x == this.startX - 1 && _y == this.startY + 1) {
+            can = false;
+        }
 
         return can;
     },
