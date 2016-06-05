@@ -35,7 +35,5 @@ WaveManager.prototype = {
         } else {
             this.units += parameters.waves.unitIncrease;
         }
-
-        this.gameScreen.time.events.add(Phaser.Timer.SECOND * parameters.waves.timeNextWave, this.launchWave, this);
     }
 }

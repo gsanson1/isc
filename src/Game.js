@@ -58,6 +58,10 @@ ISC.Game = function (game) {
     this.startTimerText;
     this.startTimer;
 
+    this.waveCountdown = parameters.waves.timeFirstWave;
+    this.waveTimerText;
+    this.waveTimer;
+
     this.saleMode = false;
     this.salekey;
 
@@ -65,6 +69,7 @@ ISC.Game = function (game) {
     this.creditText;
 
     this.waveManager;
+    this.waveManagerWaveCountText;
 };
 
 ISC.Game.prototype = {
@@ -93,12 +98,15 @@ ISC.Game.prototype = {
             this.map.addTower(23, i);
         }
 
-        // Lancement son
-        this.music = this.add.audio('Plage'); // je charge ma music
-        this.music.play();// play
+        //  son de la plage
+        this.plage = this.add.audio('Plage'); // vague
+        this.mouette = this.add.audio('Moette'); // mouette
+        this.plage.play();// play
+        this.plage.volume = 0.1;// volume de la plage
+
 
         // Boutons in-game UI
-        this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
+        this.bpSale = this.add.button(200, 780, 'bp_sale', this.toggleSaleMode, this);
 
         this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
             this.chooseTowerToBuild(1, 'obstacle')
@@ -107,25 +115,25 @@ ISC.Game.prototype = {
         this.btowers.push(this.bpTower1);
 
         this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
-            this.chooseTowerToBuild(1, 'a1')
+            this.chooseTowerToBuild(1, 'a0')
         }, this);
         this.bpTower2.type = 'tower_a0';
         this.btowers.push(this.bpTower2);
 
         this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
-            this.chooseTowerToBuild(1, 'b0')
+            this.chooseTowerToBuild(1, 'a1')
         }, this);
         this.bpTower3.type = 'tower_a1';
         this.btowers.push(this.bpTower3);
 
         this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
-            this.chooseTowerToBuild(1, 'b1')
+            this.chooseTowerToBuild(1, 'b0')
         }, this);
         this.bpTower4.type = 'tower_b0';
         this.btowers.push(this.bpTower4);
 
         this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
-            this.chooseTowerToBuild(1, 'b2')
+            this.chooseTowerToBuild(1, 'b1')
         }, this);
         this.bpTower5.type = 'tower_b1';
         this.btowers.push(this.bpTower5);
@@ -192,13 +200,27 @@ ISC.Game.prototype = {
         this.exCountDown = 0;
 
         this.startCountdown = parameters.waves.timeFirstWave;
-
         this.startTimerText = this.add.text(this.game.world.centerX, this.game.world.centerY, this.startCountdown, {
             font: "64px Arial",
             fill: "#ffffff",
             align: "center"
         });
         this.startTimerText.anchor.setTo(0.5, 0.5);
+
+        this.waveCountdown = parameters.waves.timeNextWave;
+        this.waveTimerText = this.add.text(1420, 870, this.waveCountdown, {
+            font: "32px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
+        this.waveTimerText.anchor.setTo(0.5, 0.5);
+        this.waveTimerText.visible = false;
+
+        this.waveManagerWaveCountText = this.add.text(1490, 805, 1, {
+            font: "44px Arial",
+            fill: "#ffffff",
+            align: "center"
+        });
 
         this.startTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateStartTimer, this);
     },
@@ -238,6 +260,9 @@ ISC.Game.prototype = {
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
                     this.exCountDown = 60;
+                    this.islansExplosion=this.add.audio('Explosion');
+                    this.islansExplosion.play();
+                    this.islansExplosion.volume = 0.5;
                 }
 
                 this.enemies[i].remove();
@@ -252,6 +277,7 @@ ISC.Game.prototype = {
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
             if (this.towers[i].isDead()) {
+                this.map.removeTower(this.towers[i].x >> 6, this.towers[i].y >> 6);
                 this.towers[i].remove();
                 this.towers.splice(i, 1);
                 i--;
@@ -321,6 +347,10 @@ ISC.Game.prototype = {
     },
 
     toggleBuildMode: function (buildMode) {
+        if (buildMode) {
+            this.deactivateSaleMode();
+        }
+
         this.buildMode = buildMode;
         this.moveTowerPlaceHolderToPointer();
         this.towerPlaceholder.visible = buildMode;
@@ -382,11 +412,35 @@ ISC.Game.prototype = {
             this.time.events.remove(this.startTimer);
             this.startTimerText.visible = false;
             this.launchWave();
+
+            this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
+            this.waveTimerText.visible = true;
+        }
+    },
+
+    updateWaveTimer: function () {
+        this.waveCountdown--;
+
+        this.waveTimerText.setText(this.waveCountdown);
+
+        if (this.waveCountdown == 0) {
+            this.waveCountdown = parameters.waves.timeNextWave;
+            this.waveTimerText.setText(parameters.waves.timeNextWave);
+            this.launchWave();
+            this.waveManagerWaveCountText.setText(this.waveManager.countWave);
+
+            this.ohDesLamas = this.add.audio('ohNonDesLamas2'); // des lams
+            this.ohDesLamas.play();// play
+            this.ohDesLamas.volume = 1;// volume de la plage
         }
     },
 
     launchWave: function () {
         this.waveManager.launchWave();
+        for (var i = 0; i < 5; i++) {
+            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
+            this.soundMouette();
+        }
     },
 
     activateSaleMode: function () {
@@ -398,6 +452,10 @@ ISC.Game.prototype = {
     },
 
     setSaleMode: function (saleMode) {
+        if (saleMode) {
+            this.deactivateBuildMode();
+        }
+
         this.saleMode = saleMode;
         var tintColour = 0xFFFFFF;
 
@@ -409,14 +467,7 @@ ISC.Game.prototype = {
     },
 
     toggleSaleMode: function () {
-        this.saleMode = !this.saleMode;
-        var tintColour = 0xFFFFFF;
-
-        if (this.saleMode) {
-            tintColour = 0xA9A9A9;
-        }
-
-        this.bpSale.tint = tintColour;
+        this.setSaleMode(!this.saleMode);
     },
 
     clickOnTower: function (tower) {
@@ -454,5 +505,12 @@ ISC.Game.prototype = {
             fill: "#ffffff",
             align: "center"
         });
-    }
+    },
+
+    soundMouette: function () {
+
+        this.mouette.play();
+        this.mouette.volume = 0.1;
+
+    },
 };

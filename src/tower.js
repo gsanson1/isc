@@ -1,19 +1,20 @@
 ISC.Tower = function (game, x, y, type) {
-    var towertype = 'tower_' + type;
+    var towerType = 'tower_' + type;
 
-    Phaser.Sprite.call(this, game, x, y, towertype);
-
-    this.damage = parameters.towers[towertype].damage;
-    this.distance = parameters.towers[towertype].distance;
-    this.fireRate = parameters.towers[towertype].fireRate;
-    this.cost = parameters.towers[towertype].cost;
-    this.recycle = parameters.towers[towertype].recycle;
+    Phaser.Sprite.call(this, game, x, y, towerType);
+    this.sound = this.game.add.audio(parameters.towers[towerType].sound);
+    this.damage = parameters.towers[towerType].damage;
+    this.distance = parameters.towers[towerType].distance;
+    this.fireRate = parameters.towers[towerType].fireRate;
+    this.cost = parameters.towers[towerType].cost;
+    this.recycle = parameters.towers[towerType].recycle;
 
     this.type = type;
 
     this.showFire = 0;
     this.fireSprite = game.add.sprite(x, y, 'fx_' + type);
     this.fireSprite.visible = false;
+    this.game = game;
 
     game.add.existing(this);
 
@@ -46,7 +47,8 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
         this.fireSprite.visible = true;
         this.showFire = 5;
 
-        // TODO : Son de tir
+        this.sound.play();
+        this.sound.volume = 0.8;
     }
 
     return { enemy: target, direction: direction };
@@ -60,6 +62,7 @@ ISC.Tower.prototype.refresh = function() {
         this.showFire--;
         if (this.showFire == 0) {
             this.fireSprite.visible = false;
+            this.sound.stop();
         }
     }
 }
