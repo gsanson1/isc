@@ -58,6 +58,7 @@ var parameters = {
             fireRate: 0,
             cost: 10,
             recycle: 0,
+            sound: 'Tulu',
 
         }
     },
