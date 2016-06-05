@@ -271,7 +271,7 @@ ISC.Game.prototype = {
 
         this.towerPlaceholderShotCircle.beginFill(circleColour, 1);
         this.towerPlaceholderShotCircle.lineStyle(3, lineColour);
-        this.towerPlaceholderShotCircle.drawCircle(0, 0, Math.sqrt(parameters.towers['tower_' + this.towerPlaceholder.type].distance));
+        this.towerPlaceholderShotCircle.drawCircle(0, 0, Math.sqrt(parameters.towers['tower_' + this.towerPlaceholder.type].distance) * 2);
     },
 
     updateStartTimer: function() {

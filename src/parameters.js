@@ -5,40 +5,40 @@ var parameters = {
     
     towers: {
         tower_a0: {
-            damage: 1,
-            distance: 64 * 64 * 6,
-            fireRate: 200,
+            damage: 3,
+            distance: 64 * 64 * 3,
+            fireRate: 100,
             cost: 240,
             recycle: 120
         },
         tower_a1: {
-            damage: 2,
-            distance: 64 * 64 * 6,
-            fireRate: 150,
+            damage: 4,
+            distance: 64 * 64 * 3,
+            fireRate: 80,
             cost: 400,
             recycle: 200
         },
         tower_b0: {
             damage: 25,
-            distance: 64 * 64 * 24,
+            distance: 64 * 64 * 12,
             fireRate: 2000,
             cost: 240,
             recycle: 120
         },
         tower_b1: {
             damage: 30,
-            distance: 64 * 64 * 40,
+            distance: 64 * 64 * 20,
             fireRate: 2000,
             cost: 200,
             recycle: 200
+        },
+        tower_obstacle: {
+            damage: 0,
+            distance: 0,
+            fireRate: 0,
+            cost: 60,
+            recycle: 30
         }
-        // tower_obstacle: {
-        //     damage: 0,
-        //     distance: 0,
-        //     fireRate: 0,
-        //     cost: 60,
-        //     recycle: 30
-        // }
     },
 
     enemies: {
@@ -53,6 +53,11 @@ var parameters = {
             reward: 20
         },
         enemy_a2: {
+            speed: 3,
+            energy: 30,
+            reward: 20
+        },
+        enemy_a3: {
             speed: 3,
             energy: 30,
             reward: 20
