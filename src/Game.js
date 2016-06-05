@@ -90,7 +90,9 @@ ISC.Game.prototype = {
         this.bpTower2 = this.add.button(530,780,'bp_Tower2',function(){this.chooseTowerToBuild(1,'a1')  },this);
         this.bpTower3 = this.add.button(660,780,'bp_Tower3',function(){this.chooseTowerToBuild(1,'b0')  },this);
         this.bpTower4 = this.add.button(790,780,'bp_Tower4',function(){this.chooseTowerToBuild(1,'b1')  },this);
-        this.bpTower5 = this.add.button(910,780,'bp_Tower5',function(){this.chooseTowerToBuild(1,'b2')  },this)
+        this.bpTower5 = this.add.button(910,780,'bp_Tower5',function(){this.chooseTowerToBuild(1,'b2')  },this);
+        this.bpTower6 = this.add.button(1040,780,'bp_Tower6',function(){this.chooseTowerToBuild(1,'b2')  },this);
+        this.bpTower7 = this.add.button(1170,780,'bp_Tower7',function(){this.chooseTowerToBuild(1,'b2')  },this);
         this.bpSale   = this.add.button(200,780,'bp_sale', this.activateSaleMode,this);
 
         this.towerPlaceholderShotCircle = this.add.graphics(0, 0);
