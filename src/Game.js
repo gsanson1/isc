@@ -274,7 +274,7 @@ ISC.Game.prototype = {
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
                     if (this.remainingLives == 0) {
-                        this.state.start('EndPage');
+                        this.state.start('EndPage', true, false, this.waveManager.countWave);
                     }
                     this.updateMenuLife();
                     this.exCountDown = 60;
@@ -503,7 +503,7 @@ ISC.Game.prototype = {
 
     updateCredit: function (credit) {
         this.credit += credit;
-        this.creditText.setText(this.credit);
+        this.scoreText.setText(this.credit);
         this.updateUi();
         this.earnMoney();
     },
