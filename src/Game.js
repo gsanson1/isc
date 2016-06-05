@@ -170,10 +170,12 @@ ISC.Game.prototype = {
 
         var target = null;
         for (var i = 0; i < this.towers.length; i++) {
-            target = this.towers[i].findTarget(this.enemies);
-            if (target.enemy && this.towers[i].nextFire < this.game.time.time) {
-                target.enemy.hit(this.towers[i].damage);
-                this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
+            if (this.towers[i].nextFire < this.game.time.time) {
+                target = this.towers[i].findTarget(this.enemies);
+                if (target.enemy) {
+                    target.enemy.hit(this.towers[i].damage);
+                    this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
+                }
             }
         }
     },
