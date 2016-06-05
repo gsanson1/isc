@@ -29,7 +29,8 @@ Enemy.prototype = {
     
     landed: function(_enemyDestination) {
         var pos = Tools.getTiledPosition(this.boatSprite);
-        return pos.x == _enemyDestination.x && pos.y == _enemyDestination.y;
+
+        return pos.x == _enemyDestination.x - 1 && pos.y == _enemyDestination.y;
     },
 
     remove: function() {
