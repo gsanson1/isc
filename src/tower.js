@@ -75,7 +75,9 @@ ISC.Tower.prototype.sale = function() {
 }
 
 ISC.Tower.prototype.remove = function() {
-    this.fireSprite.destroy();
+    if (this.fireSprite) {
+        this.fireSprite.destroy();
+    }
     this.destroy();
 }
 
