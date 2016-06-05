@@ -204,12 +204,14 @@ ISC.Game.prototype = {
                 this.moveTowerPlaceHolderToPointer();
                 if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)) {
                     this.towerPlaceholder.tint = 0xFFFFFF;
+                    this.drawTowerPlaceholderShotCircle();
                     if (this.input.mousePointer.isDown) {
                         this.addTowerAtPosition(this.towerPlaceholder.position, this.towerPlaceholder.type);
                     }
                 }
                 else {
-                    this.towerPlaceholder.tint = 0xFF00FF;
+                    this.towerPlaceholder.tint = 0xFF0000;
+                    this.drawTowerPlaceholderShotCircle(true);
                 }
             }
             else {
@@ -255,11 +257,20 @@ ISC.Game.prototype = {
         this.activateBuildMode();
     },
 
-    drawTowerPlaceholderShotCircle: function () {
+    drawTowerPlaceholderShotCircle: function (isRed) {
         this.towerPlaceholderShotCircle.clear();
-        this.towerPlaceholderShotCircle.beginFill(0xFFFFFF, 1);
         this.towerPlaceholderShotCircle.alpha = 0.3;
-        this.towerPlaceholderShotCircle.lineStyle(3, 0xFFFFFF)
+
+        var circleColour = 0xFFFFFF;
+        var lineColour = 0xFFFFFF;
+
+        if (isRed) {
+            circleColour = 0xFF0000;
+            lineColour = 0xFF0000;
+        }
+
+        this.towerPlaceholderShotCircle.beginFill(circleColour, 1);
+        this.towerPlaceholderShotCircle.lineStyle(3, lineColour);
         this.towerPlaceholderShotCircle.drawCircle(0, 0, Math.sqrt(parameters.towers['tower_' + this.towerPlaceholder.type].distance));
     },
 

@@ -53,6 +53,7 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
 ISC.Tower.prototype.refresh = function() {
     if (this.showFire > 0) {
         this.fireSprite.frame = this.frame;
+        this.fireSprite.bringToTop();
 
         this.showFire--;
         if (this.showFire == 0) {
