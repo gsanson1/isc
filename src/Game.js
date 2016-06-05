@@ -510,7 +510,7 @@ ISC.Game.prototype = {
 
     updateCredit: function (credit) {
         this.credit += credit;
-        this.scoreText.setText(this.credit);
+        this.creditText.setText(this.credit);
         this.updateUi();
         this.earnMoney();
     },
