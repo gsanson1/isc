@@ -97,9 +97,12 @@ ISC.Game.prototype = {
             this.map.addTower(23, i);
         }
 
-        // Lancement son
-        this.music = this.add.audio('Plage'); // je charge ma music
-        this.music.play();// play
+        //  son de la plage
+        this.plage = this.add.audio('Plage'); // vague
+        this.mouette = this.add.audio('Moette'); // mouette
+        this.plage.play();// play
+        this.plage.volume = 0.1;// volume de la plage
+
 
         // Boutons in-game UI
         this.bpSale = this.add.button(200, 780, 'bp_sale', this.activateSaleMode, this);
@@ -250,6 +253,9 @@ ISC.Game.prototype = {
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
                     this.exCountDown = 60;
+                    this.islansExplosion=this.add.audio('Explosion');
+                    this.islansExplosion.play();
+                    this.islansExplosion.volume = 0.5;
                 }
 
                 this.enemies[i].remove();
@@ -394,6 +400,7 @@ ISC.Game.prototype = {
             this.time.events.remove(this.startTimer);
             this.startTimerText.visible = false;
             this.launchWave();
+<<<<<<< Updated upstream
             this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
             this.waveTimerText.visible = true;
         }
@@ -408,11 +415,24 @@ ISC.Game.prototype = {
             this.waveCountdown = parameters.waves.timeNextWave;
             this.waveTimerText.setText(parameters.waves.timeNextWave);
             this.launchWave();
+=======
+            this.ohDesLamas = this.add.audio('ohNonDesLamas2'); // des lams
+            this.ohDesLamas.play();// play
+            this.ohDesLamas.volume = 1;// volume de la plage
+
+
+>>>>>>> Stashed changes
         }
     },
 
     launchWave: function () {
         this.waveManager.launchWave();
+        for (var i = 0; i < 5; i++) {
+            this.enemies.push(new Enemy(this.game, this.map, -63, i * 150, 'a' + (i % 3)));
+            this.soundMouette();
+        }
+
+
     },
 
     activateSaleMode: function () {
@@ -480,5 +500,12 @@ ISC.Game.prototype = {
             fill: "#ffffff",
             align: "center"
         });
-    }
+    },
+
+    soundMouette: function () {
+
+        this.mouette.play();
+        this.mouette.volume = 0.1;
+
+    },
 };
