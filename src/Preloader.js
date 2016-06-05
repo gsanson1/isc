@@ -99,6 +99,7 @@ ISC.Preloader.prototype = {
         this.load.image('Startbutton', 'images/start-btn.png');
 
         // Ressource UI game
+        this.load.image('bp_credit','images/menu/menu-carrot.png');
         this.load.image('bp_sale','images/menu/btn-resell.png');
         this.load.image('bp_Tower1','images/menu/btn-bouee.png');
         this.load.image('bp_Tower2','images/menu/btn-tower1.png');

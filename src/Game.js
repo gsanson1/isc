@@ -44,8 +44,8 @@ ISC.Game = function (game) {
 
     // bouton ui
     this.bpSale;
+    this.bpCredit;
     this.btowers = [];
-    this.bpObstacle
     this.bpTower1;
     this.bpTower2;
     this.bpTower3;
@@ -85,7 +85,9 @@ ISC.Game.prototype = {
         this.remainingLives = parameters.lives; 
         this.credit = parameters.initialCredit;
 
-        this.creditText = this.add.text(60, 840, this.credit, {
+
+        this.bpCredit = this.add.sprite(130, 820, 'bp_credit');
+        this.creditText = this.add.text(180, 830, this.credit, {
             font: "40px Arial",
             fill: "#ffffff",
             align: "center"
