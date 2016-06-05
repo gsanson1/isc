@@ -77,6 +77,7 @@ var parameters = {
         switchEvery: 10,         // Changement nb unites => puissance
         strengthMul: 1.1,  // Augmentation de puissance (Toutes les switchEvery vagues)
         unitIncrease: 2,        // Augmentation par tour (+ Increment)
-        waveGuests: 6           // Premiere vague avec des guests
+        waveGuests: 6,           // Premiere vague avec des guests
+        ratioBasic: 0.9         // Ratio de lama de type "basique"
     }
 };
