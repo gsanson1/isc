@@ -104,6 +104,9 @@ ISC.Game.prototype = {
         this.plage.play();// play
         this.plage.volume = 0.1;// volume de la plage
 
+        // son de l'argent
+        this.argent = this.add.audio('Argent');
+
 
         // Boutons in-game UI
         this.bpSale = this.add.button(250, 780, 'bp_sale', this.toggleSaleMode, this);
@@ -256,6 +259,7 @@ ISC.Game.prototype = {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()) {
                     this.updateCredit(this.enemies[i].reward);
+                    
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
@@ -415,6 +419,10 @@ ISC.Game.prototype = {
 
             this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
             this.waveTimerText.visible = true;
+
+            this.ohDesLamasFirst = this.add.audio('ohNonDesLamas2'); // des lams
+            this.ohDesLamasFirst.play();// play
+            this.ohDesLamasFirst.volume = 1;// volume de la plage
         }
     },
 
@@ -429,9 +437,13 @@ ISC.Game.prototype = {
             this.launchWave();
             this.waveManagerWaveCountText.setText(this.waveManager.countWave);
 
-            this.ohDesLamas = this.add.audio('ohNonDesLamas2'); // des lams
+
+            this.ohDesLamas = this.add.audio('monDieu'); // des lams
             this.ohDesLamas.play();// play
-            this.ohDesLamas.volume = 1;// volume de la plage
+            this.ohDesLamas.volume = 0.5;// volume de la plage
+
+
+
         }
     },
 
@@ -482,6 +494,7 @@ ISC.Game.prototype = {
         this.credit += credit;
         this.creditText.setText(this.credit);
         this.updateUi();
+        this.earnMoney();
     },
 
     updateUi: function() {
@@ -512,4 +525,11 @@ ISC.Game.prototype = {
         this.mouette.volume = 0.1;
 
     },
+
+    earnMoney: function () {
+
+        this.argent.play();
+        this.argent.volume = 0.3;
+
+    }
 };
