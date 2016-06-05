@@ -58,6 +58,7 @@ var parameters = {
             fireRate: 0,
             cost: 10,
             recycle: 0,
+
         }
     },
 
@@ -66,21 +67,25 @@ var parameters = {
             speed: 2,
             energy: 39,
             reward: 20,
+            sound:'ChefNain',
         },
         enemy_a1: {
             speed: 1,
             energy: 200,
             reward: 20,
+            sound:'OhPinaise',
         },
         enemy_a2: {
             speed: 3,
             energy: 39,
             reward: 20,
+            sound:'SousNain',
         },
         enemy_a3: {
             speed: 3,
             energy: 30,
             reward: 20,
+            sound:'Froide',
         },
     },
 
@@ -89,9 +94,9 @@ var parameters = {
         unitsFirstWave: 3,      // Nombre d'unites dans la premiere vague
         timeNextWave: 10,      // Nombre de secondes avant les vagues (Hors premiere)
         switchEvery: 5,         // Changement nb unites => puissance
-        strengthMul: 1.1,  // Augmentation de puissance (Toutes les switchEvery vagues)
+        strengthMul: 1.2,  // Augmentation de puissance (Toutes les switchEvery vagues)
         unitIncrease: 1,        // Augmentation par tour (+ Increment)
         waveGuests: 6,           // Premiere vague avec des guests
-        ratioBasic: 0.9         // Ratio de lama de type "basique"
+        ratioBasic: 0.9,        // Ratio de lama de type "basique"
     }
 };

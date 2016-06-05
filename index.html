@@ -14,6 +14,7 @@
     <script src="src/enemy.js"></script>
     <script src="src/MainMenu.js"></script>
     <script src="src/Game.js"></script>
+    <script src="src/endPage.js"></script>
     <script src="src/tower.js"></script>
     <style>
         body {
@@ -41,6 +42,7 @@ window.onload = function() {
     game.state.add('Preloader', ISC.Preloader);
     game.state.add('MainMenu', ISC.MainMenu);
     game.state.add('Game', ISC.Game);
+    game.state.add('EndPage', ISC.EndPage);
 
     // Now start the Boot state.
     game.state.start('Boot');

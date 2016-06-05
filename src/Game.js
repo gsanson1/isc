@@ -82,7 +82,7 @@ ISC.Game.prototype = {
         this.island = this.add.sprite(1408, 0, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
 
-        this.remainingLives = parameters.lives;
+        this.remainingLives = parameters.lives; 
         this.credit = parameters.initialCredit;
 
         this.creditText = this.add.text(60, 840, this.credit, {
@@ -104,47 +104,50 @@ ISC.Game.prototype = {
         this.plage.play();// play
         this.plage.volume = 0.1;// volume de la plage
 
+        // son de l'argent
+        this.argent = this.add.audio('Argent');
+
 
         // Boutons in-game UI
-        this.bpSale = this.add.button(200, 780, 'bp_sale', this.toggleSaleMode, this);
+        this.bpSale = this.add.button(270, 780, 'bp_sale', this.toggleSaleMode, this);
 
-        this.bpTower1 = this.add.button(400, 780, 'bp_Tower1', function () {
+        this.bpTower1 = this.add.button(410, 780, 'bp_Tower1', function () {
             this.chooseTowerToBuild(1, 'obstacle')
         }, this);
         this.bpTower1.type = 'tower_obstacle';
         this.btowers.push(this.bpTower1);
 
-        this.bpTower2 = this.add.button(530, 780, 'bp_Tower2', function () {
+        this.bpTower2 = this.add.button(550, 780, 'bp_Tower2', function () {
             this.chooseTowerToBuild(1, 'a0')
         }, this);
         this.bpTower2.type = 'tower_a0';
         this.btowers.push(this.bpTower2);
 
-        this.bpTower3 = this.add.button(660, 780, 'bp_Tower3', function () {
+        this.bpTower3 = this.add.button(680, 780, 'bp_Tower3', function () {
             this.chooseTowerToBuild(1, 'a1')
         }, this);
         this.bpTower3.type = 'tower_a1';
         this.btowers.push(this.bpTower3);
 
-        this.bpTower4 = this.add.button(790, 780, 'bp_Tower4', function () {
+        this.bpTower4 = this.add.button(810, 780, 'bp_Tower4', function () {
             this.chooseTowerToBuild(1, 'b0')
         }, this);
         this.bpTower4.type = 'tower_b0';
         this.btowers.push(this.bpTower4);
 
-        this.bpTower5 = this.add.button(910, 780, 'bp_Tower5', function () {
+        this.bpTower5 = this.add.button(930, 780, 'bp_Tower5', function () {
             this.chooseTowerToBuild(1, 'b1')
         }, this);
         this.bpTower5.type = 'tower_b1';
         this.btowers.push(this.bpTower5);
 
-        this.bpTower6 = this.add.button(1040, 780, 'bp_Tower6', function () {
+        this.bpTower6 = this.add.button(1090, 780, 'bp_Tower6', function () {
             this.chooseTowerToBuild(1, 'b2')
         }, this);
         this.bpTower6.type = 'tower_b2';
         this.btowers.push(this.bpTower6);
 
-        this.bpTower7 = this.add.button(1170, 780, 'bp_Tower7', function () {
+        this.bpTower7 = this.add.button(1220, 780, 'bp_Tower7', function () {
             this.chooseTowerToBuild(1, 'tentacle')
         }, this);
         this.bpTower7.type = 'tower_b2';
@@ -208,7 +211,7 @@ ISC.Game.prototype = {
         this.startTimerText.anchor.setTo(0.5, 0.5);
 
         this.waveCountdown = parameters.waves.timeNextWave;
-        this.waveTimerText = this.add.text(1420, 870, this.waveCountdown, {
+        this.waveTimerText = this.add.text(1410, 880, this.waveCountdown + 's', {
             font: "32px Arial",
             fill: "#ffffff",
             align: "center"
@@ -216,7 +219,7 @@ ISC.Game.prototype = {
         this.waveTimerText.anchor.setTo(0.5, 0.5);
         this.waveTimerText.visible = false;
 
-        this.waveManagerWaveCountText = this.add.text(1490, 805, 1, {
+        this.waveManagerWaveCountText = this.add.text(1380, 815, 'Wave 1', {
             font: "44px Arial",
             fill: "#ffffff",
             align: "center"
@@ -256,6 +259,7 @@ ISC.Game.prototype = {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()) {
                     this.updateCredit(this.enemies[i].reward);
+
                 }
                 else if (this.enemies[i].landed(this.enemyDestination)) {
                     this.remainingLives--;
@@ -415,23 +419,31 @@ ISC.Game.prototype = {
 
             this.waveTimer = this.time.events.loop(Phaser.Timer.SECOND, this.updateWaveTimer, this);
             this.waveTimerText.visible = true;
+
+            this.ohDesLamasFirst = this.add.audio('ohNonDesLamas2'); // des lams
+            this.ohDesLamasFirst.play();// play
+            this.ohDesLamasFirst.volume = 1;// volume de la plage
         }
     },
 
     updateWaveTimer: function () {
         this.waveCountdown--;
 
-        this.waveTimerText.setText(this.waveCountdown);
+        this.waveTimerText.setText(this.waveCountdown + 's');
 
         if (this.waveCountdown == 0) {
             this.waveCountdown = parameters.waves.timeNextWave;
-            this.waveTimerText.setText(parameters.waves.timeNextWave);
+            this.waveTimerText.setText(parameters.waves.timeNextWave + 's');
             this.launchWave();
-            this.waveManagerWaveCountText.setText(this.waveManager.countWave);
+            this.waveManagerWaveCountText.setText('Wave ' + this.waveManager.countWave);
 
-            this.ohDesLamas = this.add.audio('ohNonDesLamas2'); // des lams
+
+            this.ohDesLamas = this.add.audio('monDieu'); // des lams
             this.ohDesLamas.play();// play
-            this.ohDesLamas.volume = 1;// volume de la plage
+            this.ohDesLamas.volume = 0.5;// volume de la plage
+
+
+
         }
     },
 
@@ -482,6 +494,7 @@ ISC.Game.prototype = {
         this.credit += credit;
         this.creditText.setText(this.credit);
         this.updateUi();
+        this.earnMoney();
     },
 
     updateUi: function() {
@@ -500,10 +513,9 @@ ISC.Game.prototype = {
     },
 
     createBtowerText: function (btower) {
-        this.add.text(btower.x + 10, btower.y + 70, parameters.towers[btower.type].cost, {
+        this.add.text(btower.x + 40, btower.y + 80, parameters.towers[btower.type].cost, {
             font: "20px Arial",
-            fill: "#ffffff",
-            align: "center"
+            fill: "#ffffff"
         });
     },
 
@@ -513,4 +525,11 @@ ISC.Game.prototype = {
         this.mouette.volume = 0.1;
 
     },
+
+    earnMoney: function () {
+
+        this.argent.play();
+        this.argent.volume = 0.3;
+
+    }
 };

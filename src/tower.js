@@ -12,8 +12,11 @@ ISC.Tower = function (game, x, y, type) {
     this.type = type;
 
     this.showFire = 0;
-    this.fireSprite = game.add.sprite(x, y, 'fx_' + type);
-    this.fireSprite.visible = false;
+    if (parameters.towers[towerType].distance > 0) {
+        this.fireSprite = game.add.sprite(x, y, 'fx_' + type);
+        this.fireSprite.visible = false;
+    }
+
     this.game = game;
 
     game.add.existing(this);
@@ -72,7 +75,9 @@ ISC.Tower.prototype.sale = function() {
 }
 
 ISC.Tower.prototype.remove = function() {
-    this.fireSprite.destroy();
+    if (this.fireSprite) {
+        this.fireSprite.destroy();
+    }
     this.destroy();
 }
 
