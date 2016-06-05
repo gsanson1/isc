@@ -82,7 +82,7 @@ ISC.Game.prototype = {
         this.island = this.add.sprite(1408, 0, 'island');
         this.UI = this.add.sprite(0, 768, 'UI');
 
-        this.remainingLives = parameters.lives;
+        this.remainingLives = parameters.lives; 
         this.credit = parameters.initialCredit;
 
         this.creditText = this.add.text(60, 840, this.credit, {
