@@ -3,7 +3,6 @@
  */
 
 var Enemy = function(_game, _map, _x, _y, _type) {
-    this.game = _game;
     this.map = _map;
     this.life = _game.life;
 
@@ -28,8 +27,9 @@ Enemy.prototype = {
         return this.currentEnergy <= 0;
     },
     
-    landed: function() {
-        return Tools.getTiledPosition(this.boatSprite) == this.game.enemyDestination;
+    landed: function(_enemyDestination) {
+        var pos = Tools.getTiledPosition(this.boatSprite);
+        return pos.x == _enemyDestination.x && pos.y == _enemyDestination.y;
     },
 
     remove: function() {
