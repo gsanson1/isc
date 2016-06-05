@@ -276,7 +276,7 @@ ISC.Game.prototype = {
             }
         }
 
-        this.wave.nextStep();
+        this.wave.nextStep(this.game.time.time);
     },
 
     quitGame: function () {

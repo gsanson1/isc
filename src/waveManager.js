@@ -9,10 +9,16 @@ var Waves = function(_gameScreen) {
 }
 
 Waves.prototype = {
-    nextStep: function() {
-        this.nextWave--;
-        if (this.nextWave <= 0) {
-            this.nextWave = parameters.waves.timeNextWave;
+    nextStep: function(t) {
+        //this.nextWave--;
+        //if (this.nextWave <= 0) {
+        //    this.nextWave = parameters.waves.timeNextWave;
+        //    this.launchWave();
+        //}
+
+        var tInSec = Math.floor(t / 1000);
+        if (this.nextWave < tInSec) {
+            this.nextWave = tInSec + parameters.waves.timeNextWave;
             this.launchWave();
         }
     },
