@@ -75,6 +75,8 @@ ISC.Game = function (game) {
     this.remainingLives;
 
     this.textColour = '#5A361F';
+
+    
 };
 
 ISC.Game.prototype = {
@@ -116,6 +118,11 @@ ISC.Game.prototype = {
 
         // son de l'argent
         this.argent = this.add.audio('Argent');
+        this.argentnul = this.add.audio('hihiPlusDargent');
+
+        this.lose = this.add.audio('VieEnMoins');
+
+
 
 
         // Boutons in-game UI
@@ -511,11 +518,15 @@ ISC.Game.prototype = {
     updateUi: function() {
         var credit = this.credit;
 
+
         this.btowers.forEach(function (btower) {
             var towerCost = parameters.towers[btower.type].cost;
 
             if (towerCost > credit) {
+
                 btower.tint = 0xA9A9A9;
+                
+
             }
             else {
                 btower.tint = 0xFFFFFF;
@@ -545,12 +556,17 @@ ISC.Game.prototype = {
     },
 
     updateMenuLife: function () {
+        var launchsound = this;
         this.menuLifes.forEach(function (menuLife) {
             menuLife.destroy();
-        });
+            launchsound.lose.play();
+            launchsound.lose.volume = 0.8;
+        })
 
         for(var i = 0;i < this.remainingLives; i++) {
             this.menuLifes.push(this.add.sprite(30 + (i * 32), 820, 'menu_wererabbit'));
-        }
-    }
+        };
+    },
+
+
 };

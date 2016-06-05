@@ -6,8 +6,9 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.map = _map;
     this.life = _game.life;
 
-    var enemyType = 'enemy_' + _type;
+    enemyType = 'enemy_' + _type;
 
+    this.game = _game;
     this.speed = parameters.enemies[enemyType].speed * parameters.speedMul;
     this.energy = parameters.enemies[enemyType].energy;
     this.currentEnergy = this.energy;
@@ -27,6 +28,7 @@ Enemy.prototype = {
         return this.currentEnergy <= 0;
     },
     
+    
     landed: function(_enemyDestination) {
         var pos = Tools.getTiledPosition(this.boatSprite);
 
@@ -37,6 +39,7 @@ Enemy.prototype = {
         this.boatSprite.destroy(true);
         this.lifeFront.destroy(true);
         this.lifeBack.destroy(true);
+        
     },
 
     hit: function(_points) {

@@ -9,13 +9,13 @@ var parameters = {
             damage: 0,
             distance: 0,
             fireRate: 0,
-            cost: 30,
-            recycle: 15
+            cost: 40,
+            recycle: 20
         },
         tower_a0: {
             damage: 3,
             distance: 64 * 64 * 3,
-            fireRate: 100,
+            fireRate: 120,
             cost: 150,
             recycle: 0,
             sound: 'Mitraillette',
@@ -23,13 +23,13 @@ var parameters = {
         tower_a1: {
             damage: 4,
             distance: 64 * 64 * 3,
-            fireRate: 80,
+            fireRate: 100,
             cost: 450,
             recycle: 0,
             sound: 'Mitraillette',
         },
         tower_b0: {
-            damage: 15,
+            damage: 18,
             distance: 64 * 64 * 56,
             fireRate: 2000,
             cost: 140,
@@ -37,7 +37,7 @@ var parameters = {
             sound: 'Explosion',
         },
         tower_b1: {
-            damage: 20,
+            damage: 24,
             distance: 64 * 64 * 72,
             fireRate: 2000,
             cost: 360,
@@ -58,6 +58,7 @@ var parameters = {
             fireRate: 0,
             cost: 10,
             recycle: 0,
+            sound: 'Tulu',
 
         }
     },
