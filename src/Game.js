@@ -110,6 +110,8 @@ ISC.Game.prototype = {
         for (var i = 2; i < 10; i++) {
             this.map.addTower(23, i);
         }
+        // Complete path
+        this.map.adddExit(22, 6);
 
         //  son de la plage
         this.plage = this.add.audio('Plage'); // vague

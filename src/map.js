@@ -33,8 +33,13 @@ var Map = function(_width, _height, _dest) {
 
 Map.prototype = {
 
-    //DIRECTIONS : [new Point(-1, -1), new Point(-1, 0), new Point(-1, 1), new Point(0, -1), new Point(0, 1), new Point(1, -1), new Point(1, 0), new Point(1, 1)],
     DIRECTIONS : [new Point(1, 0), new Point(-1, 0), new Point(0, -1), new Point(0, 1)],
+
+    DIAG_DIR : [[new Point(1, -1), new Point(1, 1)], [new Point(-1, -1), new Point(-1, 1)], [new Point(-1, -1), new Point(1, -1)], [new Point(-1, 1), new Point(1, 1)]],
+
+    adddExit: function(_x, _y) {
+      this.array[_x][_y] = 1;
+    },
 
     canAddTower: function(_x, _y) {
         var can = false;
@@ -89,6 +94,7 @@ Map.prototype = {
         var height = this.arrayComp[0].length;
 
         var best = 999;
+        var bestIdx;
         var bestDir;
         var newX;
         var newY;
@@ -102,6 +108,20 @@ Map.prototype = {
                 && this.arrayComp[newX][newY] < best) {
                     best = this.arrayComp[newX][newY];
                     bestDir = this.DIRECTIONS[i];
+                    bestIdx = i;
+            }
+        }
+
+        // Diagonales
+        for (var i = 0; i < this.DIAG_DIR[bestIdx].length; i++) {
+            newX = _x + this.DIAG_DIR[bestIdx][i].x;
+            newY = _y + this.DIAG_DIR[bestIdx][i].y;
+
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height
+                && this.arrayComp[newX][newY] != -1
+                && this.arrayComp[newX][newY] < best) {
+                    best = this.arrayComp[newX][newY];
+                    bestDir = this.DIAG_DIR[bestIdx][i];
             }
         }
 
