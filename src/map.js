@@ -112,6 +112,7 @@ Map.prototype = {
             }
         }
 
+        /*
         // Diagonales
         for (var i = 0; i < this.DIAG_DIR[bestIdx].length; i++) {
             newX = _x + this.DIAG_DIR[bestIdx][i].x;
@@ -124,6 +125,7 @@ Map.prototype = {
                     bestDir = this.DIAG_DIR[bestIdx][i];
             }
         }
+        */
 
         return bestDir;
     },
