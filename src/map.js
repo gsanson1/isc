@@ -9,6 +9,9 @@ var Point = function(_x, _y) {
 
 
 var Map = function(_width, _height, _dest) {
+
+    this.width = _width;
+    this.height = _height;
     this.array = this.createArray(_width, _height);
 
     if (_dest instanceof Array) {
@@ -42,25 +45,24 @@ Map.prototype = {
     },
 
     canAddTower: function(_x, _y) {
-        var can = false;
+
+        if (_x < 1 || _y < 0 || _x >= this.width || _y >= this.height
+            || (_x == this.startX - 1 && _y == this.startY)
+            || (_x == this.startX && _y == this.startY - 1)
+            || (_x == this.startX && _y == this.startY + 1)
+            || (_x == this.startX - 1 && _y == this.startY - 1)
+            || (_x == this.startX - 1 && _y == this.startY + 1)) {
+            return false;
+        }
 
         if (this.array[_x][_y] == 0) {
             var newMap = this.cloneArray(this.array);
             newMap[_x][_y] = -1;
             this.compute(newMap, this.startX, this.startY);
-            can = newMap[0][0] != 0;
+            return newMap[0][0] != 0;
         }
 
-        if (_x == 0
-            || _x == this.startX - 1 && _y == this.startY
-            || _x == this.startX && _y == this.startY - 1
-            || _x == this.startX && _y == this.startY + 1
-            || _x == this.startX - 1 && _y == this.startY - 1
-            || _x == this.startX - 1 && _y == this.startY + 1) {
-            can = false;
-        }
-
-        return can;
+        return false;
     },
 
     addTower: function(_x, _y) {
@@ -112,7 +114,6 @@ Map.prototype = {
             }
         }
 
-        /*
         // Diagonales
         for (var i = 0; i < this.DIAG_DIR[bestIdx].length; i++) {
             newX = _x + this.DIAG_DIR[bestIdx][i].x;
@@ -125,8 +126,7 @@ Map.prototype = {
                     bestDir = this.DIAG_DIR[bestIdx][i];
             }
         }
-        */
-
+        
         return bestDir;
     },
 

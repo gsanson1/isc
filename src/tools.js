@@ -38,6 +38,20 @@ Tools.getGraphicPosition = function(tiledPosition) {
     return {x: tiledX, y: tiledY};
 }
 
+Tools.createArray = function(_width, _height, _val) {
+    var val = _val | 0;
+    var map = [];
+
+    for (var i = 0; i < _width; i++) {
+        map[i] = [];
+        for (var j = 0; j < _height; j++) {
+            map[i][j] = val;
+        }
+    }
+
+    return map;
+},
+
 Tools.sqDist = function(_x1, _y1, _x2, _y2) {
     var dx = _x2 - _x1;
     var dy = _y2 - _y1;

@@ -77,7 +77,7 @@ ISC.Game = function (game) {
 
     this.textColour = '#5A361F';
 
-
+    this.enemyMap;
 };
 
 ISC.Game.prototype = {
@@ -106,6 +106,8 @@ ISC.Game.prototype = {
 
         // Init map
         this.map = new Map(24, 12, this.enemyDestination);
+        this.enemyMap = new  EnemyMap(24, 12);
+
         // Island
         for (var i = 2; i < 10; i++) {
             this.map.addTower(23, i);
@@ -239,7 +241,7 @@ ISC.Game.prototype = {
         this.waveTimerText.anchor.setTo(0.5, 0.5);
         this.waveTimerText.visible = false;
 
-        this.waveManagerWaveCountText = this.add.text(1380, 815, 'Wave 1', {
+        this.waveManagerWaveCountText = this.add.text(1345, 815, 'Wave 1', {
             font: "44px Ritaglio",
             fill: this.textColour,
             align: "center"
@@ -275,6 +277,9 @@ ISC.Game.prototype = {
     },
 
     update: function () {
+
+        this.enemyMap.reset();
+
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].isDead() || this.enemies[i].landed(this.enemyDestination)) {
                 if (this.enemies[i].isDead()) {
@@ -300,6 +305,7 @@ ISC.Game.prototype = {
 
             } else {
                 this.enemies[i].move();
+                this.enemyMap.addSprite(this.enemies[i].boatSprite);
             }
         }
 
@@ -349,6 +355,9 @@ ISC.Game.prototype = {
                 this.explosion.frame = 3 - Math.floor(this.exCountDown / 15);
             }
         }
+
+        // Update cursor
+        this.updateCursor();
     },
 
     quitGame: function () {
@@ -370,7 +379,8 @@ ISC.Game.prototype = {
 
             if (tiledPosition.y < 12) {
                 this.moveTowerPlaceHolderToPointer();
-                if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)) {
+                if (this.map.canAddTower(tiledPosition.x, tiledPosition.y)
+                    && !this.enemyMap.hasSprite(tiledPosition.x, tiledPosition.y)) {
                     this.towerPlaceholder.tint = 0xFFFFFF;
                     this.drawTowerPlaceholderShotCircle();
                     if (this.input.activePointer.isDown) {

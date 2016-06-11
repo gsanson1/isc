@@ -21,6 +21,8 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.crop = new Phaser.Rectangle(0, 0, 60, 2);
     this.lifeFront.crop(this.crop);
 
+    this.target = null;
+
     this.dying = 40;
 }
 
@@ -52,14 +54,22 @@ Enemy.prototype = {
     },
 
     move: function() {
-        var px = (this.boatSprite.x + 1) >> 6;
-        var py = (this.boatSprite.y + 1) >> 6;
+        var px = (this.boatSprite.x + 32) >> 6;
+        var py = (this.boatSprite.y + 32) >> 6;
 
-        var next = this.map.nextCell(px, py);
+        if (!this.target || this.target.x != px || this.target.y != py) {
+            var dir  = this.map.nextCell(px, py);
+            this.target = { x: px + dir.x, y: py + dir.y };
+        }
 
-        // Center of next cell
-        var cx = ((px + next.x) << 6);
-        var cy = ((py + next.y) << 6);
+        // Center of target cell
+        var cx = this.target.x << 6;
+        var cy = this.target.y << 6;
+
+        if (Tools.sqDist(cx, cy, this.boatSprite.x, this.boatSprite.y) < this.speed * this.speed) {
+            //this.target = this.map.nextCell((this.boatSprite.x + 32) >> 6, (this.boatSprite.y + 32) >> 6);
+            this.target = null;
+        }
 
         // delta pos
         var vector = new Phaser.Point(cx - this.boatSprite.x, cy - this.boatSprite.y).normalize();
@@ -74,7 +84,43 @@ Enemy.prototype = {
 
         this.lifeFront.x = this.lifeBack.x;
         this.lifeFront.y = this.lifeBack.y;
+
     }
 }
+
+
+var EnemyMap = function(_width, _height) {
+    this.width = _width;
+    this.height = _height;
+
+    this.reset();
+};
+
+EnemyMap.prototype = {
+
+    reset: function() {
+        this.array = Tools.createArray(this.width, this.height);
+    },
+
+    addSprite: function(_sprite) {
+        var px = (_sprite.x + 32) >> 6;
+        var py = (_sprite.y + 32) >> 6;
+
+        if (px >= 0 && px < this.width && py >= 0 && py < this.height) {
+            this.array[px][py] = 1;
+        }
+    },
+
+    hasSprite: function(_x, _y) {
+        if (_x >= 0 && _x < this.width && _y >= 0 && _y < this.height) {
+            return this.array[_x][_y] == 1;
+        }
+
+        return true; // Outside of arena
+    }
+}
+
+
+
 
 
