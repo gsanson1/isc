@@ -305,7 +305,7 @@ ISC.Game.prototype = {
 
             } else {
                 this.enemies[i].move();
-                this.enemyMap.addSprite(this.enemies[i].boatSprite);
+                this.enemyMap.addSprite(this.enemies[i]);
             }
         }
 

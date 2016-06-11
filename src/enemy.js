@@ -98,17 +98,28 @@ var EnemyMap = function(_width, _height) {
 
 EnemyMap.prototype = {
 
+    POS_CHECK: [{x: -24, y: -24}, {x: 24, y: -24}, {x: -24, y: 24}, {x: 24, y: 24}],
+
     reset: function() {
         this.array = Tools.createArray(this.width, this.height);
     },
 
-    addSprite: function(_sprite) {
-        var px = (_sprite.x + 32) >> 6;
-        var py = (_sprite.y + 32) >> 6;
+    addSprite: function(_enemy) {
+        var cx = _enemy.boatSprite.x + 32;
+        var cy = _enemy.boatSprite.y + 32;
 
-        if (px >= 0 && px < this.width && py >= 0 && py < this.height) {
-            this.array[px][py] = 1;
+        var px;
+        var py;
+
+        for (var i = 0; i < this.POS_CHECK.length; i++) {
+            px = (cx + this.POS_CHECK[i].x) >> 6;
+            py = (cy + this.POS_CHECK[i].y) >> 6;
+
+            if (px >= 0 && px < this.width && py >= 0 && py < this.height) {
+                this.array[px][py] = 1;
+            }
         }
+
     },
 
     hasSprite: function(_x, _y) {
