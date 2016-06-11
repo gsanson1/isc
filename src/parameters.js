@@ -3,6 +3,7 @@ var parameters = {
     lives: 3,
     initialCredit: 700,
     speedMul: 0.8,
+    reefs: 6,
 
     towers: {
         tower_obstacle: {

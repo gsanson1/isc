@@ -30,7 +30,6 @@ ISC.Preloader.prototype = {
         this.load.image('gameover', 'images/logo_gameover.png');
         this.load.image('UI', 'images/menu/bg-menu.png');
         this.load.image('obstacle', 'images/obstacle.png');
-        this.load.image('reef', 'images/reef.png');
         this.load.spritesheet('boat_a0', 'images/full-lama.png', 64, 64, 12);
         this.load.spritesheet('boat_a1', 'images/full-lama2.png', 64, 64, 12);
         this.load.spritesheet('boat_a2', 'images/full-lama3.png', 64, 64, 12);
@@ -53,6 +52,8 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('fx_a1', 'images/tower_fx_heavy.png', 64, 64, 8);
         this.load.spritesheet('fx_b0', 'images/tower_fx_long.png', 64, 64, 8);
         this.load.spritesheet('fx_b1', 'images/tower_fx_heavy2.png', 64, 64, 8);
+
+        this.load.image('reef', 'images/rock.png');
 
         // Chargement son ambiance.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3');

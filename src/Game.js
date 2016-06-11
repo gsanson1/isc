@@ -115,6 +115,15 @@ ISC.Game.prototype = {
         // Complete path
         this.map.adddExit(22, 6);
 
+        // Reefs
+        for (var i = 0; i < parameters.reefs; i++) {
+            var rx = Math.floor((Math.random() * 19) + 2);
+            var ry = Math.floor((Math.random() * 8) + 2);
+
+            this.map.addTower(rx, ry);
+            this.game.add.sprite(rx << 6, ry << 6, 'reef');
+        }
+
         //  son de la plage
         this.plage = this.add.audio('Plage'); // vague
         this.mouette = this.add.audio('Moette'); // mouette
