@@ -91,7 +91,15 @@ Map.prototype = {
         return false;
     },
 
-    nextCell: function(_x, _y) {
+    nextCell: function(_x, _y, _inverseDir) {
+        if (_inverseDir) {
+            return this.fromTarget(_x, _y);
+        }
+
+        return this.toTarget(_x, _y);
+    },
+
+    toTarget: function(_x, _y) {
         var width = this.arrayComp.length;
         var height = this.arrayComp[0].length;
 
@@ -108,9 +116,9 @@ Map.prototype = {
             if (newX >= 0 && newX < width && newY >= 0 && newY < height
                 && this.arrayComp[newX][newY] != -1
                 && this.arrayComp[newX][newY] < best) {
-                    best = this.arrayComp[newX][newY];
-                    bestDir = this.DIRECTIONS[i];
-                    bestIdx = i;
+                best = this.arrayComp[newX][newY];
+                bestDir = this.DIRECTIONS[i];
+                bestIdx = i;
             }
         }
 
@@ -122,13 +130,56 @@ Map.prototype = {
             if (newX >= 0 && newX < width && newY >= 0 && newY < height
                 && this.arrayComp[newX][newY] != -1
                 && this.arrayComp[newX][newY] < best) {
-                    best = this.arrayComp[newX][newY];
-                    bestDir = this.DIAG_DIR[bestIdx][i];
+                best = this.arrayComp[newX][newY];
+                bestDir = this.DIAG_DIR[bestIdx][i];
             }
         }
-        
+
         return bestDir;
     },
+
+
+    fromTarget: function(_x, _y) {
+        var width = this.arrayComp.length;
+        var height = this.arrayComp[0].length;
+
+        var best = -1;
+        var bestIdx;
+        var bestDir;
+        var newX;
+        var newY;
+
+        for (var i = 0; i < this.DIRECTIONS.length; i++) {
+            newX = _x + this.DIRECTIONS[i].x;
+            newY = _y + this.DIRECTIONS[i].y;
+
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height
+                && this.arrayComp[newX][newY] != -1
+                && this.arrayComp[newX][newY] > best) {
+                best = this.arrayComp[newX][newY];
+                bestDir = this.DIRECTIONS[i];
+                bestIdx = i;
+            }
+        }
+
+        // Diagonales
+        for (var i = 0; i < this.DIAG_DIR[bestIdx].length; i++) {
+            newX = _x + this.DIAG_DIR[bestIdx][i].x;
+            newY = _y + this.DIAG_DIR[bestIdx][i].y;
+
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height
+                && this.arrayComp[newX][newY] != -1
+                && this.arrayComp[newX][newY] > best) {
+                best = this.arrayComp[newX][newY];
+                bestDir = this.DIAG_DIR[bestIdx][i];
+            }
+        }
+
+        return bestDir;
+    },
+
+
+
 
     createArray: function(_width, _height, _val) {
         var val = _val | 0;

@@ -5,6 +5,7 @@ var parameters = {
     speedMul: 0.8,
     reefs: 6,
     slowdown: 0.5,
+    scare: 200,
 
     towers: {
         tower_obstacle: {
@@ -50,7 +51,7 @@ var parameters = {
             up: 'tower_unicorn_up',
             damage: 30,
             distance: 64 * 64 * 20,
-            fireRate: 2000,
+            fireRate: 30000,
             cost: 200,
             recycle: 200,
             sound: 'Explosion',

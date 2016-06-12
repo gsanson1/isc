@@ -351,6 +351,7 @@ ISC.Game.prototype = {
                                         target[j].enemy.slowDown();
                                     break;
                                 case 'fear':
+                                        target[j].enemy.scare();
                                     break;
                                 default:
                                     target[j].enemy.hit(this.towers[i].damage);

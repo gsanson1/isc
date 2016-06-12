@@ -26,9 +26,14 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.dying = 40;
 
     this.slowdown = false;
+    this.afraid = 0;
 }
 
 Enemy.prototype = {
+
+    scare: function() {
+        this.afraid = parameters.scare;
+    },
 
     slowDown: function() {
         this.slowdown = true;
@@ -64,7 +69,7 @@ Enemy.prototype = {
         var py = (this.boatSprite.y + 32) >> 6;
 
         if (!this.target || this.target.x != px || this.target.y != py) {
-            var dir  = this.map.nextCell(px, py);
+            var dir  = this.map.nextCell(px, py, this.afraid > 0);
             this.target = { x: px + dir.x, y: py + dir.y };
         }
 
@@ -97,6 +102,9 @@ Enemy.prototype = {
         this.lifeFront.y = this.lifeBack.y;
         
         this.slowdown = false;
+        if (this.afraid > 0) {
+            this.afraid--;
+        }
     }
 }
 
