@@ -9,12 +9,24 @@ ISC.Tower = function (game, x, y, type) {
     this.cost = parameters.towers[towerType].cost;
     this.recycle = parameters.towers[towerType].recycle;
 
+    this.static = parameters.towers[towerType].static | false;
+    this.area = parameters.towers[towerType].area | false;
+    this.attack = parameters.towers[towerType].attack;
+    if (!this.attack) {
+        this.attack = 'firearm';
+    }
+    
     this.type = type;
 
     this.showFire = 0;
     if (parameters.towers[towerType].distance > 0) {
         this.fireSprite = game.add.sprite(x, y, 'fx_' + type);
         this.fireSprite.visible = false;
+    }
+
+    this.up = null;
+    if (parameters.towers[towerType].up) {
+        this.up = game.add.sprite(x, y - 64, parameters.towers[towerType].up);
     }
 
     this.game = game;
@@ -35,29 +47,43 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
     var newDist;
     var direction = 0;
 
+    var enemies = [];
+
     for (var i = 0; i < _enemies.length; i++) {
         newDist = Tools.sqDist(this.x, this.y, _enemies[i].boatSprite.x, _enemies[i].boatSprite.y);
-        if (newDist < dist) {
+        if (this.area) {
+            if (newDist < this.distance) {
+                enemies.push({ enemy: _enemies[i], direction: -1 });
+            }
+        } else if (newDist < dist) {
             dist = newDist;
             target = _enemies[i];
         }
     }
 
     if (target) {
-        direction = Tools.direction(this.x, this.y, target.boatSprite.x, target.boatSprite.y);
-        this.frame = direction;
+        if (!this.static) {
+            direction = Tools.direction(this.x, this.y, target.boatSprite.x, target.boatSprite.y);
+            this.frame = direction;
+        }
 
         this.fireSprite.visible = true;
         this.showFire = 5;
 
         this.sound.play();
         this.sound.volume = 0.8;
+
+        enemies.push({ enemy: target, direction: direction });
     }
 
-    return { enemy: target, direction: direction };
+    return enemies;
 }
 
 ISC.Tower.prototype.refresh = function() {
+    if (this.up) {
+        this.up.bringToTop();
+    }
+
     if (this.showFire > 0) {
         this.fireSprite.frame = this.frame;
         this.fireSprite.bringToTop();
@@ -78,6 +104,11 @@ ISC.Tower.prototype.remove = function() {
     if (this.fireSprite) {
         this.fireSprite.destroy();
     }
+
+    if (this.up) {
+        this.up.destroy();
+    }
+
     this.destroy();
 }
 

@@ -55,6 +55,9 @@ ISC.Preloader.prototype = {
 
         this.load.image('reef', 'images/rock.png');
 
+        this.load.image('tower_unicorn', 'images/unicorn1_down.png');
+        this.load.image('tower_unicorn_up', 'images/unicorn1_up.png');
+        
         // Chargement son ambiance.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3');
 

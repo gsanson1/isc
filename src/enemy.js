@@ -6,10 +6,10 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.map = _map;
     this.life = _game.life;
 
-    enemyType = 'enemy_' + _type;
+    var enemyType = 'enemy_' + _type;
 
     this.game = _game;
-    this.speed = parameters.enemies[enemyType].speed * parameters.speedMul;
+    this.speed = parameters.enemies[enemyType].speed * parameters.speedMul * ((Math.random() * 0.1) + 0.95);
     this.energy = parameters.enemies[enemyType].energy;
     this.currentEnergy = this.energy;
     this.reward = parameters.enemies[enemyType].reward;
@@ -24,9 +24,15 @@ var Enemy = function(_game, _map, _x, _y, _type) {
     this.target = null;
 
     this.dying = 40;
+
+    this.slowdown = false;
 }
 
 Enemy.prototype = {
+
+    slowDown: function() {
+        this.slowdown = true;
+    },
 
     isDead: function() {
         return this.currentEnergy <= 0;
@@ -66,7 +72,12 @@ Enemy.prototype = {
         var cx = this.target.x << 6;
         var cy = this.target.y << 6;
 
-        if (Tools.sqDist(cx, cy, this.boatSprite.x, this.boatSprite.y) < this.speed * this.speed) {
+        var localSpeed = this.speed;
+        if (this.slowdown) {
+            localSpeed *= parameters.slowdown;
+        }
+
+        if (Tools.sqDist(cx, cy, this.boatSprite.x, this.boatSprite.y) < localSpeed * localSpeed) {
             //this.target = this.map.nextCell((this.boatSprite.x + 32) >> 6, (this.boatSprite.y + 32) >> 6);
             this.target = null;
         }
@@ -74,8 +85,8 @@ Enemy.prototype = {
         // delta pos
         var vector = new Phaser.Point(cx - this.boatSprite.x, cy - this.boatSprite.y).normalize();
 
-        this.boatSprite.x += vector.x * this.speed;
-        this.boatSprite.y += vector.y * this.speed;
+        this.boatSprite.x += vector.x * localSpeed;
+        this.boatSprite.y += vector.y * localSpeed;
 
         this.boatSprite.frame = Tools.dirVector2(vector.x, vector.y);
 
@@ -84,7 +95,8 @@ Enemy.prototype = {
 
         this.lifeFront.x = this.lifeBack.x;
         this.lifeFront.y = this.lifeBack.y;
-
+        
+        this.slowdown = false;
     }
 }
 

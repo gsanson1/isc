@@ -173,15 +173,15 @@ ISC.Game.prototype = {
         this.btowers.push(this.bpTower5);
 
         this.bpTower6 = this.add.button(1090, 780, 'bp_Tower6', function () {
-            this.chooseTowerToBuild(1, 'b2')
+            this.chooseTowerToBuild(1, 'unicorn')
         }, this);
-        this.bpTower6.type = 'tower_b2';
+        this.bpTower6.type = 'tower_unicorn';
         this.btowers.push(this.bpTower6);
 
         this.bpTower7 = this.add.button(1220, 780, 'bp_Tower7', function () {
             this.chooseTowerToBuild(1, 'tentacle')
         }, this);
-        this.bpTower7.type = 'tower_b2';
+        this.bpTower7.type = 'tower_tentacle';
         this.btowers.push(this.bpTower7);
 
         this.btowers.forEach(this.createBtowerText.bind(this));
@@ -343,8 +343,19 @@ ISC.Game.prototype = {
             else {
                 if (this.towers[i].nextFire < this.game.time.time) {
                     target = this.towers[i].findTarget(this.enemies);
-                    if (target.enemy) {
-                        target.enemy.hit(this.towers[i].damage);
+                    if (target.length > 0) {
+                        for (var j = 0; j < target.length; j++) {
+
+                            switch (this.towers[i].attack) {
+                                case 'slowdown':
+                                        target[j].enemy.slowDown();
+                                    break;
+                                case 'fear':
+                                    break;
+                                default:
+                                    target[j].enemy.hit(this.towers[i].damage);
+                            }
+                        }
                         this.towers[i].nextFire = this.game.time.time + this.towers[i].fireRate;
                     }
                 }

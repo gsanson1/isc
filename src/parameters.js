@@ -4,6 +4,7 @@ var parameters = {
     initialCredit: 700,
     speedMul: 0.8,
     reefs: 6,
+    slowdown: 0.5,
 
     towers: {
         tower_obstacle: {
@@ -19,7 +20,7 @@ var parameters = {
             fireRate: 100,
             cost: 140,
             recycle: 126,
-            sound: 'Mitraillette',
+            sound: 'Mitraillette'
         },
         tower_a1: {
             damage: 4,
@@ -27,7 +28,7 @@ var parameters = {
             fireRate: 90,
             cost: 470,
             recycle: 423,
-            sound: 'Mitraillette',
+            sound: 'Mitraillette'
         },
         tower_b0: {
             damage: 18,
@@ -35,7 +36,7 @@ var parameters = {
             fireRate: 2700,
             cost: 180,
             recycle: 164,
-            sound: 'Explosion',
+            sound: 'Explosion'
         },
         tower_b1: {
             damage: 24,
@@ -43,24 +44,30 @@ var parameters = {
             fireRate: 2700,
             cost: 480,
             recycle: 432,
-            sound: 'Explosion',
+            sound: 'Explosion'
         },
-        tower_b2: {
+        tower_unicorn: {
+            up: 'tower_unicorn_up',
             damage: 30,
             distance: 64 * 64 * 20,
             fireRate: 2000,
             cost: 200,
             recycle: 200,
             sound: 'Explosion',
+            static: true,
+            area: true,
+            attack: 'fear'
         },
         tower_tentacle: {
             damage: 0,
-            distance: 0,
+            distance: 64 * 64 * 4,
             fireRate: 0,
-            cost: 10,
+            cost: 500,
             recycle: 0,
             sound: 'Tulu',
-
+            static: true,
+            area: true,
+            attack: 'slowdown'
         }
     },
 
