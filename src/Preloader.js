@@ -47,6 +47,7 @@ ISC.Preloader.prototype = {
         this.load.spritesheet('tower_b1', 'images/tower_heavy2.png', 64, 64, 8);
         this.load.spritesheet('tower_b2', 'images/tower_long2.png', 64, 64, 8);
         this.load.spritesheet('tower_tentacle', 'images/tentacle.png', 64, 64, 8);
+        this.load.image('fx_tentacle', 'images/tentacle_fx.png');
 
         this.load.spritesheet('fx_a0', 'images/tower_fx_short.png', 64, 64, 8);
         this.load.spritesheet('fx_a1', 'images/tower_fx_heavy.png', 64, 64, 8);
@@ -57,7 +58,9 @@ ISC.Preloader.prototype = {
 
         this.load.image('tower_unicorn', 'images/unicorn1_down.png');
         this.load.image('tower_unicorn_up', 'images/unicorn1_up.png');
-        
+        this.load.image('fx_unicorn', 'images/unicorn_fx.png');
+
+
         // Chargement son ambiance.
         this.load.audio('Plage','sounds/sample/sf_plage_02.mp3');
 

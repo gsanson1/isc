@@ -15,7 +15,8 @@ ISC.Tower = function (game, x, y, type) {
     if (!this.attack) {
         this.attack = 'firearm';
     }
-    
+
+    this.fireDuration = parameters.towers[towerType].fireDuration | 5;
     this.type = type;
 
     this.showFire = 0;
@@ -67,13 +68,15 @@ ISC.Tower.prototype.findTarget = function(_enemies) {
             this.frame = direction;
         }
 
+        enemies.push({ enemy: target, direction: direction });
+    }
+
+    if (enemies.length > 0) {
         this.fireSprite.visible = true;
-        this.showFire = 5;
+        this.showFire = this.fireDuration;
 
         this.sound.play();
         this.sound.volume = 0.8;
-
-        enemies.push({ enemy: target, direction: direction });
     }
 
     return enemies;

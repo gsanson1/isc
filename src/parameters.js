@@ -52,6 +52,7 @@ var parameters = {
             damage: 30,
             distance: 64 * 64 * 20,
             fireRate: 30000,
+            fireDuration: 50,
             cost: 600,
             recycle: 200,
             sound: 'Explosion',
