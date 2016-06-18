@@ -32,7 +32,9 @@ var Enemy = function(_game, _map, _x, _y, _type) {
 Enemy.prototype = {
 
     scare: function() {
-        this.afraid = parameters.scare;
+        if (this.afraid <= 0) {
+            this.afraid = parameters.scare;
+        }
     },
 
     slowDown: function() {
@@ -69,7 +71,7 @@ Enemy.prototype = {
         var py = (this.boatSprite.y + 32) >> 6;
 
         if (!this.target || this.target.x != px || this.target.y != py) {
-            var dir  = this.map.nextCell(px, py, this.afraid > 0);
+            var dir  = this.map.nextCell(px, py, false);//this.afraid > 0);
             this.target = { x: px + dir.x, y: py + dir.y };
         }
 
@@ -78,6 +80,10 @@ Enemy.prototype = {
         var cy = this.target.y << 6;
 
         var localSpeed = this.speed;
+        if (this.afraid > 0) {
+            //localSpeed *= Math.max(0, (parameters.scare - this.afraid - 50)) / parameters.scare;
+            localSpeed *= Math.abs(Math.cos(Math.PI * this.afraid / parameters.scare));
+        }
         if (this.slowdown) {
             localSpeed *= parameters.slowdown;
         }

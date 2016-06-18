@@ -34,7 +34,7 @@ ISC.Tower = function (game, x, y, type) {
 
     game.add.existing(this);
 
-    this.nextFire = 0;
+    this.nextFire = game.time.time + this.fireRate;
     this.dead = false;
 };
 

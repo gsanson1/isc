@@ -24,11 +24,6 @@ ISC.MainMenu.prototype = {
 
             this.state.start('Game');
 
-
-
-
-
-
     },
 
 };
