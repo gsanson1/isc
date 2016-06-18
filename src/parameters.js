@@ -4,7 +4,7 @@ var parameters = {
     initialCredit: 750,
     speedMul: 0.8,
     reefs: 12,
-    slowdown: 0.4,
+    slowdown: 0.5,
     scare: 200,
 
     towers: {
