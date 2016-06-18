@@ -105,8 +105,8 @@ var parameters = {
         unitsFirstWave: 2,      // Nombre d'unites dans la premiere vague
         timeNextWave: 10,      // Nombre de secondes avant les vagues (Hors premiere)
         switchEvery: 4,         // Changement nb unites => puissance
-        strengthMul: 1.2,  // Augmentation de puissance (Toutes les switchEvery vagues)
-        unitIncrease: 1.5,        // Augmentation par tour (+ Increment)
+        strengthMul: 1.12,  // Augmentation de puissance (Toutes les switchEvery vagues)
+        unitIncrease: 1,        // Augmentation par tour (+ Increment)
         waveGuests: 6,           // Premiere vague avec des guests
         ratioBasic: 0.85,        // Ratio de lama de type "basique"
         bossWave: 30            // Boss wave
