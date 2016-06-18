@@ -14,7 +14,9 @@ WaveManager.prototype = {
         var enemy = null;
         var enemyNum;
         for (var i = 0; i < this.units; i++) {
-            if (Math.random() < parameters.waves.ratioBasic) {
+            if (this.countWave % parameters.waves.bossWave == 0) { // Boss wave
+                enemyNum = 1;
+            } else if (Math.random() < parameters.waves.ratioBasic) { // Basic llamas
                 enemyNum = 0; // Basic
             } else if (randVal == 2) {
                 enemyNum = 1;
