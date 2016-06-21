@@ -219,7 +219,7 @@ ISC.Game.prototype = {
         this.tower5key.onDown.add(this.chooseTowerToBuild, this, 0, 'b1');
 
         this.tower6key = this.input.keyboard.addKey(Phaser.Keyboard.SIX);
-        this.tower6key.onDown.add(this.chooseTowerToBuild, this, 0, 'b2');
+        this.tower6key.onDown.add(this.chooseTowerToBuild, this, 0, 'unicorn');
 
         this.tower7key = this.input.keyboard.addKey(Phaser.Keyboard.SEVEN);
         this.tower7key.onDown.add(this.chooseTowerToBuild, this, 0, 'tentacle');
